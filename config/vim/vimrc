@@ -1,0 +1,226 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIMRC FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use vim settings
+set nocompatible
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" XDG_CONFIG
+"""#""""""""""""""""""""""""""""""""""""""""""""""
+set undodir=$XDG_CACHE_HOME/vim/undo
+set directory=$XDG_CACHE_HOME/vim/swap
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM GENERAL
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set path for vim
+set path+=**
+
+" Highlights line cursor is on
+set cursorline
+
+" Redraw screen only when necessary
+set lazyredraw
+
+" Show command in bottom bar
+set showcmd
+
+" Turn on wildmenu
+set wildmenu
+
+" Highlight matching parenthesis
+set showmatch
+
+" Backspace over everything in insert mode
+set backspace=indent,eol,start
+
+" Show cursor position all the time
+set ruler
+
+" Time out for key codes
+set ttimeout		
+
+" Wait up to 100ms after Esc for special key
+set ttimeoutlen=100	
+
+"Show @@@ in last line if truncated
+set display=truncate
+
+" Show a few lines of context around cursor
+set scrolloff=5
+
+" Set leader key
+let mapleader=" "
+
+" Backups
+if has("vms")
+    set nobackup		" do not keep a backup file, use versions instead
+else
+    set backup		" keep a backup file (restore to previous version)
+    if has('persistent_undo')
+        set undofile	" keep an undo file (undo changes after closing)
+    endif
+endif
+
+" Put these in an autocmd group, so that you can revert them with:
+" ":augroup vimStartup | au! | augroup END"
+augroup vimStartup
+    au!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" SEARCHING
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+  set incsearch
+endif
+
+if &t_Co > 2 || has("gui_running")
+  " Switch on highlighting the last used search pattern.
+  set hlsearch
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" SYNTAX
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+" Indentation per filetype
+filetype plugin indent on
+
+" Use colorscheme
+colorscheme cobalt
+hi Normal ctermbg=NONE
+
+" Set background to dark
+set background=dark
+
+let color = "true"
+if has("syntax")
+    if color == "true"
+        " This will switch colors ON
+        so ${VIMRUNTIME}/syntax/syntax.vim
+    else
+        " this switches colors OFF
+        syntax off
+        set t_Co=0
+    endif
+endif 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" TABS 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Convert tabs to spaces
+set expandtab
+
+" Set tab equivalent to 4 spaces
+set tabstop=4
+set shiftwidth=4
+
+" Hide files in background instead of closing them
+set hidden
+
+" Set undo limit to 1000
+set history=1000
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FOLDS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable code folding
+set foldenable
+
+" Fold on indent
+set foldmethod=manual
+
+" Set starting fold level to 0
+set foldlevelstart=0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LINE NUMBERS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Display line numbers
+set number
+
+" Display relative line numbers
+set relativenumber
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OMNICOMLETE
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable omnicomplete
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FILE TYPE SETTINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" .tex file settings
+au FileType tex setl tw=80
+au FileType markdown setl tw=80
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SNIPPETS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<CR>
+nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
+nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
+nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" WINDOW MANAGEMENT
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Focus panes
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-j> <C-w>j
+
+" Move pane
+nnoremap <leader>h <C-w>H
+nnoremap <leader>l <C-w>L
+nnoremap <leader>k <C-w>K
+nnoremap <leader>j <C-w>J
+
+" Split window
+nnoremap <leader>v <C-w>s
+nnoremap <leader>b <C-w>v
+ 
+" New split positions 
+set splitbelow
+set splitright
+
+" Resize window
+nnoremap <silent> <A-h> 10<C-w><
+nnoremap <silent> <A-l> 10<C-w>>
+nnoremap <silent> <A-k> 10<C-w>+
+nnoremap <silent> <A-j> 10<C-w>-
+
+" Open terminal
+nnoremap <leader>t :term<CR>
+nnoremap <leader>T :vert term<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
+    silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs 
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif"
+
+call plug#begin()
+    Plug 'christoomey/vim-tmux-navigator'
+call plug#end()

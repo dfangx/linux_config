@@ -1,0 +1,18 @@
+[submodule "config/suckless/tabbed/tabbed"]
+	path = config/suckless/tabbed/tabbed
+	url = https://git.suckless.org/tabbed
+[submodule "config/suckless/surf/surf"]
+	path = config/suckless/surf/surf
+	url = https://git.suckless.org/surf
+[submodule "config/suckless/st/st"]
+	path = config/suckless/st/st
+	url = https://git.suckless.org/st
+[submodule "config/suckless/dmenu/dmenu"]
+	path = config/suckless/dmenu/dmenu
+	url = https://git.suckless.org/dmenu
+[submodule "config/suckless/dwm/dwm"]
+	path = config/suckless/dwm/dwm
+	url = https://git.suckless.org/dwm
+[submodule "config/vim/plugged/vim-tmux-navigator"]
+	path = config/vim/plugged/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git

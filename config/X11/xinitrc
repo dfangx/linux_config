@@ -1,0 +1,4 @@
+#!/bin/bash
+
+exec ~/bin/status_bar &
+exec ~/bin/startdwm

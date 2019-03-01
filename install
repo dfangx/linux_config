@@ -1,0 +1,33 @@
+#!/bin/bash
+
+blacklist=("install" "README.md")
+
+## Create symlinks for all directories
+for f in ./*
+do
+    echo "Creating symlink to $f in $HOME"
+
+    if [ "$(basename $f)" == "bin" ]
+    then
+        if [ -L "$HOME/$(basename $f)" ]
+        then
+            echo "Link exists. Skipping $f"
+        else
+            ln -sv "$(pwd)/$f" "$HOME/$(basename $f)"
+        fi
+    else
+        if [ -L "$HOME/.$(basename $f)" ]
+        then
+            echo "Link exists. Skipping $f"
+        else
+            ln -sv "$(pwd)/$f" "$HOME/.$(basename $f)"
+        fi
+    fi
+done
+
+## Remove symlinks from blacklist
+for f in "${blacklist[@]}"
+do
+    echo "Removing symlink to $f in $HOME because it is on the blacklist"
+    rm -v $HOME/.$f
+done

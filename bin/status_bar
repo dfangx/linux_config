@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function clock() {
+    echo "$(date '+%F %H:%M:%S')"
+}
+
+function bat() {
+    echo "$(cat /sys/class/power_supply/BAT0/capacity)"
+}
+
+function vol() {
+    echo "$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master))"
+}
+
+function backlight() {
+    current="$(cat /sys/class/backlight/intel_backlight/brightness)"
+    max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
+
+    printf '%.0f' $(echo "$current"/"$max"*100 | bc -l)
+}
+
+while true;
+do
+    xsetroot -name "VOL: $(vol) | BCKLGHT: $(backlight)% | BAT: $(bat)% | $(clock)"
+    sleep 1
+done
