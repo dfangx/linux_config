@@ -9,4 +9,4 @@
 	url = git@github.com:dfangx/st.git
 [submodule "config/suckless/surf"]
 	path = config/suckless/surf
-	url = git@github.com:dfangx/surf.git
+	url = git@github.com:dfangx/surf
