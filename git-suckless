@@ -65,4 +65,4 @@ fi
 
 # Push all changes to remote
 echo "Pushing all changes to remote..."
-git push --recurse-submodule=on-demand
+git push --recurse-submodule=on-demand origin master
