@@ -1,3 +1,4 @@
 config/git
 config/wpa_supplicant
 config/linux/fstab
+config/vim/.netrwhist
