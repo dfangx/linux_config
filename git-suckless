@@ -14,6 +14,10 @@ do
         continue
     fi
 
+    echo Changing to git home directory "$git_home"...
+    cd "$git_home"
+
+    echo Changing working directory to "$d"...
     cd "$d"
 
     echo "Checking for changes..."
@@ -35,7 +39,6 @@ do
             fi
         done
     fi
-    cd "$git_home"
 done
 
 # Check main repository for changes
