@@ -11,12 +11,20 @@ export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export PROMPT_DIRTRIM=3
 
-if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+if [ ! -d "$XDG_RUNTIME_DIR" ]
+then
     mkdir -p "$XDG_RUNTIME_DIR"
 fi
 
-if [[ "$(tty)" == '/dev/tty1' ]]; then
+if [[ "$(tty)" == '/dev/tty1' ]]
+then
     exec startx "$XDG_CONFIG_HOME/X11/xinitrc" --vt1
+fi
+
+if [ -z "$SSH_AUTH_SOCK" ]
+then
+    eval "$(ssh-agent -s)"
+    ssh-add
 fi
 
 # This file is sourced by bash for login shells.  The following line

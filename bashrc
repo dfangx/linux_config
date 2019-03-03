@@ -14,6 +14,10 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+if [ -z "$TMUX" ]
+then
+    exec tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
+fi
 
 # Put your fun stuff here.
 if [ -f ~/.bash_aliases ]; then
