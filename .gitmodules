@@ -4,9 +4,3 @@
 [submodule "config/suckless/dwm"]
 	path = config/suckless/dwm
 	url = git@github.com:dfangx/dwm.git
-[submodule "config/suckless/st"]
-	path = config/suckless/st
-	url = git@github.com:dfangx/st.git
-[submodule "config/suckless/surf"]
-	path = config/suckless/surf
-	url = git@github.com:dfangx/surf
