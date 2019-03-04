@@ -9,7 +9,7 @@ fi
 
 if [ -d "$XDG_RUNTIME_DIR" ]
 then
-    rm -r "$XDG_RUNTIME_DIR"
+    echo y | rm -r "$XDG_RUNTIME_DIR"
 fi
 
 # Clear the screen for security's sake.
