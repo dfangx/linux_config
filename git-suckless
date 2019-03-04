@@ -26,7 +26,7 @@ do
         echo "No changes in $d"
         continue
     else
-        "$(git status)"
+        echo "$(git status)"
         echo "Adding changes to staging area..."
         git add .
         while true
@@ -50,7 +50,7 @@ then
     echo "No changes in $d"
     continue
 else
-    "$(git status)"
+    echo "$(git status)"
     echo "Adding changes to staging area..."
     git add .
     while true
