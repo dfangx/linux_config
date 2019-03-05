@@ -26,6 +26,7 @@ fi
 
 eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 
+# Shell Prompt
 curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "

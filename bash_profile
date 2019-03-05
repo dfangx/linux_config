@@ -9,6 +9,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export BROWSER="surf"
 export PROMPT_DIRTRIM=3
 
 if [ ! -d "$XDG_RUNTIME_DIR" ]
@@ -21,7 +22,7 @@ then
     exec startx "$XDG_CONFIG_HOME/X11/xinitrc" --vt1
 fi
 
-if [ -z "$SSH_AUTH_SOCK" ]
+if [ -z "$(pgrep ssh-agent)" ]
 then
     eval "$(ssh-agent -s)"
     ssh-add
