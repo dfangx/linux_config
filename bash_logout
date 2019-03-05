@@ -13,6 +13,8 @@ then
     then
         echo y | rm -r "$XDG_RUNTIME_DIR"
     fi
+
+    cp -v /sys/class/backlight/intel_backlight/brightness ~/brightness
 fi
 
 # Clear the screen for security's sake.

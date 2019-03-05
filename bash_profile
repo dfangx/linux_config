@@ -25,7 +25,7 @@ fi
 if [ -z "$(pgrep ssh-agent)" ]
 then
     eval "$(ssh-agent -s)"
-    ssh-add
+    ssh-add ~/.ssh/id_rsa
 fi
 
 # This file is sourced by bash for login shells.  The following line
