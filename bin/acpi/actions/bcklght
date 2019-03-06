@@ -7,6 +7,7 @@ max="$(cat $backlight_dir/max_brightness)"
 step="$(echo $max*$scale*$direction | bc)"
 current="$(cat "$backlight_dir"/brightness)"
 new="$(printf '%.0f' $(echo $current+$step | bc))"
+
 if [ "$new" -ge "$max" ]; then
     echo "$max" > "$backlight_dir"/brightness
 elif [ "$new" -le 0 ]; then

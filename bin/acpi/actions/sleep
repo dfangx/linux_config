@@ -1,0 +1,23 @@
+#!/bin/bash
+
+power_state="/sys/power/state"
+
+case "$1" in 
+    "button/lid")
+        case "$3" in
+            "close")
+	        echo -n "mem" > "$power_state"
+		;;
+	    *);;
+        esac
+	;;
+    "button/sleep")
+        case "$2" in 
+	    "SBTN")
+		echo -n "mem" > "$power_state"
+		;;
+	    *);;
+        esac
+	;;
+    *);;
+esac

@@ -17,19 +17,21 @@ then
     mkdir -p "$XDG_RUNTIME_DIR"
 fi
 
-if [[ "$(tty)" == '/dev/tty1' ]]
-then
-    exec startx "$XDG_CONFIG_HOME/X11/xinitrc" --vt1
-fi
-
-if [ -z "$(pgrep ssh-agent)" ]
+if [ -z "$SSH_AUTH_SOCK" ]
 then
     eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_rsa
+    ssh-add
 fi
 
+if [[ "$(tty)" == '/dev/tty1' ]]
+then
+    startx "$XDG_CONFIG_HOME/X11/xinitrc" --vt1
+    logout
+else
 # This file is sourced by bash for login shells.  The following line
 # runs your .bashrc and is recommended by the bash info pages.
-if [[ -f ~/.bashrc ]] ; then
-	. ~/.bashrc
+    if [ -f "$HOME/.bashrc" ]  
+    then
+        . "$HOME/.bashrc"
+    fi
 fi
