@@ -7,17 +7,25 @@ case "$1" in
         case "$3" in
             "close")
 	        echo -n "mem" > "$power_state"
-		;;
+            ;;
 	    *);;
         esac
-	;;
+        ;;
     "button/sleep")
         case "$2" in 
 	    "SBTN")
-		echo -n "mem" > "$power_state"
-		;;
+            echo -n "mem" > "$power_state"
+            ;;
 	    *);;
         esac
-	;;
+        ;;
+    "button/power")
+        case "$2" in
+            "PBTN")
+                echo -n "mem" > "$power_state"
+                ;;
+            *);;
+        esac
+        ;;
     *);;
 esac

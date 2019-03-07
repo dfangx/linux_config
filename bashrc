@@ -24,7 +24,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi 
 
-eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
+#eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 
 # Shell Prompt
 curDate="[\d]"
