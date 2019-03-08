@@ -13,7 +13,8 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "~Y
 ==============================
 ===========REDDIT=============
 ==============================
-https://www.reddit.com/r/privacy+privacytoolsIO.rss "~REDDIT: r/privacy"
+https://www.reddit.com/r/privacy.rss "~REDDIT: r/privacy"
+https://www.reddit.com/r/privacytoolsIO.rss "~REDDIT: r/privacytoolsIO"
 https://www.reddit.com/r/linux.rss "~REDDIT: r/linux"
 https://www.reddit.com/r/linuxmasterrace.rss "~REDDIT: r/linuxmasterrace"
 https://www.reddit.com/r/linux4noobs.rss "~REDDIT: r/linux4noobs"
@@ -25,7 +26,8 @@ https://www.reddit.com/r/technology/.rss  "~REDDIT: r/technology"
 https://www.reddit.com/r/Amd/.rss  "~REDDIT: r/Amd"
 https://www.reddit.com/r/unixporn/.rss "~REDDIT: r/unixporn"
 https://www.reddit.com/r/vim/.rss "~REDDIT: r/vim"
-https://www.reddit.com/r/firefox+FirefoxCSS.rss "~REDDIT: r/firefox"
+https://www.reddit.com/r/firefox.rss "~REDDIT: r/firefox"
+https://www.reddit.com/r/FirefoxCSS.rss "~REDDIT: r/FirefoxCSS"
 https://www.reddit.com/r/commandline/.rss "~REDDIT: r/commandline"
 https://www.reddit.com/r/signal/.rss "~REDDIT: r/signal"
 ==============================

@@ -19,3 +19,5 @@ net-libs/glib-networking -gnome
 x11-misc/dmenu savedconfig
 media-video/ffmpeg openssl
 sys-devel/llvm LLVM_TARGETS: -NVPTX
+app-text/mupdf X -javascript
+sys-apps/openrc -netifrc

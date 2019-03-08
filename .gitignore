@@ -7,3 +7,4 @@ config/newsboat/*
 !config/newsboat/urls
 !config/newsboat/config
 config/procps
+config/gtk-3.0
