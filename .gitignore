@@ -8,3 +8,6 @@ config/newsboat/*
 !config/newsboat/config
 config/procps
 config/gtk-3.0
+config/xbuild
+config/keepassxc
+config/QtProject.conf

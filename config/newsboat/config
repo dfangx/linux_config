@@ -1,5 +1,5 @@
 auto-reload yes
-browser firefox-beta
+browser surf
 feed-sort-order none
 reload-time 20
 

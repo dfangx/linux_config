@@ -56,6 +56,7 @@ set scrolloff=5
 " Set leader key
 let mapleader=" "
 
+set pastetoggle=<leader>p
 " Backups
 if has("vms")
     set nobackup		" do not keep a backup file, use versions instead

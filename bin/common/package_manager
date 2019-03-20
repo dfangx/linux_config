@@ -1,0 +1,75 @@
+#!/bin/bash
+
+os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
+action=$1
+
+if [ -z "$action" ]
+then
+    echo "No commmand given. Aborting"
+    exit 1
+fi
+
+case "$action" in
+    "install")
+        pkgname=$2
+
+        if [ -z "$pkgname" ]
+        then
+            echo "Package name must be provided to install package"
+            exit 1
+        fi
+
+        case "$os" in
+            "gentoo")
+                sudo emerge -a "$pkgname"
+                ;;
+            "arch")
+                sudo pacman -S "$pkgname"
+                ;;
+            *)
+        esac
+        ;;
+    "clean")
+        case "$os" in
+            "gentoo")
+                sudo emerge -ca
+                ;;
+            "arch")
+                sudo pacman -Rns $(pacman -Qtdq)
+                ;;
+            *)
+        esac
+        ;;
+    "remove")
+        pkgname=$2
+
+        if [ -z "$pkgname" ]
+        then
+            echo "Package name must be provided to install package"
+            exit 1
+        fi
+
+        case "$os" in
+            "gentoo")
+                sudo emerge -cav "$pkgname"
+                ;;
+            "arch")
+                sudo pacman -Rns "$pkgname"
+                ;;
+            *)
+        esac
+        ;;
+    "update")
+        case "$os" in
+            "gentoo")
+                sudo emerge -uaDU --keep-going --with-bdeps=y @world
+                ;;
+            "arch")
+                sudo pacman -Syu
+                ;;
+            *)
+        esac
+        ;;
+    *)
+        ;;
+esac

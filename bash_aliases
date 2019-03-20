@@ -1,3 +1,8 @@
+#!/bin/bash
+
+###########################################
+############# BASH COMMANDS ###############
+###########################################
 alias ls="ls --color=auto"
 alias la="ls -a"
 alias lal="ls -alh"
@@ -10,16 +15,30 @@ alias mkdir="mkdir -pv"
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
 
-# Shell Maintenance
+###########################################
+################ SHELL ####################
+###########################################
 alias refresh="clear && source ~/.bashrc"
 alias edtalias="vim ~/.bash_aliases"
 
-# Disk Management
+###########################################
+################# DISK ####################
+###########################################
 alias lfdisk="sudo fdisk -l"
-alias pfdisk="sudo fdisk $1"
 
-# Portage
-alias updt-wrld="sudo emerge -uaDU --keep-going --with-bdeps=y @world"
+###########################################
+################ SYSTEM ###################
+###########################################
 
-# System Maintenance
+## Packages ##
+alias install="package_manager install"
+alias remove="package_manager remove"
+alias clean="package_manager clean"
+alias update="package_manager update"
+
+## Backup ##
+alias backup="sudo tar cvpzf $os-backup-$(date +%F).tgz ~/documents ~/pictures"
+alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
+
+## Power ##
 alias powreport="sudo powertop --html && surf ./powertop.html"
