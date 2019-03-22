@@ -15,7 +15,10 @@ configuration files for the following packages can be found here:
 ## Installation
 1. Clone the repository. For **HTTPS**, use `git clone
    https://www.github.com/dfangx/linux_config.git`. For **SSH** (recommended), use
-   `git clone git@github.com:dfangx/linux_config.git`.
+   `git clone git@github.com:dfangx/linux_config.git`. Use `git clone
+    --recurse-submodules` if you want to include the tools from Suckless. **Note:
+    If you decide to not use the aforementioned option, you will not be able to use
+    git-suckless properly**
 2. Initialize the Suckless Tools submodules by using `git submodule init`
    followed by `git submodule update`
 3. Run the `install` script with `./install`. This will symlink all the
