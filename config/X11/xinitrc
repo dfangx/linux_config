@@ -1,9 +1,4 @@
 #!/bin/bash
 
-#if [ -f ~/brightness ]
-#then
-#    cat ~/brightness > /sys/class/backlight/intel_backlight/brightness
-#    rm -v ~/brightness
-#fi
 exec ~/bin/status_bar &
 exec ~/bin/startdwm

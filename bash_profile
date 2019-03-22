@@ -1,3 +1,4 @@
+#!/bin/bash
 # /etc/skel/.bash_profile
 
 export XDG_CONFIG_HOME="$HOME/.config"
