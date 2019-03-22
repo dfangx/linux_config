@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/"time"
+clock=$(date "+%H:%M:%S")
+cal=$(date "+%Y-%m-%d")
+state=$(cat $dir/time_state)
+
+if [ "$state" = 1 ]; then
+	echo  $cal
+else
+	echo  $clock
+fi

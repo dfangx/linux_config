@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/network
+echo 1 > $dir/network_state
+sleep 3
+echo 0 > $dir/network_state
+

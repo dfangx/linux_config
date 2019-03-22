@@ -1,0 +1,19 @@
+#!/bin/bash
+
+str="$(checkupdates && cower -u)"
+IFS=$'\n' 
+read -d '' -ra arr <<< "$str"
+j=0
+k=1
+for i in "${arr[@]}"
+do
+	j=$(($j+1))
+	echo -n "${i}, "
+	if [[  $j == $(($k*2)) ]]
+	then
+		echo ''
+		k=$(($k+1))
+	fi
+done
+
+

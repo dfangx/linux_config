@@ -1,0 +1,42 @@
+#!/bin/bash
+
+BAT_PATH=/sys/class/power_supply/BAT0
+dir=~/.config/i3blocks/i3blocklets/battery
+
+bat=$(cat ${BAT_PATH}/capacity)
+bat_state=$(cat ${BAT_PATH}/status)
+state=$(cat $dir/bat_state)
+bat_time=$(acpi | grep -oh '[0-9:]* remaining' | sed 's/remaining$//') 
+
+if [ $bat_state = "Charging" ]; then
+	label=""
+	bat_time=$(acpi | grep -oh '[0-9:]* until charged' | sed 's/until\ charged$//') 
+else
+	if [ $bat -le 10 ]; then
+		label=""
+		color="#ff0000"
+	elif [ $bat -le 25 ]; then
+		label=""
+		color="#ff0000"
+	elif [ $bat -le 50 ]; then
+		label=" "
+		color="#ffff00"
+	elif [ $bat -le 75 ]; then
+		label=""
+		color="#ffff00"
+	else
+		label=""
+		color="#00ff00"
+	fi
+fi
+
+
+if [ "$state" -eq 1 ]; then
+	echo "$label" "<span foreground='#ffffff'>$bat_time</span>"
+	echo "$label" "<span foreground='#ffffff'>$bat_time</span>"
+else
+	echo $label "<span foreground='#ffffff'>$bat%</span>"
+	echo $label $bat%
+fi
+echo $color
+

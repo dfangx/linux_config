@@ -1,0 +1,4 @@
+#!/bin/bash
+
+printf "%0.2f%%\n" $(xbacklight)
+printf "%0.2f%%\n" $(xbacklight)

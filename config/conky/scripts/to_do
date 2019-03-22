@@ -1,0 +1,3 @@
+echo "Applications"
+applications=$(ls ~/documents/job*/supp*/2019/quip*)
+echo "$applications"

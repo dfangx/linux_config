@@ -10,3 +10,7 @@ config/linux/fstab
 config/vim/.netrwhist
 !config/X11
 !config/zathura
+!config/i3
+!config/i3blocks
+!config/compton
+!config/conky

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/system
+echo 1 > $dir/system_state
+sleep 10
+echo 0 > $dir/system_state
+

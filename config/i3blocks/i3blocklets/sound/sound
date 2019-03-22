@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if amixer get Master | grep -q off; then
+	echo " "
+	echo " "
+	exit 0
+fi
+
+vol=$(amixer sget $BLOCK_INSTANCE | grep "Left" | grep -o "[0-9]*[0-9]%" | grep -o "[0-9]*[0-9]")
+
+if [ $vol -ge 66 ]; then
+	label=""
+elif [ $vol -ge 33 ]; then
+	label=""
+else
+	label=""
+fi
+
+echo $label $vol%
+echo $label $vol%
+

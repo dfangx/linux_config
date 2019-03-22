@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/updates
+echo 1 > $dir/update_state
+sleep 5
+echo 0 > $dir/update_state
+exec pkill -RTMIN+4 i3blocks
+

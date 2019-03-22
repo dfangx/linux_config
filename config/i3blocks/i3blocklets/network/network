@@ -1,0 +1,105 @@
+#!/bin/bash
+
+INTERFACE="${BLOCK_INSTANCE:-wlan0}"
+SSID_NAME=$(iwgetid -r)
+
+#------------------------------------------------------------------------
+
+# As per #36 -- It is transparent: e.g. if the machine has no battery or wireless
+# connection (think desktop), the corresponding block should not be displayed.
+if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
+then
+    	echo "   "
+    	echo "   "
+    	echo "#898989"
+    	exit 0
+fi
+
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+color="#ffffff"
+# color
+if [[ $QUALITY -ge 75 ]]; then
+	color="#00FF00"
+elif [[ $QUALITY -ge 50 ]]; then
+    	color="#FFF600"
+elif [[ $QUALITY -ge 25 ]]; then
+    	color="#FFAE00"
+elif [[ $QUALITY -gt 0 ]]; then
+    	color="#FF0000"
+else
+    	color="#898989"
+fi
+
+# path to store the old results in
+path="/dev/shm/$(basename $0)-${INTERFACE}"
+
+# grabbing data for each adapter.
+read rx < "/sys/class/net/${INTERFACE}/statistics/rx_bytes"
+read tx < "/sys/class/net/${INTERFACE}/statistics/tx_bytes"
+
+# get time
+time=$(date +%s)
+
+# write current data if file does not exist. Do not exit, this will cause
+# problems if this file is sourced instead of executed as another process.
+if ! [[ -f "${path}" ]]; then
+  echo "${time} ${rx} ${tx}" > "${path}"
+  chmod 0666 "${path}"
+fi
+
+# read previous state and update data storage
+read old < "${path}"
+echo "${time} ${rx} ${tx}" > "${path}"
+
+# parse old data and calc time passed
+old=(${old//;/ })
+time_diff=$(( $time - ${old[0]} ))
+
+# sanity check: has a positive amount of time passed
+[[ "${time_diff}" -gt 0 ]] || exit
+
+# calc bytes transferred, and their rate in byte/s
+rx_diff=$(( $rx - ${old[1]} ))
+tx_diff=$(( $tx - ${old[2]} ))
+rx_rate=$(( $rx_diff / $time_diff ))
+tx_rate=$(( $tx_diff / $time_diff ))
+
+# shift by 10 bytes to get KiB/s. If the value is larger than
+# 1024^2 = 1048576, then display MiB/s instead
+
+rx_kib=$(( $rx_rate >> 10 ))
+if [ "$rx_kib" -gt 0 ]; then
+	down_color="#00ff00"
+else
+	down_color="#898989"
+fi
+	
+tx_kib=$(( $tx_rate >> 10 ))
+if [ "$tx_kib" -gt 0 ]; then
+	up_color="#00ff00"
+else
+	up_color="#898989"
+fi
+
+dir=~/.config/i3blocks/i3blocklets/network
+network_state=$(cat $dir/network_state)
+ip_addr=$($dir/iface $INTERFACE)
+
+if [ "$network_state" = 0 ]; then
+    echo " <span foreground='$down_color'> </span> <span foreground='$up_color'></span>"
+    echo " <span foreground='$down_color'> </span> <span foreground='$up_color'></span>"
+else
+    echo " $SSID_NAME ($ip_addr)"
+    echo " $SSID_NAME ($ip_addr)"
+fi
+echo $color
+# You can put any urgent name so the block will give warning
+# if a network with this name is used, like public wifi or alike.
+# You can separate multiple values with \|
+#URGENT_VALUE=""
+#  if [[ "${URGENT_VALUE}" != "" ]] && [[ $(echo "${SSID_NAME}" | grep -we "${URGENT_VALUE}") != "" ]]; then
+#    exit 33
+#  fi
+#fi
+
+

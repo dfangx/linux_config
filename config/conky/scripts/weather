@@ -1,0 +1,5 @@
+#!/bin/bash
+curl -s wttr.in/?0 | sed -n '3,7{s/\d27\[[0-9;]*m//g;s/^..//;s/ *$//;p}'
+#curl -s wttr.in/Markham_0pq_lang=en.png | convert - -transparent black $HOME/.config/conky/out.png
+#URL="http://dataservice.accuweather.com/currentconditions/v1/Markham"
+#curl -H "Accept-Encoding: gzip, deflate" "$URL"

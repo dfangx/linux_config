@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/updates
+state=$(cat $dir/update_state)
+
+arch_updates=$(checkupdates | wc -l)
+aur_updates=$(cower -u | wc -l)
+
+total_updates=$(($aur_updates+$arch_updates))
+
+if [ "$state" = 0 ]; then
+    echo  $total_updates
+else
+    echo  AUR: "$aur_updates" Arch: "$arch_updates"
+fi

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+title="$(playerctl --player=spotify metadata title)"
+artist="$(playerctl --player=spotify  metadata artist)"
+
+if [ "$title" = "(null)" ] || [ "$artist" = "(null)" ] || [ -z "$title" ] || [ -z "$artist" ]; then
+	echo "No song is playing right now"
+else
+	echo "$title - $artist"
+fi

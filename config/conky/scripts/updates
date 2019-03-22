@@ -1,0 +1,5 @@
+#!/bin/bash
+arch_updates=$(checkupdates | wc -l)
+aur_updates=$(cower -u | wc -l)
+total_updates=$(($aur_updates+$arch_updates))
+echo $total_updates

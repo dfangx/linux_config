@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/"time"
+echo 1 > $dir/time_state
+sleep 2
+echo 0 > $dir/time_state
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dir=~/.config/i3blocks/i3blocklets/battery
+echo 1 > $dir/bat_state
+sleep 5
+echo 0 > $dir/bat_state
+
