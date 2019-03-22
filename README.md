@@ -25,7 +25,7 @@ configuration files for the following packages can be found here:
 ### install
 This symlinks all directories in the repository to your $HOME, which is where
 your user specific configuration files are supposed to reside.  
-### git-suckless
+### git
 Submodules can be a pain to manage in git. This script is my attempt to automate
 the process by adding and committing submodule changes as necessary and then
 doing a final push to the main repository.
