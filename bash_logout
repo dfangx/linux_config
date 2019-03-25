@@ -7,10 +7,5 @@ then
     eval $(ssh-agent -k)
 fi
 
-if [ -d "$XDG_RUNTIME_DIR" ]
-then
-    echo "y" | rm -rv "$XDG_RUNTIME_DIR"
-fi
-
 # Clear the screen for security's sake.
 clear

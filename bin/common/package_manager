@@ -1,6 +1,6 @@
 #!/bin/bash
 
-os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
+os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
 action=$1
 
 if [ -z "$action" ]
@@ -23,7 +23,7 @@ case "$action" in
             "gentoo")
                 sudo emerge -a "$pkgname"
                 ;;
-            "arch")
+            "arch" | "artix")
                 sudo pacman -S "$pkgname"
                 ;;
             *)
@@ -34,7 +34,7 @@ case "$action" in
             "gentoo")
                 sudo emerge -ca
                 ;;
-            "arch")
+            "arch" | "artix")
                 sudo pacman -Rns $(pacman -Qtdq)
                 ;;
             *)
@@ -53,7 +53,7 @@ case "$action" in
             "gentoo")
                 sudo emerge -cav "$pkgname"
                 ;;
-            "arch")
+            "arch" | "artix")
                 sudo pacman -Rns "$pkgname"
                 ;;
             *)
@@ -64,7 +64,7 @@ case "$action" in
             "gentoo")
                 sudo emerge -uaDU --keep-going --with-bdeps=y @world
                 ;;
-            "arch")
+            "arch" | "artix")
                 sudo pacman -Syu
                 ;;
             *)

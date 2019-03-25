@@ -30,6 +30,10 @@ alias lfdisk="sudo fdisk -l"
 ################ SYSTEM ###################
 ###########################################
 
+## Power ##
+alias shutdown="sudo poweroff"
+alias restart="sudo reboot"
+
 ## Packages ##
 alias install="package_manager install"
 alias remove="package_manager remove"
