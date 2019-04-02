@@ -45,4 +45,4 @@ alias backup="sudo tar cvpzf $os-backup-$(date +%F).tgz ~/documents ~/pictures"
 alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
 
 ## Power ##
-alias powreport="sudo powertop --html && surf ./powertop.html"
+alias powreport="sudo powertop --html && surf ./powertop.htmli &"

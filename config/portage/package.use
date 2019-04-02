@@ -25,3 +25,8 @@ x11-libs/libxcb xkb
 x11-libs/libxkbcommon X
 dev-libs/libpcre2 pcre16
 app-admin/keepassxc autotype
+dev-libs/glib dbus
+media-libs/imlib2 jpeg png
+app-text/ghostscript-gpl cups
+dev-lang/python tk
+dev-libs/libxml2 python

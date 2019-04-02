@@ -1,6 +1,11 @@
 #!/bin/bash
 
-os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
+if [ -f "/usr/lib/os-release" ]
+then
+    os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
+else
+    os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
+fi
 action=$1
 
 if [ -z "$action" ]

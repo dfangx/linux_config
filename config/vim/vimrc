@@ -56,7 +56,7 @@ set scrolloff=5
 " Set leader key
 let mapleader=" "
 
-set pastetoggle=<leader>p
+"nnoremap <leader>p = pastetoggle
 " Backups
 if has("vms")
     set nobackup		" do not keep a backup file, use versions instead
@@ -180,6 +180,7 @@ nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<CR>
 nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
 nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
 nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
+nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " WINDOW MANAGEMENT

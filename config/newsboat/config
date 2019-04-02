@@ -14,4 +14,4 @@ bind-key O open-in-browser
 
 unbind-key ;
 
-macro o set browser "mpv -fs %u" ; open-in-browser-and-mark-read ; set browser firefox-beta
+macro o set browser "mpv -fs %u" ; open-in-browser-and-mark-read ; set browser surf

@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+
+command=/opt/nbfc/nbfcservice.sh
+command_args="start"
+pidfile=/run/nbfc.pid
+
+name="nbfc"
+description="NoteBook FanControl service"

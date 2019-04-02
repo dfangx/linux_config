@@ -1,26 +1,66 @@
 #!/bin/bash
 
 function clock() {
-    echo "$(date '+%F %H:%M:%S')"
+    echo "$(date '+ %F  %H:%M:%S')"
 }
 
 function bat() {
-    echo "$(cat /sys/class/power_supply/BAT0/capacity)"
+    battery_path="/sys/class/power_supply/BAT0"
+    battery="$(cat $battery_path/capacity)"
+    battery_state="$(cat $battery_path/status)"
+    battery_time="$(acpi | grep -oh '[0-9:]* remaining' | sed 's/\ remaining$//')"
+    color="\x01"
+
+    if [ $battery_state == "Charging" ]; then
+        icon=""
+        battery_time="$(acpi | grep -oh '[0-9:]* until charged' | sed 's/\ until\ charged//')"
+    else
+        if [ $battery -le 10 ]; then
+            label=""
+            color="\x04"
+        elif [ $battery -le 25 ]; then
+            label=""
+            color="\x04"
+        elif [ $battery -le 50 ]; then
+            label=" "
+            color="\x03"
+        elif [ $battery -le 75 ]; then
+            label=""
+            color="\x03"
+        else
+            label=""
+        fi
+    fi
+
+    echo -e "$color $label $battery% [$battery_time]\x01"
 }
 
 function vol() {
-    echo "$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master))"
+    volume="$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master) | grep -o '[0-9]*[0-9]')"
+    status="$(amixer get Master | grep -q off)"
+    if [ ! -z "$status" ] || [ $volume -eq 0 ]; then
+        echo " "
+    else
+        if [ $volume -ge 66 ]; then
+            label=""
+        elif [ $volume -ge 33 ]; then
+            label=""
+        else
+            label=""
+        fi
+        echo "$label $volume%"
+    fi
 }
 
 function backlight() {
     current="$(cat /sys/class/backlight/intel_backlight/brightness)"
     max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
 
-    printf '%.0f' $(echo "$current"/"$max"*100 | bc -l)
+    printf ' %.0f%%' $(echo "$current"/"$max"*100 | bc -l)
 }
 
 while true;
 do
-    xsetroot -name "VOL: $(vol) | BCKLGHT: $(backlight)% | BAT: $(bat)% | $(clock)"
+    xsetroot -name "$(vol) | $(backlight) | $(bat) | $(clock)"
     sleep 1
 done

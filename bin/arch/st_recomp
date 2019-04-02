@@ -1,0 +1,27 @@
+#!/bin/bash
+
+dir=/tmp/build
+special=st
+st_dir=~/.config/st
+st_url=https://aur.archlinux.org/st.git
+
+echo Checking for build directory...
+if [ ! -d $dir ]; then
+	echo No build directory found. Creating build directory "$dir"...
+	mkdir -pv $dir 
+else
+	echo Build directory exists.
+fi
+
+cd $dir
+echo Cloning "$url"
+git clone "$url" -v
+
+echo "$d"
+cd "$d"
+echo "Copying configuration files..."
+cp -v "$st_dir"/config.h "$st_dir"/PKGBUILD -t .
+makepkg -si --skipchecksums
+
+echo Cleaning up...
+sudo rm -rv $dir

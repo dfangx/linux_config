@@ -1,0 +1,8 @@
+#!/sbin/openrc-run
+
+command=-/opt/nbfc/nbfcservice.sh
+command_args="pause"
+pidfile=
+
+name="nbfc-sleep"
+description="NoteBook FanControl service sleep hook"

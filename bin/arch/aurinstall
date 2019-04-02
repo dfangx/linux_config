@@ -1,0 +1,35 @@
+#!/bin/bash
+
+dir=/tmp/build
+special=st
+special_dir=~/.config/st
+
+echo Checking for build directory...
+if [ ! -d $dir ]; then
+	echo No build directory found. Creating build directory "$dir"...
+	mkdir -pv $dir 
+else
+	echo Build directory exists.
+fi
+
+cd $dir
+for url in "$@"; do
+	echo Cloning "$url"
+	git clone "$url" -v
+done
+
+for d in "$dir"/*; do
+	echo "$d"
+	cd "$d"
+    if [ "$(basename $d)" == "$special" ]; then
+        echo "Copying configuration files..."
+        cp -v "$special_dir"/config.h "$special_dir"/PKGBUILD -t .
+        makepkg -si --skipchecksums
+    else
+        makepkg -si
+    fi
+	cd "$dir"
+done
+
+echo Cleaning up...
+sudo rm -rv $dir

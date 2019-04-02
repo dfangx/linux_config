@@ -14,3 +14,4 @@ config/vim/.netrwhist
 !config/i3blocks
 !config/compton
 !config/conky
+bin/matlab

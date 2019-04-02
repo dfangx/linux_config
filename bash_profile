@@ -12,6 +12,8 @@ export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export BROWSER="surf"
 export PROMPT_DIRTRIM=3
+export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 
 if [ -z "$SSH_AUTH_SOCK" ]
 then
