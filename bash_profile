@@ -10,7 +10,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-export BROWSER="surf"
+export BROWSER="firefox"
 export PROMPT_DIRTRIM=3
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java

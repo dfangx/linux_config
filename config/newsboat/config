@@ -1,5 +1,5 @@
 auto-reload yes
-browser surf
+browser firefox
 feed-sort-order none
 reload-time 20
 
@@ -14,4 +14,4 @@ bind-key O open-in-browser
 
 unbind-key ;
 
-macro o set browser "mpv -fs %u" ; open-in-browser-and-mark-read ; set browser surf
+macro o set browser "mpv -fs %u" ; open-in-browser-and-mark-read ; set browser firefox

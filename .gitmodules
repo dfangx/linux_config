@@ -1,12 +1,15 @@
 [submodule "config/vim/plugged/vim-tmux-navigator"]
 	path = config/vim/plugged/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule "config/suckless/dwm"]
-	path = config/suckless/dwm
+[submodule "suckless/dwm"]
+	path = suckless/dwm
 	url = git@github.com:dfangx/dwm.git
-[submodule "config/suckless/st"]
-	path = config/suckless/st
+[submodule "suckless/st"]
+	path = suckless/st
 	url = git@github.com:dfangx/st.git
-[submodule "config/suckless/surf"]
-	path = config/suckless/surf
+[submodule "suckless/surf"]
+	path = suckless/surf
 	url = git@github.com:dfangx/surf.git
+[submodule "suckless/dmenu"]
+	path = suckless/dmenu
+	url = git@github.com:dfangx/dmenu.git

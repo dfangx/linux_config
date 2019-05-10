@@ -12,7 +12,7 @@ function bat() {
     color="\x01"
 
     if [ $battery_state == "Charging" ]; then
-        icon=""
+        label=""
         battery_time="$(acpi | grep -oh '[0-9:]* until charged' | sed 's/\ until\ charged//')"
     else
         if [ $battery -le 10 ]; then
@@ -32,7 +32,7 @@ function bat() {
         fi
     fi
 
-    echo -e "$color $label $battery% [$battery_time]\x01"
+    echo -e "$color $label \x01 $battery% [$battery_time]\x01"
 }
 
 function vol() {
@@ -59,8 +59,21 @@ function backlight() {
     printf ' %.0f%%' $(echo "$current"/"$max"*100 | bc -l)
 }
 
+function network() {
+    interface="wlp2s0"
+    ssid="$(iwgetid -r)"
+
+    #if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
+    #then
+    #        exit 0
+    #fi
+    quality=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+    echo "  $ssid   "
+}
+
 while true;
 do
-    xsetroot -name "$(vol) | $(backlight) | $(bat) | $(clock)"
+    xsetroot -name "$(vol) | $(backlight) | $(network) | $(bat) | $(clock)"
     sleep 1
 done

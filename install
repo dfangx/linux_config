@@ -1,6 +1,6 @@
 #!/bin/bash
 
-blacklist=("install" "README.md" "git-suckless")
+blacklist=("install" "README.md" "git-suckless" "suckless")
 
 ## Create symlinks for all directories
 for f in ./*
