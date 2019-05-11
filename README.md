@@ -1,17 +1,6 @@
 # My Linux Configuration Files
 ## Description
-This is a central repository for all my Linux configuration files. The
-configuration files for the following packages can be found here:
-* Bash
-* X
-* Portage (Gentoo package manager)
-* Tmux
-* Vim
-* Linux Kernel
-* Suckless tools
-    * dwm
-    * st
-    * surf
+This is a central repository for all my Linux configuration files and scripts. 
 ## Installation
 1. Clone the repository. For **HTTPS**, use `git clone
    https://www.github.com/dfangx/linux_config.git`. For **SSH** (recommended), use
@@ -28,7 +17,45 @@ configuration files for the following packages can be found here:
 ### install
 This symlinks all directories in the repository to your $HOME, which is where
 your user specific configuration files are supposed to reside.  
-### git-suckless
-Submodules can be a pain to manage in git. This script is my attempt to automate
-the process by adding and committing submodule changes as necessary and then
-doing a final push to the main repository.
+## Directory Descriptions
+### bin
+This directory contains my personal scripts that I have use(d) in my setup.
+* acpi
+    * Contains scripts that are used to control basic power control functions
+      provided by the acpid package.
+* arch
+    * Contains scripts that are specific to arch linux. These include scripts
+      for the AUR, as well as the packages that I have used for easy
+      reinstallation of Arch.
+* common
+    * Contains scripts that are used in both my Arch and Gentoo installations
+* gentoo_install
+    * Scripts that I use to automate a Gentoo installation
+* local.d
+    * This gets symlinked into the /etc directory. If using OpenRC as your init
+      system, the scripts in this folder will be run on startup and shutdown.
+* openrc
+    * Scripts that are used by OpenRC.
+### config
+This directory contains the configuration files that I use(d) for the following
+packages:
+* bash (actually found at the git root directory)
+* compton
+* conky
+* dwm
+* i3wm
+* i3blocks
+* linux kernel
+* newsboat
+* portage (Gentoo package manager)
+* st
+* surf
+* tmux
+* vim
+* X
+* zathura
+### suckless
+This directory contains my own forks of the following suckless tools:
+* dwm
+* st
+* surf
