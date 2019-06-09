@@ -49,3 +49,4 @@ alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery
 alias powreport="sudo powertop --html && surf ./powertop.html"
 
 alias irssi="irssi --home ~/.config/irssi -c chat.freenode.net"
+

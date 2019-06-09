@@ -1,0 +1,17 @@
+#!/bin/bash
+#amixer set Master toggle
+
+id=1
+user=$(sudo -u cyrusng id -u)
+sudo -u cyrusng PULSE_SERVER="/run/user/$user/pulse/native" pactl set-sink-mute 0 toggle
+#sound_on="$(amixer -c 0 get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+muted=$(sudo -u cyrusng PULSE_RUNTIME_PATH="/run/user/$user/pulse/" pacmd list-sinks | grep "muted" | awk '{print $2}')
+
+#if [ "$sound_on" == "off" ]
+if [ "$muted" == "yes" ]
+then
+    sudo -u cyrusng DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been muted"
+else
+    sudo -u cyrusng DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been unmuted"
+fi
+

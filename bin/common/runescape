@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ ! -z $(which flatpak) ]
+then
+    flatpak run com.jagex.RuneScape
+fi

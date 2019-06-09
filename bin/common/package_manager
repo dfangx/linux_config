@@ -56,7 +56,7 @@ case "$action" in
 
         case "$os" in
             "gentoo")
-                sudo emerge -cav "$pkgname"
+                sudo emerge -Cav "$pkgname"
                 ;;
             "arch" | "artix")
                 sudo pacman -Rns "$pkgname"

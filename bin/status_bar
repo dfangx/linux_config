@@ -17,7 +17,7 @@ function bat() {
     else
         if [ $battery -le 10 ]; then
             label=""
-            color="\x04"
+            color="\x05"
         elif [ $battery -le 25 ]; then
             label=""
             color="\x04"
@@ -32,13 +32,20 @@ function bat() {
         fi
     fi
 
-    echo -e "$color $label \x01 $battery% [$battery_time]\x01"
+    echo -e "$color $label \x01$battery% [$battery_time]\x01"
 }
 
 function vol() {
-    volume="$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master) | grep -o '[0-9]*[0-9]')"
-    status="$(amixer get Master | grep -q off)"
-    if [ ! -z "$status" ] || [ $volume -eq 0 ]; then
+    ## ALSA ##
+    #volume="$(awk -F"[][]" '/dB/ { print $2 }' <(amixer sget Master) | grep -o '[0-9]*[0-9]')"
+    #status="$(amixer get Master | grep off)"
+
+    ## PULSEAUDIO ##
+    volume="$(pacmd list-sinks | awk '/^\svolume:/{i++} i==1{print $5; exit}' | grep -o '[0-9]*[0-9]')"
+    muted="$(pacmd list-sinks | grep 'muted' | cut -d " " -f2)"
+
+    #if [ ! -z "$status" ] || [ $volume -eq 0 ]; then
+    if [ "$muted" == "yes" ] || [ $volume -eq 0 ]; then
         echo " "
     else
         if [ $volume -ge 66 ]; then
@@ -62,18 +69,34 @@ function backlight() {
 function network() {
     interface="wlp2s0"
     ssid="$(iwgetid -r)"
+    if [ -z "$ssid" ]
+    then
+        ssid="No connection"
+    fi
 
     #if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
     #then
     #        exit 0
     #fi
-    quality=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+    quality=$(grep $interface /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+    color="\x01"
 
-    echo "  $ssid   "
+    if [ "$quality" -eq 0 ]
+    then
+        color="\x05"
+    elif [ "$quality" -le 33 ]
+    then
+        color="\x04"
+    elif [ "$quality" -le 66 ]
+    then
+        color="\x03"
+    fi
+
+    echo -e "$color \x01$ssid"
 }
 
 while true;
 do
-    xsetroot -name "$(vol) | $(backlight) | $(network) | $(bat) | $(clock)"
+    xsetroot -name "    $(vol) | $(backlight) | $(network) | $(bat) | $(clock)"
     sleep 1
 done

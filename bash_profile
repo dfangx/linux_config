@@ -13,7 +13,10 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export BROWSER="firefox"
 export PROMPT_DIRTRIM=3
 export _JAVA_AWT_WM_NONREPARENTING=1
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+#export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/dbus-1000"
+
+#dbus-daemon --session --address="unix:path=/run/user/1000/dbus" &
 
 if [ -z "$SSH_AUTH_SOCK" ]
 then
@@ -23,7 +26,7 @@ fi
 
 if [[ "$(tty)" == '/dev/tty1' ]]
 then
-    startx "$XDG_CONFIG_HOME/X11/xinitrc" --vt1
+    startx "$XDG_CONFIG_HOME/X11/xinitrc"
     logout
 else
     # This file is sourced by bash for login shells.  The following line

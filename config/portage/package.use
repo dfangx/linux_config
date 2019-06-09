@@ -2,15 +2,17 @@ app-editors/vim X
 media-libs/freetype -adobe-cff
 sys-devel/llvm LLVM_TARGETS: -AMDGPU
 app-admin/sudo -sendmail
-www-client/firefox -system-av1 -system-harfbuzz -system-icu -system-jpeg -system-libevent -system-libvpx -system-sqlite -system-webp hwaccel
+www-client/firefox -system-av1 -system-harfbuzz -system-icu -system-jpeg -system-libevent -system-libvpx -system-sqlite -system-webp hwaccel pulseaudio
 x11-libs/cairo X
 media-libs/libpng apng
 dev-lang/python sqlite
 sys-devel/clang LLVM_TARGETS: -AMDGPU -NVPTX
 app-portage/layman sync-plugin-portage
 app-laptop/tlp tlp_suggests bluetooth
+
 app-crypt/gcr gtk
 net-libs/webkit-gtk -geolocation
+
 media-libs/harfbuzz icu
 net-libs/glib-networking -gnome
 x11-misc/dmenu savedconfig
@@ -27,5 +29,21 @@ media-libs/imlib2 jpeg png
 app-text/ghostscript-gpl cups
 dev-lang/python tk
 dev-libs/libxml2 python
-sys-apps/dbus X
+sys-apps/dbus X user-session
+
 x11-misc/redshift geoclue
+
+x11-libs/pango X
+x11-misc/dunst dunstify
+
+x11-libs/wxGTK tiff
+
+media-plugins/alsa-plugins pulseaudio
+media-sound/pulseaudio dbus
+sys-auth/pambase consolekit
+
+media-libs/mesa video_cards_i965
+
+sys-process/cronie -anacron
+
+media-video/mpv pulseaudio
