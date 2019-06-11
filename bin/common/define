@@ -1,0 +1,4 @@
+#!/bin/bash
+
+search_term=$1
+curl "dict://dict.org/d:$search_term"
