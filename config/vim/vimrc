@@ -2,8 +2,7 @@
 " VIMRC FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Use vim settings
-set nocompatible
+set nocompatible    " Use vim settings
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " XDG_CONFIG
@@ -17,46 +16,24 @@ set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VIM GENERAL
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Set path for vim
-set path+=**
 
-" Highlights line cursor is on
-set cursorline
+set path+=**        " Set path for vim
+set cursorline      " Highlights line cursor is on
+set lazyredraw      " Redraw screen only when necessary
+set showcmd         " Show command in bottom bar
+set wildmenu        " Turn on wildmenu
+set showmatch       " Highlight matching parenthesis
+set backspace=indent,eol,start      " Backspace over everything in insert mode
+set ruler       " Show cursor position all the time
+set ttimeout		" Time out for key codes
+set ttimeoutlen=100	" Wait up to 100ms after Esc for special key
+set display=truncate    "Show @@@ in last line if truncated
+set scrolloff=5     " Show a few lines of context around cursor
+set showmode        " Show mode in status bar
+set autoindent
 
-" Redraw screen only when necessary
-set lazyredraw
-
-" Show command in bottom bar
-set showcmd
-
-" Turn on wildmenu
-set wildmenu
-
-" Highlight matching parenthesis
-set showmatch
-
-" Backspace over everything in insert mode
-set backspace=indent,eol,start
-
-" Show cursor position all the time
-set ruler
-
-" Time out for key codes
-set ttimeout		
-
-" Wait up to 100ms after Esc for special key
-set ttimeoutlen=100	
-
-"Show @@@ in last line if truncated
-set display=truncate
-
-" Show a few lines of context around cursor
-set scrolloff=5
-
-" Set leader key
-let mapleader=" "
-
-"nnoremap <leader>p = pastetoggle
+let mapleader=" "   " Set leader key
+set pastetoggle=<F1>
 " Backups
 if has("vms")
     set nobackup		" do not keep a backup file, use versions instead
@@ -85,27 +62,16 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " SEARCHING
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Do incremental searching when it's possible to timeout.
-if has('reltime')
-  set incsearch
-endif
+set incsearch       " Do incremental searching when it's possible to timeout.
+set hlsearch          " Switch on highlighting the last used search pattern.
 
-if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
-  set hlsearch
-endif
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
 
-" Indentation per filetype
-filetype plugin indent on
-
-" Use colorscheme
-colorscheme cobalt
-hi Normal ctermbg=NONE
+syntax enable       " Enable syntax highlighting
+colorscheme cobalt      " Use colorscheme cobalt
+"hi Normal ctermbg=NONE
 
 " Set background to dark
 set background=dark
@@ -122,21 +88,18 @@ if has("syntax")
     endif
 endif 
 
+highlight StatusLine ctermbg=66 ctermfg=234 
+highlight StatusLineNC ctermbg=66 ctermfg=234 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " TABS 
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Convert tabs to spaces
-set expandtab
-
-" Set tab equivalent to 4 spaces
-set tabstop=4
+set tabstop=8
+set softtabstop=4
 set shiftwidth=4
-
-" Hide files in background instead of closing them
-set hidden
-
-" Set undo limit to 1000
-set history=1000
+set expandtab       " Convert tabs to spaces
+    
+set hidden      " Hide files in background instead of closing them
+set history=1000    " Set undo limit to 1000
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FOLDS
@@ -149,6 +112,7 @@ set foldmethod=manual
 
 " Set starting fold level to 0
 set foldlevelstart=0
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " LINE NUMBERS
@@ -169,9 +133,13 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE TYPE SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" .tex file settings
-au FileType tex setl tw=80
-au FileType markdown setl tw=80
+filetype plugin indent on       " Indentation per filetype
+
+augroup fileTypeRules
+    autocmd!
+    autocmd BufNewFile,BufRead *.tex setl tw=80      " .tex file settings
+    autocmd FileType markdown setl tw=80 " markdown settings
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " SNIPPETS
@@ -181,6 +149,13 @@ nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
 nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
 nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
 nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FILE MANAGEMENT
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-n> :bn<CR>
+nnoremap <C-p> :bp<CR>
+nnoremap <leader>b :ls<CR>:b<space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " WINDOW MANAGEMENT
@@ -197,23 +172,38 @@ nnoremap <leader>l <C-w>L
 nnoremap <leader>k <C-w>K
 nnoremap <leader>j <C-w>J
 
-" Split window
-nnoremap <leader>v <C-w>s
-nnoremap <leader>b <C-w>v
- 
 " New split positions 
 set splitbelow
 set splitright
 
+" Split window
+nnoremap <leader>s <C-w>s
+nnoremap <leader>v <C-w>v
+ 
 " Resize window
-nnoremap <silent> <A-h> 10<C-w><
-nnoremap <silent> <A-l> 10<C-w>>
-nnoremap <silent> <A-k> 10<C-w>+
-nnoremap <silent> <A-j> 10<C-w>-
+nnoremap <silent> <leader>h 10<C-w><
+nnoremap <silent> <leader>l 10<C-w>>
+nnoremap <silent> <leader>k 10<C-w>+
+nnoremap <silent> <leader>j 10<C-w>-
 
 " Open terminal
 nnoremap <leader>t :term<CR>
 nnoremap <leader>T :vert term<CR>
+
+nnoremap <S-CR> O<ESC>
+nnoremap <CR> o<ESC>
+
+inoremap <C-v> <C-r>"
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMPILING
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup AutoMake
+    autocmd!
+    if filereadable("Makefile")
+        autocmd BufWritePost *.c,*.cpp make
+        autocmd QuickFixCmdPost * cwindow
+    endif
+augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""

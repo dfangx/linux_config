@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export HOME="/home/cyrusng"
+
+backup_dir="
+    $HOME/documents 
+    $HOME/pictures"
+
+os="$(grep ID /etc/os-release | cut -f2 -d "=")"
+date=$(date +%F)
+output="$HOME/documents/backup/$os-backup-$date.tgz"
+
+tool="tar"
+options="cvpzf"
+
+id=4
+
+sudo -u cyrusng DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "System Backup" "System is being backed up into ~/documents/backup/$os-backup-$date.tgz" -u normal -r "$id"
+$tool $options $output $backup_dir
