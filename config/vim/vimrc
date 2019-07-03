@@ -1,12 +1,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VIMRC FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible    " Use vim settings
-
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " XDG_CONFIG
-"""#""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""
 set undodir=$XDG_CACHE_HOME/vim/undo
 set directory=$XDG_CACHE_HOME/vim/swap
 set backupdir=$XDG_CACHE_HOME/vim/backup
@@ -14,8 +12,10 @@ set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" VIM GENERAL
+" VIM SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Space> <NOP>
+let mapleader=" "   " Set leader key
 
 set path+=**        " Set path for vim
 set cursorline      " Highlights line cursor is on
@@ -31,24 +31,27 @@ set display=truncate    "Show @@@ in last line if truncated
 set scrolloff=5     " Show a few lines of context around cursor
 set showmode        " Show mode in status bar
 set autoindent
-
-let mapleader=" "   " Set leader key
 set pastetoggle=<F1>
-" Backups
-if has("vms")
-    set nobackup		" do not keep a backup file, use versions instead
-else
-    set backup		" keep a backup file (restore to previous version)
-    if has('persistent_undo')
-        set undofile	" keep an undo file (undo changes after closing)
-    endif
-endif
+set hidden      " Hide files in background instead of closing them
+set history=1000    " Set undo limit to 1000
+set backup		" keep a backup file (restore to previous version)
+set undofile	" keep an undo file (undo changes after closing)
+set incsearch       " Do incremental searching when it's possible to timeout.
+set hlsearch          " Switch on highlighting the last used search pattern.
+set foldenable " Enable code folding
+set foldmethod=manual " Fold on indent
+set foldlevelstart=0 " Set starting fold level to 0
+set number " Display line numbers
+set relativenumber " Display relative line numbers
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab       " Convert tabs to spaces
 
 " Put these in an autocmd group, so that you can revert them with:
 " ":augroup vimStartup | au! | augroup END"
 augroup vimStartup
     au!
-
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
     " (happens when dropping a file on gvim) and for a commit message (it's
@@ -57,71 +60,18 @@ augroup vimStartup
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
       \ |   exe "normal! g`\""
       \ | endif
-
 augroup END
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" SEARCHING
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-set incsearch       " Do incremental searching when it's possible to timeout.
-set hlsearch          " Switch on highlighting the last used search pattern.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " SYNTAX
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
 syntax enable       " Enable syntax highlighting
 colorscheme cobalt      " Use colorscheme cobalt
-"hi Normal ctermbg=NONE
 
-" Set background to dark
-set background=dark
-
-let color = "true"
-if has("syntax")
-    if color == "true"
-        " This will switch colors ON
-        so ${VIMRUNTIME}/syntax/syntax.vim
-    else
-        " this switches colors OFF
-        syntax off
-        set t_Co=0
-    endif
-endif 
+set background=dark " Set background to dark
 
 highlight StatusLine ctermbg=66 ctermfg=234 
 highlight StatusLineNC ctermbg=66 ctermfg=234 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" TABS 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab       " Convert tabs to spaces
-    
-set hidden      " Hide files in background instead of closing them
-set history=1000    " Set undo limit to 1000
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FOLDS
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable code folding
-set foldenable
-
-" Fold on indent
-set foldmethod=manual
-
-" Set starting fold level to 0
-set foldlevelstart=0
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LINE NUMBERS
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Display line numbers
-set number
-
-" Display relative line numbers
-set relativenumber
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " OMNICOMLETE
@@ -133,9 +83,16 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE TYPE SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap < <><left>
+inoremap [ []<left>
+inoremap ( ()
+inoremap { <CR>{<CR>}<C-O>O
+
 filetype plugin indent on       " Indentation per filetype
 
-augroup fileTypeRules
+augroup FileTypeRules
     autocmd!
     autocmd BufNewFile,BufRead *.tex setl tw=80      " .tex file settings
     autocmd FileType markdown setl tw=80 " markdown settings
@@ -153,19 +110,14 @@ nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FILE MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <C-n> :bn<CR>
-nnoremap <C-p> :bp<CR>
+nnoremap <leader>l :bn<CR>
+nnoremap <leader>h :bp<CR>
 nnoremap <leader>b :ls<CR>:b<space>
+nnoremap <leader>x :bd<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " WINDOW MANAGEMENT
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" Focus panes
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-j> <C-w>j
-
 " Move pane
 nnoremap <leader>h <C-w>H
 nnoremap <leader>l <C-w>L
@@ -181,29 +133,30 @@ nnoremap <leader>s <C-w>s
 nnoremap <leader>v <C-w>v
  
 " Resize window
-nnoremap <silent> <leader>h 10<C-w><
-nnoremap <silent> <leader>l 10<C-w>>
-nnoremap <silent> <leader>k 10<C-w>+
-nnoremap <silent> <leader>j 10<C-w>-
+nnoremap <leader>< 10<C-w><
+nnoremap <leader>> 10<C-w>>
+nnoremap <leader>+ 10<C-w>+
+nnoremap <leader>- 10<C-w>-
 
 " Open terminal
 nnoremap <leader>t :term<CR>
 nnoremap <leader>T :vert term<CR>
 
-nnoremap <S-CR> O<ESC>
 nnoremap <CR> o<ESC>
 
 inoremap <C-v> <C-r>"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " COMPILING
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 augroup AutoMake
     autocmd!
     if filereadable("Makefile")
-        autocmd BufWritePost *.c,*.cpp make
+        autocmd BufWritePost *.h,*.c,*.cpp make
         autocmd QuickFixCmdPost * cwindow
     endif
 augroup END
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""
