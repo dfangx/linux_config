@@ -11,45 +11,131 @@ set backupdir=$XDG_CACHE_HOME/vim/backup
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
 
+let $MYVIMRC='$XDG_CONFIG_HOME/vim/vimrc'
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" VIM SETTINGS
+" SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
+set path+=**                                " Set path for vim
+set cursorline                              " Highlights line cursor is on
+set lazyredraw                              " Redraw screen only when necessary
+set showcmd                                 " Show command in bottom bar
+set wildmenu                                " Turn on wildmenu
+set showmatch                               " Highlight matching parenthesis
+set backspace=indent,eol,start              " Backspace over everything in insert mode
+set ruler                                   " Show cursor position all the time
+set ttimeout                                " Time out for key codes
+set ttimeoutlen=100                         " Wait up to 100ms after Esc for special key
+set display=truncate                        " Show @@@ in last line if truncated
+set scrolloff=5                             " Show a few lines of context around cursor
+set showmode                                " Show mode in status bar
+set autoindent                              " Autoindent
+set pastetoggle=<F1>                        " Turn on paste mode when in insert mode
+set hidden                                  " Hide files in background instead of closing them
+set history=1000                            " Set undo limit to 1000
+set backup                                  " keep a backup file (restore to previous version)
+set undofile                                " keep an undo file (undo changes after closing)
+set incsearch                               " Do incremental searching when it's possible to timeout.
+set hlsearch                                " Switch on highlighting the last used search pattern.
+set foldenable                              " Enable code folding
+set foldmethod=manual                       " Fold on indent
+set foldlevelstart=0                        " Set starting fold level to 0
+set number                                  " Display line numbers
+set relativenumber                          " Display relative line numbers
+set softtabstop=4
+set shiftwidth=4
+set expandtab                               " Convert tabs to spaces
+set background=dark                         " Set background to dark
+set splitbelow                              " New window splits on the bottom
+set splitright                              " New window splits on the right side
+set omnifunc=syntaxcomplete#Complete        " Enable omnicomplete
+set completeopt+=menuone
+
+filetype plugin on
+filetype indent on                          " Indentation per filetype
+
+syntax enable                               " Enable syntax highlighting
+colorscheme cobalt                          " Use colorscheme cobalt
+
+highlight StatusLine ctermbg=66 ctermfg=234 
+highlight StatusLineNC ctermbg=66 ctermfg=234 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEYBINDINGS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
 
-set path+=**        " Set path for vim
-set cursorline      " Highlights line cursor is on
-set lazyredraw      " Redraw screen only when necessary
-set showcmd         " Show command in bottom bar
-set wildmenu        " Turn on wildmenu
-set showmatch       " Highlight matching parenthesis
-set backspace=indent,eol,start      " Backspace over everything in insert mode
-set ruler       " Show cursor position all the time
-set ttimeout		" Time out for key codes
-set ttimeoutlen=100	" Wait up to 100ms after Esc for special key
-set display=truncate    "Show @@@ in last line if truncated
-set scrolloff=5     " Show a few lines of context around cursor
-set showmode        " Show mode in status bar
-set autoindent
-set pastetoggle=<F1>
-set hidden      " Hide files in background instead of closing them
-set history=1000    " Set undo limit to 1000
-set backup		" keep a backup file (restore to previous version)
-set undofile	" keep an undo file (undo changes after closing)
-set incsearch       " Do incremental searching when it's possible to timeout.
-set hlsearch          " Switch on highlighting the last used search pattern.
-set foldenable " Enable code folding
-set foldmethod=manual " Fold on indent
-set foldlevelstart=0 " Set starting fold level to 0
-set number " Display line numbers
-set relativenumber " Display relative line numbers
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab       " Convert tabs to spaces
+" Snippets
+nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<CR>
+nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
+nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
+nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
+nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
 
+" Buffers
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>N :bp<CR>
+nnoremap <leader>b :ls<CR>:b<space>
+nnoremap <leader>x :bd<CR>
+
+" Move pane
+nnoremap <silent> <leader>h <C-w>H
+nnoremap <silent> <leader>l <C-w>L
+nnoremap <silent> <leader>k <C-w>K
+nnoremap <silent> <leader>j <C-w>J
+
+" Split window
+nnoremap <leader>s <C-w>s
+nnoremap <leader>v <C-w>v
+ 
+" Resize window
+nnoremap <silent> <leader>< 10<C-w><
+nnoremap <silent> <leader>> 10<C-w>>
+nnoremap <silent> <leader>+ 10<C-w>+
+nnoremap <silent> <leader>- 10<C-w>-
+
+" Edit vimrc
+nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+
+" Open terminal
+nnoremap <leader>t :term<CR>
+nnoremap <leader>T :vert term<CR>
+
+nnoremap <leader>o o<ESC>
+nnoremap <leader>O O<ESC>
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap < <><left>
+inoremap [ []<left>
+
+""inoremap (; ();<left><left>
+""inoremap (;; ();
+""inoremap (i ()<left>
+""inoremap ( ()
+""
+inoremap( ()
+""inoremap {; <CR>{<CR>};<C-o>O
+""inoremap {i {}<left>
+""inoremap {f <CR>{<CR>}<C-o>O
+""inoremap {F <CR>{<CR>}<C-o>O
+""inoremap { {}
+
+inoremap <C-v> <C-r>"
+
+nnoremap <C-s> :wa<CR>
+inoremap <C-s> <C-O>:wa<CR><ESC>
+
+cabbr Q q
+cabbr Q! q!
+
+nnoremap <leader>f :find 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AUTOCOMMANDS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Put these in an autocmd group, so that you can revert them with:
 " ":augroup vimStartup | au! | augroup END"
+"
 augroup vimStartup
     au!
     " When editing a file, always jump to the last known cursor position.
@@ -62,99 +148,19 @@ augroup vimStartup
       \ | endif
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" SYNTAX
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable       " Enable syntax highlighting
-colorscheme cobalt      " Use colorscheme cobalt
-
-set background=dark " Set background to dark
-
-highlight StatusLine ctermbg=66 ctermfg=234 
-highlight StatusLineNC ctermbg=66 ctermfg=234 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OMNICOMLETE
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable omnicomplete
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FILE TYPE SETTINGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap < <><left>
-inoremap [ []<left>
-inoremap ( ()
-inoremap { <CR>{<CR>}<C-O>O
-
-filetype plugin indent on       " Indentation per filetype
-
-augroup FileTypeRules
-    autocmd!
-    autocmd BufNewFile,BufRead *.tex setl tw=80      " .tex file settings
-    autocmd FileType markdown setl tw=80 " markdown settings
-augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SNIPPETS
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<CR>
-nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
-nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
-nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
-nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FILE MANAGEMENT
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>l :bn<CR>
-nnoremap <leader>h :bp<CR>
-nnoremap <leader>b :ls<CR>:b<space>
-nnoremap <leader>x :bd<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" WINDOW MANAGEMENT
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Move pane
-nnoremap <leader>h <C-w>H
-nnoremap <leader>l <C-w>L
-nnoremap <leader>k <C-w>K
-nnoremap <leader>j <C-w>J
-
-" New split positions 
-set splitbelow
-set splitright
-
-" Split window
-nnoremap <leader>s <C-w>s
-nnoremap <leader>v <C-w>v
- 
-" Resize window
-nnoremap <leader>< 10<C-w><
-nnoremap <leader>> 10<C-w>>
-nnoremap <leader>+ 10<C-w>+
-nnoremap <leader>- 10<C-w>-
-
-" Open terminal
-nnoremap <leader>t :term<CR>
-nnoremap <leader>T :vert term<CR>
-
-nnoremap <CR> o<ESC>
-
-inoremap <C-v> <C-r>"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COMPILING
-""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup AutoMake
     autocmd!
     if filereadable("Makefile")
         autocmd BufWritePost *.h,*.c,*.cpp make
         autocmd QuickFixCmdPost * cwindow
     endif
+augroup END
+
+augroup FileTypeRules
+    autocmd!
+    autocmd BufNewFile,BufRead *.tex setlocal textwidth=80      " .tex file settings
+    autocmd FileType markdown setlocal textwidth=80 " markdown settings
+    autocmd BufWritePost $MYVIMRC :source $MYVIMRC
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""

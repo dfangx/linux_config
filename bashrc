@@ -32,3 +32,5 @@ curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "
 PS1="\[\e[1;31m\]$curDate\[\e[0m\] \[\e[1;93m\]$machInfo\[\e[0m\] \[\e[1;36m\]$end\[\e[0m\]"
+
+stty -ixon
