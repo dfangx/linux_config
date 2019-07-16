@@ -66,17 +66,17 @@ nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
 
 " Snippets
-nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<CR>
-nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<CR>
-nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<CR>
-nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<CR>
-nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<CR>
+"nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<cr>
+"nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<cr>
+"nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<cr>
+"nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<cr>
+"nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<cr>
 
 " Buffers
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>N :bp<CR>
-nnoremap <leader>b :ls<CR>:b<space>
-nnoremap <leader>x :bd<CR>
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>N :bp<cr>
+nnoremap <leader>b :ls<cr>:b<space>
+nnoremap <leader>x :bd<cr>
 
 " Move pane
 nnoremap <silent> <leader>h <C-w>H
@@ -95,36 +95,37 @@ nnoremap <silent> <leader>+ 10<C-w>+
 nnoremap <silent> <leader>- 10<C-w>-
 
 " Edit vimrc
-nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 
 " Open terminal
-nnoremap <leader>t :term<CR>
-nnoremap <leader>T :vert term<CR>
+nnoremap <leader>t :term<cr>
+nnoremap <leader>T :vert term<cr>
 
-nnoremap <leader>o o<ESC>
-nnoremap <leader>O O<ESC>
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
 
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap < <><left>
-inoremap [ []<left>
+"inoremap " ""<left>
+"inoremap ' ''<left>
+"inoremap < <><left>
+"inoremap [ []<left>
 
 ""inoremap (; ();<left><left>
 ""inoremap (;; ();
 ""inoremap (i ()<left>
 ""inoremap ( ()
 ""
-inoremap( ()
-""inoremap {; <CR>{<CR>};<C-o>O
+""inoremap( ()
+""inoremap {; <cr>{<cr>};<C-o>O
 ""inoremap {i {}<left>
-""inoremap {f <CR>{<CR>}<C-o>O
-""inoremap {F <CR>{<CR>}<C-o>O
+""inoremap {f <cr>{<cr>}<C-o>O
+""inoremap {F <cr>{<cr>}<C-o>O
 ""inoremap { {}
 
 inoremap <C-v> <C-r>"
+inoremap jk <esc>
 
-nnoremap <C-s> :wa<CR>
-inoremap <C-s> <C-O>:wa<CR><ESC>
+nnoremap <C-s> :wa<cr>
+inoremap <C-s> <C-O>:wa<cr><esc>
 
 cabbr Q q
 cabbr Q! q!
@@ -156,11 +157,31 @@ augroup AutoMake
     endif
 augroup END
 
+function Eatchar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunction
+
+function CppAbbrev()
+    iabclear
+    inoreabbrev <buffer> if if (){<cr>}<esc>2k%i<C-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> eli else if (){<cr>}<esc>2k%i<C-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> el else {<cr>}<esc>O<C-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> amain int main(int argc, char** argv)<cr>{<cr>}<C-o>Oreturn 0;<C-o>O<esc>i
+    inoreabbrev <buffer> main int main()<cr>{<cr><cr>}<C-o>Oreturn 0;<C-o>O<esc>i
+    inoreabbrev <buffer> whlp while (){<cr>}<esc>k%i<C-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> fori for(int i = 0; i < size; i++){<cr>}<esc>2kfsviwc<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> ifunc int name()<cr>{<cr>}<esc>2k2fnviwc<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> vfunc void name()<cr>{<cr>}<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> class class name<cr>{<cr>}<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
+endfunction
+
 augroup FileTypeRules
     autocmd!
     autocmd BufNewFile,BufRead *.tex setlocal textwidth=80      " .tex file settings
     autocmd FileType markdown setlocal textwidth=80 " markdown settings
     autocmd BufWritePost $MYVIMRC :source $MYVIMRC
+    autocmd FileType cpp call CppAbbrev()
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,3 +197,5 @@ call plug#begin()
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'tikhomirov/vim-glsl'
 call plug#end()
+
+
