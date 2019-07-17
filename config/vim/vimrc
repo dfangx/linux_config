@@ -20,6 +20,7 @@ set cursorline                              " Highlights line cursor is on
 set lazyredraw                              " Redraw screen only when necessary
 set showcmd                                 " Show command in bottom bar
 set wildmenu                                " Turn on wildmenu
+set wildignore+=*.bmp,*.gif,*.ico,*.png,*.pdf,*.psd
 set showmatch                               " Highlight matching parenthesis
 set backspace=indent,eol,start              " Backspace over everything in insert mode
 set ruler                                   " Show cursor position all the time
@@ -64,35 +65,39 @@ highlight StatusLineNC ctermbg=66 ctermfg=234
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
+let placeholder="<+++>"
+inoremap <c-j> <esc>:call search(placeholder)<cr>:call matchadd('Search', placeholder)<cr>cf>
 
-" Snippets
-"nnoremap <leader>html :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.html<cr>
-"nnoremap <leader>c :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.c<cr>
-"nnoremap <leader>java :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.java<cr>
-"nnoremap <leader>py :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.py<cr>
-"nnoremap <leader>tex :-1r $XDG_CONFIG_HOME/vim/skeletons/skeleton.tex<cr>
+nnoremap <c-s> :w<cr>
+inoremap <c-s> <c-o>:w<cr><esc>
+inoremap jk <esc>
+
+nnoremap <leader>ff :find 
+nnoremap <leader>fs :sfind 
+nnoremap <leader>fv :vert :sfind 
+nnoremap <leader>ft :tabfind 
 
 " Buffers
 nnoremap <leader>n :bn<cr>
-nnoremap <leader>N :bp<cr>
+nnoremap <leader>p :bp<cr>
 nnoremap <leader>b :ls<cr>:b<space>
-nnoremap <leader>x :bd<cr>
+nnoremap <leader>d :bd<cr>
 
 " Move pane
-nnoremap <silent> <leader>h <C-w>H
-nnoremap <silent> <leader>l <C-w>L
-nnoremap <silent> <leader>k <C-w>K
-nnoremap <silent> <leader>j <C-w>J
+nnoremap <silent> <leader>h <c-w>H
+nnoremap <silent> <leader>l <c-w>L
+nnoremap <silent> <leader>k <c-w>K
+nnoremap <silent> <leader>j <c-w>J
 
 " Split window
-nnoremap <leader>s <C-w>s
-nnoremap <leader>v <C-w>v
+nnoremap <leader>s <c-w>s
+nnoremap <leader>v <c-w>v
  
 " Resize window
-nnoremap <silent> <leader>< 10<C-w><
-nnoremap <silent> <leader>> 10<C-w>>
-nnoremap <silent> <leader>+ 10<C-w>+
-nnoremap <silent> <leader>- 10<C-w>-
+nnoremap <silent> <leader>< 10<c-w><
+nnoremap <silent> <leader>> 10<c-w>>
+nnoremap <silent> <leader>+ 10<c-w>+
+nnoremap <silent> <leader>- 10<c-w>-
 
 " Edit vimrc
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
@@ -104,33 +109,12 @@ nnoremap <leader>T :vert term<cr>
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
 
-"inoremap " ""<left>
-"inoremap ' ''<left>
-"inoremap < <><left>
-"inoremap [ []<left>
+inoremap <c-v> <c-r>"
 
-""inoremap (; ();<left><left>
-""inoremap (;; ();
-""inoremap (i ()<left>
-""inoremap ( ()
-""
-""inoremap( ()
-""inoremap {; <cr>{<cr>};<C-o>O
-""inoremap {i {}<left>
-""inoremap {f <cr>{<cr>}<C-o>O
-""inoremap {F <cr>{<cr>}<C-o>O
-""inoremap { {}
-
-inoremap <C-v> <C-r>"
-inoremap jk <esc>
-
-nnoremap <C-s> :wa<cr>
-inoremap <C-s> <C-O>:wa<cr><esc>
 
 cabbr Q q
 cabbr Q! q!
 
-nnoremap <leader>f :find 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOCOMMANDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,29 +144,6 @@ augroup END
 function Eatchar(pat)
     let c = nr2char(getchar(0))
     return (c =~ a:pat) ? '' : c
-endfunction
-
-function CAbbrev()
-    iabclear
-    inoreabbrev <buffer> inc #include <><esc>i<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> if if (){<cr>}<esc>?)<cr>i<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> eli else if (){<cr>}<esc>?)<cr>i<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> el else {<cr>}<esc>O<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> amain int main(int argc, char** argv)<cr>{<cr>return 0;<cr>}<esc>kO<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> main int main()<cr>{<cr>return 0;<cr>}<esc>kO<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> whlp while (){<cr>}<esc>k%i<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> fori for(int i = 0; i < s; i++){<cr>}<esc>?s<cr>viwc<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> ifunc int name()<cr>{<cr>}<esc>2k2fnviwc<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> vfunc void name()<cr>{<cr>}<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
-endfunction
-
-function CppAbbrev()
-    iabclear
-    inoreabbrev <buffer> class class name<cr>{<cr>};<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> cout std::cout << ;<esc>i<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> endl << std::endl<c-r>=Eatchar('\s')<cr><esc>
-
-    call CAbbrev()
 endfunction
 
 augroup FileTypeRules
