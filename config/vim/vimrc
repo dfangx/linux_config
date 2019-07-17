@@ -162,26 +162,35 @@ function Eatchar(pat)
     return (c =~ a:pat) ? '' : c
 endfunction
 
-function CppAbbrev()
+function CAbbrev()
     iabclear
-    inoreabbrev <buffer> if if (){<cr>}<esc>2k%i<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> eli else if (){<cr>}<esc>2k%i<C-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> inc #include <><esc>i<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> if if (){<cr>}<esc>?)<cr>i<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> eli else if (){<cr>}<esc>?)<cr>i<C-r>=Eatchar('\s')<cr>
     inoreabbrev <buffer> el else {<cr>}<esc>O<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> amain int main(int argc, char** argv)<cr>{<cr>}<C-o>Oreturn 0;<C-o>O<esc>i
-    inoreabbrev <buffer> main int main()<cr>{<cr><cr>}<C-o>Oreturn 0;<C-o>O<esc>i
+    inoreabbrev <buffer> amain int main(int argc, char** argv)<cr>{<cr>return 0;<cr>}<esc>kO<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> main int main()<cr>{<cr>return 0;<cr>}<esc>kO<c-r>=Eatchar('\s')<cr>
     inoreabbrev <buffer> whlp while (){<cr>}<esc>k%i<C-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> fori for(int i = 0; i < size; i++){<cr>}<esc>2kfsviwc<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> fori for(int i = 0; i < s; i++){<cr>}<esc>?s<cr>viwc<c-r>=Eatchar('\s')<cr>
     inoreabbrev <buffer> ifunc int name()<cr>{<cr>}<esc>2k2fnviwc<c-r>=Eatchar('\s')<cr>
     inoreabbrev <buffer> vfunc void name()<cr>{<cr>}<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
-    inoreabbrev <buffer> class class name<cr>{<cr>}<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
+endfunction
+
+function CppAbbrev()
+    iabclear
+    inoreabbrev <buffer> class class name<cr>{<cr>};<esc>2kfnviwc<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> cout std::cout << ;<esc>i<c-r>=Eatchar('\s')<cr>
+    inoreabbrev <buffer> endl << std::endl<c-r>=Eatchar('\s')<cr><esc>
+
+    call CAbbrev()
 endfunction
 
 augroup FileTypeRules
     autocmd!
-    autocmd BufNewFile,BufRead *.tex setlocal textwidth=80      " .tex file settings
+    autocmd FileType plaintex setlocal textwidth=80      " .tex file settings
     autocmd FileType markdown setlocal textwidth=80 " markdown settings
     autocmd BufWritePost $MYVIMRC :source $MYVIMRC
-    autocmd FileType cpp call CppAbbrev()
+    "autocmd FileType cpp call CppAbbrev()
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
