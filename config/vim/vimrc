@@ -77,6 +77,11 @@ nnoremap <leader>fs :sfind
 nnoremap <leader>fv :vert :sfind 
 nnoremap <leader>ft :tabfind 
 
+" Split lines
+nnoremap S a<cr><esc>
+nnoremap <cr> i<cr><esc>
+nnoremap <leader>o o<esc>
+
 " Buffers
 nnoremap <leader>n :bn<cr>
 nnoremap <leader>p :bp<cr>
@@ -105,12 +110,6 @@ nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 " Open terminal
 nnoremap <leader>t :term<cr>
 nnoremap <leader>T :vert term<cr>
-
-nnoremap <leader>o o<esc>
-nnoremap <leader>O O<esc>
-
-inoremap <c-v> <c-r>"
-
 
 cabbr Q q
 cabbr Q! q!
