@@ -66,12 +66,14 @@ highlight StatusLineNC ctermbg=66 ctermfg=234
 nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
 let placeholder="<+++>"
-inoremap <c-j> <esc>:call search(placeholder)<cr>:call matchadd('Search', placeholder)<cr>cf>
+let searchph="call search(placeholder)"
+inoremap <c-j> <esc>:<c-r>=searchph<cr><cr>
 
 nnoremap <c-s> :w<cr>
 inoremap <c-s> <c-o>:w<cr><esc>
 inoremap jk <esc>
 
+" File finding
 nnoremap <leader>ff :find 
 nnoremap <leader>fs :sfind 
 nnoremap <leader>fv :vert :sfind 
@@ -140,10 +142,6 @@ augroup AutoMake
     endif
 augroup END
 
-function Eatchar(pat)
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
-endfunction
 
 augroup FileTypeRules
     autocmd!
@@ -153,6 +151,35 @@ augroup FileTypeRules
     "autocmd FileType cpp call CppAbbrev()
 augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FUNCTIONS
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+function Eatchar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunction
+nnoremap <expr>cs({ BracketToCurly(matchstr(getline('.'), '\%' . col('.') . 'c.'))
+nnoremap <expr>cs{( CurlyToBracket(matchstr(getline('.'), '\%' . col('.') . 'c.'))
+
+function BracketToCurly(bracket)
+    if a:bracket == '('
+        return 'm1f)m2%r{`2r}`1'
+    elseif a:bracket == ')'
+        return 'm1F(m2%r}`2r{`1'
+    else
+        return ''
+    endif
+endfunction
+
+function CurlyToBracket(bracket)
+    if a:bracket == '{'
+        return 'm1f}m2%r(`2r)`1'
+    elseif a:bracket == '}'
+        return 'm1F{m2%r)`2r(`1'
+    else
+        return ''
+    endif
+endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""
