@@ -8,6 +8,7 @@ config/linux/fstab
 !config/user-dirs/dirs
 !config/vim
 config/vim/.netrwhist
+config/vim/plugged
 !config/X11
 !config/zathura
 !config/i3
@@ -15,3 +16,4 @@ config/vim/.netrwhist
 !config/compton
 !config/conky
 bin/matlab
+tags

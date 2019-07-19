@@ -50,15 +50,15 @@ set splitbelow                              " New window splits on the bottom
 set splitright                              " New window splits on the right side
 set omnifunc=syntaxcomplete#Complete        " Enable omnicomplete
 set completeopt+=menuone
+set autoread                                " Reread file when it is updated somewhere else
+set encoding=utf-8
+set scrolloff=1
+set sidescrolloff=5
+set laststatus=2
+set t_Co=256
 
 filetype plugin on
 filetype indent on                          " Indentation per filetype
-
-syntax enable                               " Enable syntax highlighting
-colorscheme cobalt                          " Use colorscheme cobalt
-
-highlight StatusLine ctermbg=66 ctermfg=234 
-highlight StatusLineNC ctermbg=66 ctermfg=234 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " KEYBINDINGS
@@ -90,6 +90,10 @@ nnoremap <leader>p :bp<cr>
 nnoremap <leader>b :ls<cr>:b<space>
 nnoremap <leader>d :bd<cr>
 
+" Surround
+nnoremap <expr>cs({ BracketToCurly(matchstr(getline('.'), '\%' . col('.') . 'c.'))
+nnoremap <expr>cs{( CurlyToBracket(matchstr(getline('.'), '\%' . col('.') . 'c.'))
+
 " Move pane
 nnoremap <silent> <leader>h <c-w>H
 nnoremap <silent> <leader>l <c-w>L
@@ -108,6 +112,7 @@ nnoremap <silent> <leader>- 10<c-w>-
 
 " Edit vimrc
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+nnoremap <leader>rv :source $MYVIMRC<cr>
 
 " Open terminal
 nnoremap <leader>t :term<cr>
@@ -115,6 +120,7 @@ nnoremap <leader>T :vert term<cr>
 
 cabbr Q q
 cabbr Q! q!
+cabbr W w
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " AUTOCOMMANDS
@@ -147,19 +153,35 @@ augroup FileTypeRules
     autocmd!
     autocmd FileType plaintex setlocal textwidth=80      " .tex file settings
     autocmd FileType markdown setlocal textwidth=80 " markdown settings
-    autocmd BufWritePost $MYVIMRC :source $MYVIMRC
-    "autocmd FileType cpp call CppAbbrev()
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-function Eatchar(pat)
+function! Eatchar(pat)
     let c = nr2char(getchar(0))
     return (c =~ a:pat) ? '' : c
 endfunction
-nnoremap <expr>cs({ BracketToCurly(matchstr(getline('.'), '\%' . col('.') . 'c.'))
-nnoremap <expr>cs{( CurlyToBracket(matchstr(getline('.'), '\%' . col('.') . 'c.'))
+
+function! GitBranch()
+    let l:branch = split(system('git branch'))
+    echo l:branch[0]
+    if l:branch[0] == 'fatal:'
+        return ''
+    else
+        return l:branch[1]
+    endif
+endfunction
+
+function! GitNumStage()
+    let l:branch = system('git ls-files -om --exclude-standard') 
+    if split(l:branch)[0] == 'fatal:'
+        return ''
+    else
+        return '[NS-' . len(split(l:branch, '\n')) . ']'
+    endif
+endfunction
+
 
 function BracketToCurly(bracket)
     if a:bracket == '('
@@ -192,6 +214,19 @@ endif"
 call plug#begin()
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'tikhomirov/vim-glsl'
+    Plug 'gkjgh/cobalt'
+    Plug 'sjl/badwolf'
+    Plug 'dracula/vim', {'as':'dracula'}
+    Plug 'romainl/Apprentice'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax enable                               " Enable syntax highlighting
+colorscheme badwolf                         " Use colorscheme cobalt
 
+highlight Normal ctermbg=none
+highlight StatusLine ctermbg=66 ctermfg=234 
+highlight StatusLineNC ctermbg=66 ctermfg=234 
