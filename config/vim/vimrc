@@ -175,7 +175,11 @@ endfunction
 
 function! GitNumStage()
     let l:branch = system('git ls-files -om --exclude-standard') 
-    if split(l:branch)[0] == 'fatal:' || l:branch == '0'
+    if l:branch == ''
+        return ''
+    endif
+
+    if  split(l:branch)[0] == 'fatal:'
         return ''
     else
         return '[NS-' . len(split(l:branch, '\n')) . ']'
