@@ -1,7 +1,12 @@
 call matchadd('Search', placeholder)
+if !filereadable("Makefile")
+    setlocal makeprg=gcc\ -o\ %<\ %\ -Wall
+endif
+
 iabclear
-inoreabbrev inc #include <><esc>i<c-r>=Eatchar('\s')<cr>
-inoreabbrev incg #ifndef <c-r>=placeholder<cr>_H<cr>#define <c-r>=placeholder<cr>_H<cr><c-r>=placeholder<cr><cr>#endif<esc>:<c-r>=searchph<cr><cr>cf><c-r>=Eatchar('\s')<cr>
+inoreabbrev #i #include <><esc>i<c-r>=Eatchar('\s')<cr>
+inoreabbrev #d #define <c-r>=Eatchar('\s')<cr>
+inoreabbrev #g #ifndef <c-r>=expand('%:r')<cr><esc>gUiWWa_H<cr>#define <c-r>=expand('%:r')<cr><esc>gUiWWa_H<cr><c-r>=placeholder<cr><cr>#endif<esc>:<c-r>=searchph<cr><cr>cf><c-r>=Eatchar('\s')<cr>
 inoreabbrev if if (){<cr>}<esc>:call search(')', 'b')<cr>i<c-r>=Eatchar('\s')<cr>
 inoreabbrev eli else if (){<cr>}<esc>:call search(')', 'b')<cr>i<C-r>=Eatchar('\s')<cr>
 inoreabbrev el else {<cr>}<esc>O<c-r>=Eatchar('\s')<cr>

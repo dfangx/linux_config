@@ -12,7 +12,7 @@ function bat() {
     color="\x01"
 
     if [ $battery_state == "Charging" ]; then
-        label=""
+        label=""
         battery_time="$(acpi | grep -oh '[0-9:]* until charged' | sed 's/\ until\ charged//')"
     else
         if [ $battery -le 10 ]; then

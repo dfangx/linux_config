@@ -33,8 +33,9 @@ set autoindent                              " Autoindent
 set pastetoggle=<F1>                        " Turn on paste mode when in insert mode
 set hidden                                  " Hide files in background instead of closing them
 set history=1000                            " Set undo limit to 1000
-set backup                                  " keep a backup file (restore to previous version)
-set undofile                                " keep an undo file (undo changes after closing)
+set writebackup                             " Protect against crash during write
+set nobackup                                " Do not persist backup file after successful write
+set undofile                                " Keep an undo file (undo changes after closing)
 set incsearch                               " Do incremental searching when it's possible to timeout.
 set hlsearch                                " Switch on highlighting the last used search pattern.
 set foldenable                              " Enable code folding
@@ -49,7 +50,6 @@ set background=dark                         " Set background to dark
 set splitbelow                              " New window splits on the bottom
 set splitright                              " New window splits on the right side
 set omnifunc=syntaxcomplete#Complete        " Enable omnicomplete
-set completeopt+=menuone
 set autoread                                " Reread file when it is updated somewhere else
 set encoding=utf-8
 set scrolloff=1
@@ -67,7 +67,8 @@ nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
 let placeholder="<+++>"
 let searchph="call search(placeholder)"
-inoremap <c-j> <esc>:<c-r>=searchph<cr><cr>
+inoremap <c-j> <esc>:<c-r>=searchph<cr><cr>cf>
+nnoremap <f2> :make<cr>
 
 nnoremap <c-s> :w<cr>
 inoremap <c-s> <c-o>:w<cr><esc>
@@ -142,16 +143,15 @@ augroup END
 
 augroup AutoMake
     autocmd!
-    if filereadable("Makefile")
-        autocmd BufWritePost *.h,*.c,*.cpp make
-        autocmd QuickFixCmdPost * cwindow
-    endif
+"    if filereadable("Makefile")
+"        autocmd BufWritePost *.h,*.c,*.cpp make
+    autocmd QuickFixCmdPost * cwindow
+"    endif
 augroup END
 
 
 augroup FileTypeRules
     autocmd!
-    autocmd FileType plaintex setlocal textwidth=80      " .tex file settings
     autocmd FileType markdown setlocal textwidth=80 " markdown settings
 augroup END
 
@@ -164,30 +164,58 @@ function! Eatchar(pat)
 endfunction
 
 function! GitBranch()
-    let l:branch = split(system('git branch'))
-    echo l:branch[0]
-    if l:branch[0] == 'fatal:'
-        return ''
+    let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    if strlen(l:branch) > 0
+        return '  ' . l:branch
     else
-        return l:branch[1]
+        return ''
     endif
 endfunction
 
 function! GitNumStage()
-    let l:branch = system('git ls-files -om --exclude-standard') 
-    if l:branch == ''
+    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel)') 
+    if l:numStage == ''
         return ''
     endif
 
-    if  split(l:branch)[0] == 'fatal:'
+    if  split(l:numStage)[0] == 'fatal:'
         return ''
     else
-        return '[NS-' . len(split(l:branch, '\n')) . ']'
+        return '[' . len(split(l:numStage, '\n')) . '] '
     endif
 endfunction
 
+function! IsGitRepo()
+    let l:isRepo = system("git rev-parse --is-inside-work-tree | tr -d '\n'")
+    if l:isRepo == 'true'
+        return 1
+    else
+        return 0
+    endif
+endfunction
 
-function BracketToCurly(bracket)
+function! IsReadOnly()
+    if &readonly
+        return ''
+    else
+        return ''
+    endif
+endfunction
+
+function! GetMode()
+    let l:m = mode()
+    if l:m == 'i'
+        return 'INSERT'
+    elseif l:m == 'v' || l:m == 'V' || l:m == "\<C-V>"
+        return 'VISUAL'
+    elseif l:m == 'R'
+        return 'REPLACE'
+    else
+        return 'NORMAL'
+    endif
+endfunction
+
+function! BracketToCurly(bracket)
     if a:bracket == '('
         return 'm1f)m2%r{`2r}`1'
     elseif a:bracket == ')'
@@ -197,7 +225,7 @@ function BracketToCurly(bracket)
     endif
 endfunction
 
-function CurlyToBracket(bracket)
+function! CurlyToBracket(bracket)
     if a:bracket == '{'
         return 'm1f}m2%r(`2r)`1'
     elseif a:bracket == '}'
@@ -226,11 +254,42 @@ call plug#begin()
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors
+" COLORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                               " Enable syntax highlighting
 colorscheme badwolf                         " Use colorscheme cobalt
 
 highlight Normal ctermbg=none
-highlight StatusLine ctermbg=66 ctermfg=234 
-highlight StatusLineNC ctermbg=66 ctermfg=234 
+highlight StatusLine cterm=reverse,bold ctermfg=249 ctermbg=235
+highlight StatusLineNC cterm=reverse,bold ctermfg=243 ctermbg=234
+highlight User1 cterm=bold ctermfg=249 ctermbg=237
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline=
+set statusline+=%*
+set statusline+=\ %{GetMode()}
+set statusline+=%1*
+set statusline+=
+
+if IsGitRepo()
+    set statusline+=%{GitBranch()}
+    set statusline+=%{GitNumStage()}
+    set statusline+=\ 
+endif
+
+set statusline+=\ %n:
+set statusline+=\ %f
+set statusline+=\ %m
+set statusline+=\ %{IsReadOnly()}
+set statusline+=%=
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ \[%{&fileformat}\]
+set statusline+=\ 
+set statusline+=\ %Y
+set statusline+=\ 
+set statusline+=\ %p%%
+set statusline+=\ 
+set statusline+=%*
+set statusline+=\ \ %l:%c\ 

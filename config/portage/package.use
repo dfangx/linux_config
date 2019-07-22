@@ -3,7 +3,7 @@ media-libs/freetype -adobe-cff
 sys-devel/llvm LLVM_TARGETS: -AMDGPU
 app-admin/sudo -sendmail
 www-client/firefox -system-av1 -system-harfbuzz -system-icu -system-jpeg -system-libevent -system-libvpx -system-sqlite -system-webp hwaccel pulseaudio
-x11-libs/cairo X
+x11-libs/cairo X xcb
 media-libs/libpng apng
 dev-lang/python sqlite
 sys-devel/clang LLVM_TARGETS: -AMDGPU -NVPTX
@@ -29,7 +29,7 @@ media-libs/imlib2 jpeg png
 app-text/ghostscript-gpl cups
 dev-lang/python tk
 dev-libs/libxml2 python
-sys-apps/dbus X user-session
+sys-apps/dbus X
 
 x11-misc/redshift geoclue
 
@@ -48,3 +48,4 @@ media-libs/mesa video_cards_i965
 
 media-video/mpv pulseaudio
 
+media-gfx/imagemagick jpeg png

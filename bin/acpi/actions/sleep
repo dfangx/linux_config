@@ -6,22 +6,28 @@ case "$1" in
     "button/lid")
         case "$3" in
             "close")
+                sudo -u cyrusng XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":0" betterlockscreen -l &
+                sleep 1
 	        echo -n "mem" > "$power_state"
-            ;;
+                ;;
 	    *);;
         esac
         ;;
     "button/sleep")
         case "$2" in 
 	    "SBTN")
-            echo -n "mem" > "$power_state"
-            ;;
+                sudo -u cyrusng XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":0" betterlockscreen -l &
+                sleep 1
+                echo -n "mem" > "$power_state"
+                ;;
 	    *);;
         esac
         ;;
     "button/power")
         case "$2" in
             "PBTN")
+                sudo -u cyrusng XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":0" betterlockscreen -l &
+                sleep 1
                 echo -n "mem" > "$power_state"
                 ;;
             *);;

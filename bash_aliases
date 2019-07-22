@@ -46,9 +46,7 @@ alias backup="sudo tar cvpzf $(grep ID /etc/os-release | cut -f2 -d "=")-backup-
 alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
 
 ## Power ##
-alias powreport="sudo powertop --html && surf ./powertop.html"
-
-alias irssi="irssi --home ~/.config/irssi -c chat.freenode.net"
+alias powreport="sudo powertop --html && firefox ./powertop.html"
 
 function cd () {
     builtin cd "$@" && ls
