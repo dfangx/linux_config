@@ -55,7 +55,7 @@ set encoding=utf-8
 set scrolloff=1
 set sidescrolloff=5
 set laststatus=2
-set t_Co=256
+"set t_Co=256
 
 filetype plugin on
 filetype indent on                          " Indentation per filetype
@@ -257,8 +257,13 @@ call plug#end()
 " COLORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                               " Enable syntax highlighting
-colorscheme badwolf                         " Use colorscheme cobalt
+colorscheme dracula                         " Use colorscheme cobalt
 
+"if has("termguicolors")
+"    set termguicolors
+"    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"endif
 highlight Normal ctermbg=none
 highlight StatusLine cterm=reverse,bold ctermfg=249 ctermbg=235
 highlight StatusLineNC cterm=reverse,bold ctermfg=243 ctermbg=234

@@ -49,3 +49,4 @@ media-libs/mesa video_cards_i965
 media-video/mpv pulseaudio
 
 media-gfx/imagemagick jpeg png
+x11-misc/compton opengl
