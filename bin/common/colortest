@@ -150,13 +150,13 @@ function 24bit {
     resetOutput
 }
 
-if [ "$test_type" -eq 4 ]
+if [ "$test_type" == 4 ]
 then
     4bit
-elif [ "$test_type" -eq 8 ]
+elif [ "$test_type" == 8 ]
 then
     8bit
-elif [ "$test_type" -eq 24 ]
+elif [ "$test_type" == 24 ]
 then
     24bit
 elif [ "$test_type" == "all" ]
