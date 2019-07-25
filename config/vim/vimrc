@@ -172,26 +172,23 @@ function! GitBranch()
     endif
 endfunction
 
-function! GitNumStage()
-    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel)') 
-    if l:numStage == ''
-        return ''
-    endif
-
-    if  split(l:numStage)[0] == 'fatal:'
-        return ''
-    else
-        return '[' . len(split(l:numStage, '\n')) . '] '
-    endif
+function! GitNumModified()
+    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel) | wc -l | tr -d "\n"') 
+    return l:numStage
 endfunction
 
-function! IsGitRepo()
+function! GitIsRepo()
     let l:isRepo = system("git rev-parse --is-inside-work-tree | tr -d '\n'")
     if l:isRepo == 'true'
         return 1
     else
         return 0
     endif
+endfunction
+
+function! GitNumStaged()
+    let l:numStaged = system('git diff --cached --numstat | wc -l | tr -d "\n"')
+    return l:numStaged
 endfunction
 
 function! IsReadOnly()
@@ -278,9 +275,13 @@ set statusline+=\ %{GetMode()}
 set statusline+=%1*
 set statusline+=
 
-if IsGitRepo()
+if GitIsRepo()
     set statusline+=%{GitBranch()}
-    set statusline+=%{GitNumStage()}
+    set statusline+=\[
+    set statusline+=M%{GitNumModified()}
+    set statusline+=:
+    set statusline+=S%{GitNumStaged()}
+    set statusline+=\]
     set statusline+=\ 
 endif
 
