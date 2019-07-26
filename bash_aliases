@@ -18,8 +18,8 @@ alias grep="grep --color=auto"
 ###########################################
 ################ SHELL ####################
 ###########################################
-alias refresh="clear && source ~/.bashrc"
-alias edtalias="vim ~/.bash_aliases"
+alias aliases="vim ~/.bash_aliases && . ~/.bash_aliases"
+alias rc="vim ~/.bashrc && . ~/.bashrc"
 alias \:q="exit"
 
 ###########################################

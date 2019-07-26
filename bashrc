@@ -31,8 +31,9 @@ PATH="$PATH:$HOME/bin/common"
 curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "
-#PS1="\[\e[1;31m\]$curDate\[\e[0m\] \[\e[1;93m\]$machInfo\[\e[0m\] \[\e[1;36m\]$end\[\e[0m\]"
+
 PS1="\[\e[38;2;133;79;219;1m\]$curDate \[\e[38;2;189;147;249;1m\]$machInfo\[\e[38;2;148;125;179;1m\]$end\[\e[0m\]"
+
 unset curDate
 unset machInfo
 unset end

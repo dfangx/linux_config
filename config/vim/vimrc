@@ -166,7 +166,7 @@ endfunction
 function! GitBranch()
     let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
     if strlen(l:branch) > 0
-        return '  ' . l:branch
+        return ' ' . l:branch
     else
         return ''
     endif
@@ -265,6 +265,7 @@ highlight Normal ctermbg=none
 highlight StatusLine cterm=reverse,bold ctermfg=249 ctermbg=235
 highlight StatusLineNC cterm=reverse,bold ctermfg=243 ctermbg=234
 highlight User1 cterm=bold ctermfg=249 ctermbg=237
+highlight User2 cterm=bold ctermfg=249 ctermbg=240
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
@@ -272,30 +273,36 @@ highlight User1 cterm=bold ctermfg=249 ctermbg=237
 set statusline=
 set statusline+=%*
 set statusline+=\ %{GetMode()}
-set statusline+=%1*
-set statusline+=
+set statusline+=\ 
+set statusline+=%2*
+"set statusline+=
 
 if GitIsRepo()
-    set statusline+=%{GitBranch()}
+    set statusline+=\ %{GitBranch()}
     set statusline+=\[
     set statusline+=M%{GitNumModified()}
     set statusline+=:
     set statusline+=S%{GitNumStaged()}
     set statusline+=\]
-    set statusline+=\ 
+    set statusline+=\  
+    set statusline+=%1*
+"    set statusline+=
+    "set statusline+=\ 
 endif
 
 set statusline+=\ %n:
 set statusline+=\ %f
-set statusline+=\ %m
+set statusline+=\ %M
 set statusline+=\ %{IsReadOnly()}
 set statusline+=%=
+set statusline+=\ %Y
+set statusline+=\ 
+"set statusline+=\ 
+set statusline+=%2*
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ \[%{&fileformat}\]
-set statusline+=\ 
-set statusline+=\ %Y
-set statusline+=\ 
-set statusline+=\ %p%%
-set statusline+=\ 
+set statusline+=\ 
+"set statusline+=\ 
 set statusline+=%*
+set statusline+=\ %p%%
 set statusline+=\ \ %l:%c\ 
