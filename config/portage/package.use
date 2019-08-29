@@ -50,3 +50,5 @@ media-video/mpv pulseaudio
 
 media-gfx/imagemagick jpeg png
 x11-misc/compton opengl
+
+app-emulation/qemu opengl gtk

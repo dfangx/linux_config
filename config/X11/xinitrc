@@ -7,5 +7,5 @@ exec redshift &
 exec ~/bin/status_bar &
 exec feh --no-fehbg --bg-fill --randomize --recursive ~/pictures/wallpapers &
 exec compton --config ~/.config/compton/compton.conf &
-exec ~/bin/startdwm
+exec i3
 

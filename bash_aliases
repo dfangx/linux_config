@@ -48,6 +48,10 @@ alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery
 ## Power ##
 alias powreport="sudo powertop --html && firefox ./powertop.html"
 
+alias def="define"
+
 function cd () {
     builtin cd "$@" && ls
 }
+
+alias v="vim"

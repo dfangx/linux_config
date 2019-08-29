@@ -9,7 +9,7 @@ state=$(cat $dir/bat_state)
 bat_time=$(acpi | grep -oh '[0-9:]* remaining' | sed 's/remaining$//') 
 
 if [ $bat_state = "Charging" ]; then
-	label=""
+	label=""
 	bat_time=$(acpi | grep -oh '[0-9:]* until charged' | sed 's/until\ charged$//') 
 else
 	if [ $bat -le 10 ]; then

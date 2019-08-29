@@ -243,6 +243,7 @@ endif"
 call plug#begin()
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'tikhomirov/vim-glsl'
+    Plug 'Rigellute/rigel'
     Plug 'gkjgh/cobalt'
     Plug 'sjl/badwolf'
     Plug 'dracula/vim', {'as':'dracula'}
@@ -254,14 +255,18 @@ call plug#end()
 " COLORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                               " Enable syntax highlighting
-colorscheme dracula                         " Use colorscheme cobalt
+colorscheme badwolf
 
 "if has("termguicolors")
 "    set termguicolors
 "    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 "    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "endif
-highlight Normal ctermbg=none
+highlight Normal ctermbg=none 
+highlight NonText ctermbg=none
+highlight CursorLine ctermbg=24 
+highlight CursorLineNr  ctermbg=24 
+highlight LineNr ctermbg=none
 highlight StatusLine cterm=reverse,bold ctermfg=249 ctermbg=235
 highlight StatusLineNC cterm=reverse,bold ctermfg=243 ctermbg=234
 highlight User1 cterm=bold ctermfg=249 ctermbg=237

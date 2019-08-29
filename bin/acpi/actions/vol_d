@@ -1,3 +1,4 @@
 #!/bin/bash
 #amixer set Master toggle
-sudo -u cyrusng PULSE_SERVER="/run/user/1000/pulse/native" sh -c "pactl set-sink-mute 0 false; pactl set-sink-volume 0 -2%;"
+sudo -u "#1000" PULSE_SERVER="/run/user/1000/pulse/native" sh -c "pactl set-sink-mute 0 false; pactl set-sink-volume 0 -2%;"
+exec pkill -RTMIN+1 i3blocks

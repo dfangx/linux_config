@@ -28,40 +28,40 @@ command=~/.config/i3blocks/i3blocklets/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-[updates]
-interval=1800
-signal=4
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#ff0000
+#[updates]
+#interval=1800
+#signal=4
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#ff0000
 
-[system]
-interval=1
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#00ff00
+#[system]
+#interval=1
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#00ff00
 
 
 # Generic media player support
 #
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-[mediaplayer]
-command=~/.config/i3blocks/i3blocklets/mediaplayer/scroll $BLOCK_NAME
-instance=spotify
-interval=1
-signal=10
-label=
-separator=false
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#0000ff
+#[mediaplayer]
+#command=~/.config/i3blocks/i3blocklets/mediaplayer/scroll $BLOCK_NAME
+#instance=spotify
+#interval=1
+#signal=10
+#label=
+#separator=false
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#0000ff
 
 # Volume indicator
 #
@@ -73,26 +73,26 @@ border=#0000ff
 instance=Master
 interval=once
 signal=1
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#ffff00
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#ffff00
 
 #[weather]
 #command=~/.config/i3blocks/i3blocklets/weather markham
 #interval=900
 #Brightness
 [brightness]
-label=
+label= 
 command=~/.config/i3blocks/i3blocklets/display/brightness
 interval=once
 signal=2
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#ff00ff
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#ff00ff
 
 # CPU usage
 #
@@ -147,11 +147,11 @@ border=#ff00ff
 separator=true
 interval=1
 instance=wlp2s0
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#00ffff
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#00ffff
 
 #[wifi]
 #instance=wlp2s0
@@ -184,22 +184,22 @@ border=#00ffff
 #command=~/.config/i3blocks/i3blocklets/battery
 #markup=pango
 interval=1
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#ffffff
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#ffffff
 
 # Date Time
 #
 [time]
 interval=1
 signal=3
-border_top=0
-border_left=0
-border_right=0
-border_bottom=4
-border=#a2ffff
+#border_top=0
+#border_left=0
+#border_right=0
+#border_bottom=4
+#border=#a2ffff
 
 # OpenVPN support
 #

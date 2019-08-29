@@ -24,6 +24,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi 
 
+. /etc/bash/bashrc.d/bash_completion.sh
+
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 PATH="$PATH:$HOME/bin/common"
 
