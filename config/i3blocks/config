@@ -28,9 +28,9 @@ command=~/.config/i3blocks/i3blocklets/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
-#[updates]
-#interval=1800
-#signal=4
+[updates]
+interval=1800
+signal=4
 #border_top=0
 #border_left=0
 #border_right=0

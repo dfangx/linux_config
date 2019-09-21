@@ -14,9 +14,7 @@ export BROWSER="firefox"
 export PROMPT_DIRTRIM=3
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
-#export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/dbus-1000"
-
-#dbus-daemon --session --address="unix:path=/run/user/1000/dbus" &
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 if [ -z "$SSH_AUTH_SOCK" ]
 then

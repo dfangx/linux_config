@@ -10,6 +10,7 @@ set directory=$XDG_CACHE_HOME/vim/swap
 set backupdir=$XDG_CACHE_HOME/vim/backup
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME,$XDG_CONFIG_HOME/vim/after
+set packpath+=$XDG_CONFIG_HOME/vim
 
 let $MYVIMRC='$XDG_CONFIG_HOME/vim/vimrc'
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +56,8 @@ set encoding=utf-8
 set scrolloff=1
 set sidescrolloff=5
 set laststatus=2
-"set t_Co=256
+set smarttab
+set tags+=tags;/
 
 filetype plugin on
 filetype indent on                          " Indentation per filetype
@@ -163,20 +165,6 @@ function! Eatchar(pat)
     return (c =~ a:pat) ? '' : c
 endfunction
 
-function! GitBranch()
-    let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    if strlen(l:branch) > 0
-        return ' ' . l:branch
-    else
-        return ''
-    endif
-endfunction
-
-function! GitNumModified()
-    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel) | wc -l | tr -d "\n"') 
-    return l:numStage
-endfunction
-
 function! GitIsRepo()
     let l:isRepo = system("git rev-parse --is-inside-work-tree | tr -d '\n'")
     if l:isRepo == 'true'
@@ -186,10 +174,24 @@ function! GitIsRepo()
     endif
 endfunction
 
-function! GitNumStaged()
-    let l:numStaged = system('git diff --cached --numstat | wc -l | tr -d "\n"')
-    return l:numStaged
+function! GitBranch()
+    let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    if strlen(l:branch) > 0
+        return ' ' . l:branch
+    else
+        return ''
+    endif
 endfunction
+
+"function! GitNumModified()
+"    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel) | wc -l | tr -d "\n"') 
+"    return l:numStage
+"endfunction
+"
+"function! GitNumStaged()
+"    let l:numStaged = system('git diff --cached --numstat | wc -l | tr -d "\n"')
+"    return l:numStaged
+"endfunction
 
 function! IsReadOnly()
     if &readonly
@@ -234,34 +236,33 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""
-if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
-    silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs 
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif"
+packadd! badwolf
+"if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
+"    silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs 
+"        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif"
+"
+"call plug#begin()
+"    Plug 'christoomey/vim-tmux-navigator'
+"    Plug 'tikhomirov/vim-glsl'
+"    Plug 'Rigellute/rigel'
+"    Plug 'gkjgh/cobalt'
+"    Plug 'sjl/badwolf'
+"    Plug 'dracula/vim', {'as':'dracula'}
+"    Plug 'romainl/Apprentice'
+"    Plug 'morhetz/gruvbox'
+"    Plug 'racer-rust/vim-racer'
+"    Plug 'ajh17/VimCompletesMe'
+"call plug#end()
 
-call plug#begin()
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'tikhomirov/vim-glsl'
-    Plug 'Rigellute/rigel'
-    Plug 'gkjgh/cobalt'
-    Plug 'sjl/badwolf'
-    Plug 'dracula/vim', {'as':'dracula'}
-    Plug 'romainl/Apprentice'
-    Plug 'morhetz/gruvbox'
-call plug#end()
-
+runtime! macros/matchit.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable                               " Enable syntax highlighting
 colorscheme badwolf
 
-"if has("termguicolors")
-"    set termguicolors
-"    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"endif
 highlight Normal ctermbg=none 
 highlight NonText ctermbg=none
 highlight CursorLine ctermbg=24 
@@ -284,11 +285,11 @@ set statusline+=%2*
 
 if GitIsRepo()
     set statusline+=\ %{GitBranch()}
-    set statusline+=\[
-    set statusline+=M%{GitNumModified()}
-    set statusline+=:
-    set statusline+=S%{GitNumStaged()}
-    set statusline+=\]
+"    set statusline+=\[
+"    set statusline+=M%{GitNumModified()}
+"    set statusline+=:
+"    set statusline+=S%{GitNumStaged()}
+"    set statusline+=\]
     set statusline+=\  
     set statusline+=%1*
 "    set statusline+=

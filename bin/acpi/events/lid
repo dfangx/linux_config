@@ -1,2 +1,2 @@
-event=button/lid
-action=/etc/acpi/actions/sleep %e
+#event=button/lid
+#action=/etc/acpi/actions/sleep %e

@@ -13,14 +13,14 @@ do
         then
             echo "Link exists. Skipping $f"
         else
-            ln -sv "$(pwd)/$f" "$HOME/$(basename $f)"
+            ln -sfv "$(pwd)/$f" "$HOME/$(basename $f)"
         fi
     else
         if [ -L "$HOME/.$(basename $f)" ]
         then
             echo "Link exists. Skipping $f"
         else
-            ln -sv "$(pwd)/$f" "$HOME/.$(basename $f)"
+            ln -sfv "$(pwd)/$f" "$HOME/.$(basename $f)"
         fi
     fi
 done

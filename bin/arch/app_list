@@ -16,8 +16,6 @@ acpi
 playerctl
 pulseaudio-alsa
 newsboat
-termite
-rofi
 keepassxc
 dunst
 tmux
@@ -44,3 +42,4 @@ texlive-core
 pandoc
 wireless_tools
 sysstat
+bc

@@ -4,9 +4,6 @@
 [submodule "suckless/dwm"]
 	path = suckless/dwm
 	url = git@github.com:dfangx/dwm.git
-[submodule "suckless/st"]
-	path = suckless/st
-	url = git@github.com:dfangx/st.git
 [submodule "suckless/surf"]
 	path = suckless/surf
 	url = git@github.com:dfangx/surf.git
@@ -16,3 +13,18 @@
 [submodule "config/vim/plugged/vim-glsl"]
 	path = config/vim/plugged/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl
+[submodule "config/vim/pack/colorscheme/opt/badwolf"]
+	path = config/vim/pack/colorscheme/opt/badwolf
+	url = https://github.com/sjl/badwolf
+[submodule "config/vim/pack/plugins/start/vim-tmux-navigator"]
+	path = config/vim/pack/plugins/start/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "config/vim/pack/plugins/opt/vim-racer"]
+	path = config/vim/pack/plugins/opt/vim-racer
+	url = https://github.com/racer-rust/vim-racer
+[submodule "config/vim/pack/plugins/start/VimCompletesMe"]
+	path = config/vim/pack/plugins/start/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe
+[submodule "suckless/st"]
+	path = suckless/st
+	url = git@github.com:dfangx/st.git

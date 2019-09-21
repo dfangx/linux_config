@@ -2,6 +2,7 @@
 
 #printf "%0.2f%%\n" $(xbacklight)
 #printf "%0.2f%%\n" $(xbacklight)
+
 current="$(cat /sys/class/backlight/intel_backlight/brightness)"
 max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
 

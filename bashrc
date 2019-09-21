@@ -24,10 +24,26 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi 
 
-. /etc/bash/bashrc.d/bash_completion.sh
+# Gentoo path
+#. /etc/bash/bashrc.d/bash_completion.sh
+. /usr/share/bash-completion/bash_completion
 
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
-PATH="$PATH:$HOME/bin/common"
+PATH="$PATH:$HOME/bin/common:$HOME/.cargo/bin"
+if [ -f "/usr/lib/os-release" ]
+then
+    os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
+else
+    os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
+fi
+
+case "$os" in
+    "arch" | "artix")
+        PATH="$PATH:$HOME/bin/arch"
+        ;;
+    *)
+        ;;
+esac
 
 # Shell Prompt
 curDate="[\d]"

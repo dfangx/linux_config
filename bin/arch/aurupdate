@@ -13,7 +13,7 @@ else
 fi
 
 echo Fetching updates...
-cower -fdu --target $dir
+auracle -C "$dir" clone $(auracle sync | cut -d" " -f1)
 
 if [ $(ls $dir | wc -l) -gt 0 ]; then
 	for f in $dir/*; do
@@ -32,4 +32,6 @@ else
 fi
 
 echo Cleaning up...
-rm -rv $dir
+echo y | rm -rv $dir
+
+exec pkill -RTMIN+4 i3blocks

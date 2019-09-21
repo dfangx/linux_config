@@ -126,7 +126,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-#assign [class="(?i)Firefox"] $ws2
+assign [class="(?i)Firefox"] $ws2
 
 ##############################App Keybinds#################3##############################
 bindsym $mod+Return exec $term
@@ -186,7 +186,7 @@ exec ~/bin/hdmi_toggle
 
 #############################Startup Apps#################################################
 exec $term 
-#exec --no-startup-id compton -b
+#exec --no-startup-id compton -b --config ~/.config/compton/compton.conf
 
 ##############################Scratchpads#################################################
 exec --no-startup-id $term -n math -e python -q

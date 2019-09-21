@@ -1,11 +1,11 @@
 #!/bin/bash
 
 dbus-daemon --syslog --session --address="unix:path=/run/user/1000/bus" &
-start-pulseaudio-x11
-exec /usr/libexec/geoclue-2.0/demos/agent & 
+#start-pulseaudio-x11
+#exec /usr/libexec/geoclue-2.0/demos/agent & 
+#exec ~/bin/status_bar &
 exec redshift &
-exec ~/bin/status_bar &
-exec feh --no-fehbg --bg-fill --randomize --recursive ~/pictures/wallpapers &
 exec compton --config ~/.config/compton/compton.conf &
+exec feh --no-fehbg --bg-fill --randomize --recursive ~/pictures/wallpapers &
 exec i3
 
