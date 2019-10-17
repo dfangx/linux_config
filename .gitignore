@@ -15,5 +15,6 @@ config/vim/plugged
 !config/i3blocks
 !config/compton
 !config/conky
+!config/firefox_css
 bin/matlab
 tags

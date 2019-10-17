@@ -1,0 +1,80 @@
+#!/bin/bash
+
+battery_path="/sys/class/power_supply/BAT0"
+battery="$(cat $battery_path/capacity)"
+battery_state="$(cat $battery_path/status)"
+battery_time="$(acpi | grep -oh '[0-9:]* remaining' | sed 's/\ remaining$//')"
+color="\x01"
+
+if [ $battery_state == "Charging" ]; then
+    #FA label=""
+    label=""
+    #battery_time="$(acpi | grep -oh '[0-9:]* until charged' | sed 's/\ until\ charged//')"
+    if [ "$battery" -eq 100 ]; then
+        label=""
+        #FA label=""
+        #color="\x05"
+    elif [ $battery -ge 90 ]; then
+        label=""
+        #FA label=""
+        #color="\x04"
+    elif [ $battery -ge 80 ]; then
+        label=""
+        #FA label=" "
+        #color="\x03"
+    elif [ $battery -ge 70 ]; then
+        label=""
+        #FA label=""
+        #color="\x03"
+    elif [ $battery -ge 60 ]; then
+        label=""
+    elif [ $battery -ge 50 ]; then
+        label=""
+    elif [ $battery -ge 40 ]; then
+        label=""
+    elif [ $battery -ge 30 ]; then
+        label=""
+    elif [ $battery -ge 20 ]; then
+        label=""
+    elif [ $battery -ge 10 ]; then
+        label=""
+    else
+        label=""
+        #FA label=""
+    fi
+else
+    if [ "$battery" -eq 100 ]; then
+        label=""
+        #FA label=""
+        #color="\x05"
+    elif [ $battery -ge 90 ]; then
+        label=""
+        #FA label=""
+        #color="\x04"
+    elif [ $battery -ge 80 ]; then
+        label=""
+        #FA label=" "
+        #color="\x03"
+    elif [ $battery -ge 70 ]; then
+        label=""
+        #FA label=""
+        #color="\x03"
+    elif [ $battery -ge 60 ]; then
+        label=""
+    elif [ $battery -ge 50 ]; then
+        label=""
+    elif [ $battery -ge 40 ]; then
+        label=""
+    elif [ $battery -ge 30 ]; then
+        label=""
+    elif [ $battery -ge 20 ]; then
+        label=""
+    elif [ $battery -ge 10 ]; then
+        label=""
+    else
+        label="󰃸"
+        #FA label=""
+    fi
+fi
+
+echo -e "$label $battery%" #[$battery_time]\x01"

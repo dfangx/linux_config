@@ -143,19 +143,14 @@ augroup vimStartup
       \ | endif
 augroup END
 
-augroup AutoMake
-    autocmd!
+"augroup AutoMake
+"    autocmd!
 "    if filereadable("Makefile")
 "        autocmd BufWritePost *.h,*.c,*.cpp make
-    autocmd QuickFixCmdPost * cwindow
+"        autocmd QuickFixCmdPost * cwindow
 "    endif
-augroup END
+"augroup END
 
-
-augroup FileTypeRules
-    autocmd!
-    autocmd FileType markdown setlocal textwidth=80 " markdown settings
-augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FUNCTIONS

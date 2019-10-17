@@ -16,5 +16,5 @@ elif [ "$new" -le 0 ]; then
 else
     echo "$new" > "$backlight_dir"/brightness
 fi
-#
-exec pkill -RTMIN+2 i3blocks
+
+exec pkill -RTMIN+2 status_bar

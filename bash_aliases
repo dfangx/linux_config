@@ -25,7 +25,7 @@ alias \:q="exit"
 ###########################################
 ################# DISK ####################
 ###########################################
-alias lfdisk="sudo fdisk -l"
+alias lsdisk="sudo fdisk -l"
 
 ###########################################
 ################ SYSTEM ###################
@@ -34,19 +34,23 @@ alias lfdisk="sudo fdisk -l"
 ## Power ##
 alias shutdown="sudo poweroff"
 alias restart="sudo reboot"
+alias powreport="sudo powertop --html && firefox ./powertop.html"
 
 ## Packages ##
-alias install="package_manager install"
-alias remove="package_manager remove"
-alias clean="package_manager clean"
-alias update="package_manager update"
+# Arch
+alias install="sudo pacman -S"
+alias clean="sudo pacman -Rns $(pacman -Qtdq)"
+alias remove="sudo pacman -Rns"
+alias update="sudo pacman -Syu && aurupdate" 
+# Gentoo
+#alias update="sudo emerge -quaDU --keep-going --with-bdeps=y @world"
+#alias remove="sudo emerge -Cav"
+#alias clean="sudo emerge -ca"
+#alias install="sudo emerge -a"
 
 ## Backup ##
-alias backup="sudo tar cvpzf $(grep ID /etc/os-release | cut -f2 -d "=")-backup-$(date +%F).tgz ~/documents ~/pictures"
+alias backup="sudo tar cvpzf $(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")-backup-$(date +%F).tgz ~/documents ~/pictures"
 alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
-
-## Power ##
-alias powreport="sudo powertop --html && firefox ./powertop.html"
 
 alias def="define"
 

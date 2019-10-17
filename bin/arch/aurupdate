@@ -34,4 +34,4 @@ fi
 echo Cleaning up...
 echo y | rm -rv $dir
 
-exec pkill -RTMIN+4 i3blocks
+exec pkill -RTMIN+4 status_bar

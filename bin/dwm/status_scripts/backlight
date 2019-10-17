@@ -1,0 +1,6 @@
+#!/bin/bash
+
+current="$(cat /sys/class/backlight/intel_backlight/brightness)"
+max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
+
+printf ' %.0f%%' $(echo "$current"/"$max"*100 | bc -l)

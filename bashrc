@@ -14,7 +14,9 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-if [ -z "$TMUX" ]
+tmux has-session
+#if [ -z "$TMUX" ]
+if [ "$?" -eq 1 ]
 then
     exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 fi
@@ -24,8 +26,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi 
 
-# Gentoo path
+# Gentoo bash completion
 #. /etc/bash/bashrc.d/bash_completion.sh
+# Arch bash completion
 . /usr/share/bash-completion/bash_completion
 
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
@@ -36,7 +39,6 @@ then
 else
     os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
 fi
-
 case "$os" in
     "arch" | "artix")
         PATH="$PATH:$HOME/bin/arch"
@@ -44,6 +46,7 @@ case "$os" in
     *)
         ;;
 esac
+unset $os
 
 # Shell Prompt
 curDate="[\d]"

@@ -6,7 +6,7 @@ backup_dir="
     $HOME/documents 
     $HOME/pictures"
 
-os="$(grep ID /etc/os-release | cut -f2 -d "=")"
+os="$(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")"
 date=$(date +%F)
 output="$HOME/documents/backup/$os-backup-$date.tgz"
 

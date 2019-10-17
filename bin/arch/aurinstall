@@ -13,7 +13,8 @@ else
 fi
 
 cd $dir
-for url in "$@"; do
+for pkg in "$@"; do
+	url="https://aur.archlinux.org/$pkg.git"
 	echo Cloning "$url"
 	git clone "$url" -v
 done
@@ -21,13 +22,7 @@ done
 for d in "$dir"/*; do
 	echo "$d"
 	cd "$d"
-    if [ "$(basename $d)" == "$special" ]; then
-        echo "Copying configuration files..."
-        cp -v "$special_dir"/config.h "$special_dir"/PKGBUILD -t .
-        makepkg -si --skipchecksums
-    else
         makepkg -si
-    fi
 	cd "$dir"
 done
 

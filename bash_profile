@@ -15,6 +15,11 @@ export PROMPT_DIRTRIM=3
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export EDITOR="/usr/bin/vim"
+export BROWSER="/usr/bin/firefox"
+export PF_ASCII="artix"
+
+light -I
 
 if [ -z "$SSH_AUTH_SOCK" ]
 then

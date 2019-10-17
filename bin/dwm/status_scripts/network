@@ -1,0 +1,37 @@
+#!/bin/bash
+
+interface="wlp2s0"
+ssid="$(iwgetid -r)"
+if [ -z "$ssid" ]
+then
+    label="郎"
+    ssid="No connection"
+else
+    quality=$(grep $interface /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+    color="\x01"
+
+    if [ "$quality" -le 25 ]
+    then
+        label="冷"
+        color="\x04"
+    elif [ "$quality" -le 50 ]
+    then
+        label="爛"
+        color="\x03"
+    elif [ "$quality" -le 75 ]
+    then
+        label="嵐"
+    elif [ "$quality" -le 90 ]
+    then
+        label="襤"
+    else
+        label="蠟"
+    fi
+fi
+
+#if ! [ -e "/sys/class/net/${INTERFACE}/operstate" ] || ! [ "`cat /sys/class/net/${INTERFACE}/operstate`" = "up" ]
+#then
+#        exit 0
+#fi
+
+echo -e "$label $ssid"
