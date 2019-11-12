@@ -57,7 +57,7 @@ set scrolloff=1
 set sidescrolloff=5
 set laststatus=2
 set smarttab
-set tags+=tags;/
+set tags+=.git/tags;/
 
 filetype plugin on
 filetype indent on                          " Indentation per filetype
@@ -97,6 +97,16 @@ nnoremap <leader>d :bd<cr>
 nnoremap <expr>cs({ BracketToCurly(matchstr(getline('.'), '\%' . col('.') . 'c.'))
 nnoremap <expr>cs{( CurlyToBracket(matchstr(getline('.'), '\%' . col('.') . 'c.'))
 
+inoremap ( ()<left>
+inoremap (; ();<left><left>
+inoremap ) ()
+inoremap [ []<left>
+inoremap [; [];<left><left>
+inoremap ] []
+inoremap {<cr> {<cr>}<esc>O
+inoremap {;<cr> {<cr>};<esc>O
+inoremap " ""<left>
+inoremap ' ''<left>
 " Move pane
 nnoremap <silent> <leader>h <c-w>H
 nnoremap <silent> <leader>l <c-w>L

@@ -18,6 +18,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export EDITOR="/usr/bin/vim"
 export BROWSER="/usr/bin/firefox"
 export PF_ASCII="artix"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 light -I
 

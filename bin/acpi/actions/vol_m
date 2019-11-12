@@ -10,9 +10,9 @@ muted=$(sudo -u "#1000" PULSE_RUNTIME_PATH="/run/user/$user/pulse/" pacmd list-s
 #if [ "$sound_on" == "off" ]
 if [ "$muted" == "yes" ]
 then
-    sudo -u "#1000" DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been muted"
+    sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been muted"
 else
-    sudo -u "#1000" DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been unmuted"
+    sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been unmuted"
 fi
 
 exec pkill -RTMIN+1 status_bar

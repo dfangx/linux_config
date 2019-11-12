@@ -1,19 +1,14 @@
-==============================
 ==========YOUTUBE=============
-==============================
 https://www.youtube.com/feeds/videos.xml?user=THFEProductions "~YOUTUBE: Invicta"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC-aoMrWqVF09ZKKiWhLLReg "~YOUTUBE: Invicta Gaming"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCMmaBzfCCwZ2KqaBJjkj0fw "~YOUTUBE: Kings and Generals"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCx-dJoP9hFCBloY9qodykvw "~YOUTUBE: BazBattles"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCZUT79WUUpZlZ-XMF7l4CFg "~YOUTUBE: T90Official"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCEz0zdfgZnfi0GL6YwQnhZQ "~YOUTUBE: Vicious Marauder"
 https://www.youtube.com/feeds/videos.xml?user=TwoStepsFromTheMusic "~YOUTUBE: Two Steps from Hell"
 https://www.youtube.com/feeds/videos.xml?user=NBCTheVoice "~YOUTUBE: The Voice"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCs1ssVSR49YItKE7DZ3-Jcw "~YOUTUBE: PardyCode"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "~YOUTUBE: DistroTube" 
-==============================
 ===========REDDIT=============
-==============================
 https://old.reddit.com/r/privacy.rss "~REDDIT: r/privacy"
 https://old.reddit.com/r/privacytoolsIO.rss "~REDDIT: r/privacytoolsIO"
 https://old.reddit.com/r/linux.rss "~REDDIT: r/linux"
@@ -35,14 +30,9 @@ https://old.reddit.com/r/Amd/.rss  "~REDDIT: r/Amd"
 https://old.reddit.com/r/commandline/.rss "~REDDIT: r/commandline"
 https://old.reddit.com/r/signal/.rss "~REDDIT: r/signal"
 https://old.reddit.com/r/news/.rss "~REDDIT: r/news"
-==============================
 "=======GIT REPOSITORIES======="
-==============================
 https://www.github.com/dfangx.atom "~GITHUB: My Activity"
 https://www.github.com/dunstu.atom "~GITHUB: Duncan's Activity"
 https://www.github.com/vctoriawu.atom "~GITHUB: Victoria's Activity"
-==============================
 ===========TWITCH=============
-==============================
 https://twitchrss.appspot.com/vod/T90Official "~TWITCH: T90Official"
-https://twitchrss.appspot.com/vod/vicious_marauder "~TWITCH: Vicious Maurauder"

@@ -15,5 +15,5 @@ options="cvpzf"
 
 id=4
 
-sudo -u "#1000" DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "System Backup" "System is being backed up into ~/documents/backup/$os-backup-$date.tgz" -u normal -r "$id"
+sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "System Backup" "System is being backed up into ~/documents/backup/$os-backup-$date.tgz" -u normal -r "$id"
 $tool $options $output $backup_dir
