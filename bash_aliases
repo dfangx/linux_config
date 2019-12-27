@@ -49,7 +49,7 @@ alias update="sudo pacman -Syu && aurupdate"
 #alias install="sudo emerge -a"
 
 ## Backup ##
-alias backup="sudo tar cvpzf $(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")-backup-$(date +%F).tgz ~/documents ~/pictures"
+#alias backup="sudo tar --exclude=/home/cyrusng/documents/{kvm,backup} -cvpzf $(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")-backup-$(date +%F).tgz ~/documents ~/pictures"
 alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
 
 alias def="define"

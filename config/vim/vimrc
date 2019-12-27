@@ -74,7 +74,6 @@ nnoremap <f2> :make<cr>
 
 nnoremap <c-s> :w<cr>
 inoremap <c-s> <c-o>:w<cr><esc>
-inoremap jk <esc>
 
 " File finding
 nnoremap <leader>ff :find 

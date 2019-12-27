@@ -15,3 +15,5 @@ inoreabbrev func <c-r>=placeholder<cr> <c-r>=placeholder<cr>(<c-r>=placeholder<c
 inoreabbrev whlp while (){<cr>}<esc>k%i<c-r>=Eatchar('\s')<cr>
 inoreabbrev for for(<c-r>=placeholder<cr>; <c-r>=placeholder<cr>; <c-r>=placeholder<cr>){<cr>}<esc>:<c-r>=searchph<cr><cr>cf><c-r>=Eatchar('\s')<cr>
 inoreabbrev fori for(int i = 0; i < <c-r>=placeholder<cr>; i++){<cr>}<esc>:<c-r>=searchph<cr><cr>cf><c-r>=Eatchar('\s')<cr>
+
+packadd! vim-cpp-enhanced-highlight

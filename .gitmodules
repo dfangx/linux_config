@@ -28,3 +28,6 @@
 [submodule "suckless/st"]
 	path = suckless/st
 	url = git@github.com:dfangx/st.git
+[submodule "config/vim/pack/plugins/opt/vim-cpp-enhanced-highlight"]
+	path = config/vim/pack/plugins/opt/vim-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight

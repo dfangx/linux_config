@@ -46,7 +46,7 @@ case "$os" in
     *)
         ;;
 esac
-unset $os
+unset os
 
 # Shell Prompt
 curDate="[\d]"
@@ -60,3 +60,4 @@ unset machInfo
 unset end
 
 stty -ixon
+set -o vi
