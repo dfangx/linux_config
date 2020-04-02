@@ -14,9 +14,12 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+
 tmux has-session
-#if [ -z "$TMUX" ]
-if [ "$?" -eq 1 ]
+if [ -z "$TMUX" ]
+#if [ "$?" -eq 1 ]
 then
     exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 fi
@@ -32,7 +35,7 @@ fi
 . /usr/share/bash-completion/bash_completion
 
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
-PATH="$PATH:$HOME/bin/common:$HOME/.cargo/bin"
+PATH="$HOME/bin/common:$HOME/.cargo/bin:$HOME/bin/common/minecraft:$PATH"
 if [ -f "/usr/lib/os-release" ]
 then
     os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
@@ -52,8 +55,8 @@ unset os
 curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "
-
-PS1="\[\e[38;2;133;79;219;1m\]$curDate \[\e[38;2;189;147;249;1m\]$machInfo\[\e[38;2;148;125;179;1m\]$end\[\e[0m\]"
+#PS1="\[\e[38;2;133;79;219;1m\]$curDate \[\e[38;2;189;147;249;1m\]$machInfo\[\e[38;2;148;125;179;1m\]$end\[\e[0m\]"
+PS1="\[\e[1;36m\]$curDate \[\e[1;34m\]$machInfo\[\e[1;33m\]$end"
 
 unset curDate
 unset machInfo

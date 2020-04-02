@@ -6,7 +6,7 @@ case "$1" in
     "button/lid")
         case "$3" in
             "close")
-                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":1" betterlockscreen -l &
+                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":3" betterlockscreen -l &
                 sleep 1
 	        echo -n "mem" > "$power_state"
                 ;;
@@ -16,7 +16,7 @@ case "$1" in
     "button/sleep")
         case "$2" in 
 	    "SBTN")
-                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":1" betterlockscreen -l &
+                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":3" betterlockscreen -l &
                 sleep 1
                 echo -n "mem" > "$power_state"
                 ;;
@@ -26,7 +26,7 @@ case "$1" in
     "button/power")
         case "$2" in
             "PBTN")
-                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":1" betterlockscreen -l &
+                sudo -u "#1000" XAUTHORITY="/run/user/1000/Xauthority" DISPLAY=":3" betterlockscreen -l &
                 sleep 1
                 echo -n "mem" > "$power_state"
                 ;;

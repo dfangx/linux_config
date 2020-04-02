@@ -1,18 +1,18 @@
 #!/bin/bash
-#amixer set Master toggle
+amixer set Master toggle
 
 id=1
-user=$(sudo -u "#1000" id -u)
-sudo -u "#1000" PULSE_SERVER="/run/user/$user/pulse/native" pactl set-sink-mute 0 toggle
-#sound_on="$(amixer -c 0 get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
-muted=$(sudo -u "#1000" PULSE_RUNTIME_PATH="/run/user/$user/pulse/" pacmd list-sinks | grep "muted" | awk '{print $2}')
+#user=$(sudo -u "#1000" id -u)
+#sudo -u "#1000" PULSE_SERVER="/run/user/$user/pulse/native" pactl set-sink-mute 0 toggle
+muted="$(amixer -c 0 get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+#muted=$(sudo -u "#1000" PULSE_RUNTIME_PATH="/run/user/$user/pulse/" pacmd list-sinks | grep "muted" | awk '{print $2}')
 
-#if [ "$sound_on" == "off" ]
-if [ "$muted" == "yes" ]
+if [ "$muted" == "off" ]
+#if [ "$muted" == "yes" ]
 then
-    sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been muted"
+    sudo -u "#1000" DISPLAY=":3" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been muted"
 else
-    sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been unmuted"
+    sudo -u "#1000" DISPLAY=":3" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Sound" -r $id "Volume has been unmuted"
 fi
 
 exec pkill -RTMIN+1 status_bar

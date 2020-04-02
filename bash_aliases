@@ -18,7 +18,7 @@ alias grep="grep --color=auto"
 ###########################################
 ################ SHELL ####################
 ###########################################
-alias aliases="vim ~/.bash_aliases && . ~/.bash_aliases"
+alias aliases="vim ~/.bash_aliases && . ~/.bashrc"
 alias rc="vim ~/.bashrc && . ~/.bashrc"
 alias \:q="exit"
 
@@ -59,3 +59,4 @@ function cd () {
 }
 
 alias v="vim"
+alias scrcpy="scrcpy -m 1024 --window-borderless --window-x 1604 --window-y 23 --window-width 308 --window-height 659"

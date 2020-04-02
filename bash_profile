@@ -8,7 +8,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
+#export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export BROWSER="firefox"
 export PROMPT_DIRTRIM=3
@@ -19,6 +19,7 @@ export EDITOR="/usr/bin/vim"
 export BROWSER="/usr/bin/firefox"
 export PF_ASCII="artix"
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+export DISPLAY=":0"
 
 light -I
 

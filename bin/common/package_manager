@@ -34,6 +34,12 @@ case "$action" in
                     sudo pacman -S "$pkg"
                 done
                 ;;
+            "void")
+                for pkg in ${pkgname[@]}
+                do
+                    sudo xbps-install pkg
+                done
+                ;;
             *)
         esac
         ;;
@@ -63,6 +69,9 @@ case "$action" in
                 ;;
             "arch" | "artix")
                 sudo pacman -Rns "$pkgname"
+                ;;
+            "void")
+                sudo xbps-remove -R "$pkgname"
                 ;;
             *)
         esac
