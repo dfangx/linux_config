@@ -3,10 +3,10 @@ id=2
 echo $4
 case "$4" in
     *0)
-        sudo -u "#1000" DISPLAY=":3" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Power" -r "$id" "Laptop has been unplugged"
+        sudo -u "#1000" DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Power" -r "$id" "Laptop has been unplugged"
         ;;
     *1)
-        sudo -u "#1000" DISPLAY=":3" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Power" -r "$id" "Laptop is charging"
+        sudo -u "#1000" DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "Power" -r "$id" "Laptop is charging"
         ;;
     *)
         ;;

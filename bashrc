@@ -9,25 +9,15 @@
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
-if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
+if [[ $- != *i* ]]; then 
+    return # Shell is non-interactive.  Be done now!
 fi
 
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
-
-tmux has-session
-if [ -z "$TMUX" ]
-#if [ "$?" -eq 1 ]
-then
-    exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
-fi
-
-# Put your fun stuff here.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi 
+[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
+[ -f ~/.cache/wal/colors-tty.sh ] && . ~/.cache/wal/colors-tty.sh
+[ -f ~/.cache/wal/colors.sh ] && . ~/.cache/wal/colors.sh
+[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # Gentoo bash completion
 #. /etc/bash/bashrc.d/bash_completion.sh
@@ -35,13 +25,10 @@ fi
 . /usr/share/bash-completion/bash_completion
 
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
-PATH="$HOME/bin/common:$HOME/.cargo/bin:$HOME/bin/common/minecraft:$PATH"
-if [ -f "/usr/lib/os-release" ]
-then
-    os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
-else
-    os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
-fi
+
+os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
+[ -f "/usr/lib/os-release" ] && os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
+
 case "$os" in
     "arch" | "artix")
         PATH="$PATH:$HOME/bin/arch"

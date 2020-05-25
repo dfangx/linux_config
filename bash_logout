@@ -7,6 +7,6 @@ then
     eval $(ssh-agent -k)
 fi
 
-light -O
+#light -O
 # Clear the screen for security's sake.
 clear

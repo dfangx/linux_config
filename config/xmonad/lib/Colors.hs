@@ -1,0 +1,1 @@
+/home/cyrusng/.cache/wal/colors.hs

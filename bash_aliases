@@ -38,10 +38,11 @@ alias powreport="sudo powertop --html && firefox ./powertop.html"
 
 ## Packages ##
 # Arch
-alias install="sudo pacman -S"
-alias clean="sudo pacman -Rns $(pacman -Qtdq)"
-alias remove="sudo pacman -Rns"
-alias update="sudo pacman -Syu && aurupdate" 
+alias install="sudo xbps-install"
+#alias clean="sudo pacman -Rns $(pacman -Qtdq)"
+alias clean="sudo xbps-remove -Ro"
+alias remove="sudo xbps-remove -R"
+alias update="sudo xbps-install -Su" 
 # Gentoo
 #alias update="sudo emerge -quaDU --keep-going --with-bdeps=y @world"
 #alias remove="sudo emerge -Cav"
@@ -56,6 +57,15 @@ alias def="define"
 
 function cd () {
     builtin cd "$@" && ls
+}
+
+function cu() {
+    i=0
+    while [ $i -lt $1 ]
+    do
+        cd ../
+        i=$(($i+1))
+    done
 }
 
 alias v="vim"

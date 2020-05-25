@@ -1,4 +1,0 @@
-#!/bin/bash
-
-#FA echo "$(date '+ %F  %H:%M:%S')"
-echo "肋 $(date '+%T %Z')"

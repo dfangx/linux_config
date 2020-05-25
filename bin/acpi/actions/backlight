@@ -17,4 +17,4 @@ else
     echo "$new" > "$backlight_dir"/brightness
 fi
 
-exec pkill -RTMIN+2 status_bar
+exec pkill -RTMIN+2 bar

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+status_dir="/home/$USER/bin/status_bar/scripts"
+default_refresh=1;
+update_refresh=1200
+update_counter=0;
+
+#updates="$($status_dir/updates &)"
+vol="$($status_dir/volume)"
+backlight="$($status_dir/backlight)"
+
+trap 'vol="$($status_dir/volume)"' 35
+trap 'backlight="$($status_dir/backlight)"' 36
+#trap 'updates="$($status_dir/updates)"' 38
+
+while true
+do
+    #if [ "$update_counter" -eq "$update_refresh" ]
+    #then
+    #    updates="$($status_dir/updates &)"
+    #    update_counter=0
+    #else
+    #    update_counter=$(($update_counter + $default_refresh))
+    #fi
+
+    clock="$($status_dir/time)"
+    bat="$($status_dir/battery)"
+    network="$($status_dir/network wlan0)"
+
+    #xsetroot -name "    $vol | $backlight | $network | $bat"
+    echo -e "$vol | $backlight | $network | $bat | $clock"
+    sleep $default_refresh
+done

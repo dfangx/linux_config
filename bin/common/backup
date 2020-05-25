@@ -5,7 +5,9 @@ export HOME="/home/$(id -un 1000)"
 backup_dir="$HOME/documents $HOME/pictures"
 excludes="--exclude=$HOME/documents/kvm --exclude=$HOME/documents/backup"
 
-os="$(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")"
+os="$(grep "^ID" /etc/os-release | cut -d "=" -f2)"
+[ -f "/usr/lib/os-release" ] && os="$(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")"
+
 date=$(date +%F)
 output="$HOME/documents/backup/$os-backup-$date.tgz"
 
