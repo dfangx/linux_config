@@ -16,7 +16,6 @@ let $MYVIMRC='$XDG_CONFIG_HOME/vim/vimrc'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
-set path+=**                                " Set path for vim
 set cursorline                              " Highlights line cursor is on
 set lazyredraw                              " Redraw screen only when necessary
 set showcmd                                 " Show command in bottom bar
@@ -40,7 +39,7 @@ set undofile                                " Keep an undo file (undo changes af
 set incsearch                               " Do incremental searching when it's possible to timeout.
 set hlsearch                                " Switch on highlighting the last used search pattern.
 set foldenable                              " Enable code folding
-set foldmethod=manual                       " Fold on indent
+set foldmethod=indent                       " Fold on indent
 set foldlevelstart=0                        " Set starting fold level to 0
 set number                                  " Display line numbers
 set relativenumber                          " Display relative line numbers
@@ -87,8 +86,8 @@ nnoremap <cr> i<cr><esc>
 nnoremap <leader>o o<esc>
 
 " Buffers
-nnoremap <leader>n :bn<cr>
-nnoremap <leader>p :bp<cr>
+nnoremap <leader>] :bn<cr>
+nnoremap <leader>[ :bp<cr>
 nnoremap <leader>b :ls<cr>:b<space>
 nnoremap <leader>d :bd<cr>
 
@@ -241,6 +240,18 @@ endfunction
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""
 packadd! badwolf
+
+if exists('$TMUX')
+    packadd! vim-tmux-navigator
+else
+    nnoremap <c-j> <c-w>j
+    nnoremap <c-k> <c-w>k
+    nnoremap <c-l> <c-w>l
+    nnoremap <c-h> <c-w>h
+endif
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
 "if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
 "    silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs 
 "        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -269,8 +280,8 @@ colorscheme badwolf
 
 highlight Normal ctermbg=none 
 highlight NonText ctermbg=none
-highlight CursorLine ctermbg=24 
-highlight CursorLineNr  ctermbg=24 
+highlight CursorLine ctermbg=240
+highlight CursorLineNr  ctermbg=240
 highlight LineNr ctermbg=none
 highlight StatusLine cterm=reverse,bold ctermfg=249 ctermbg=235
 highlight StatusLineNC cterm=reverse,bold ctermfg=243 ctermbg=234

@@ -20,6 +20,7 @@ your user specific configuration files are supposed to reside.
 ## Directory Descriptions
 ### bin
 This directory contains my personal scripts that I have use(d) in my setup.
+Directory descriptions is as follows:
 * acpi
     * Contains scripts that are used to control basic power control functions
       provided by the acpid package.
@@ -27,15 +28,21 @@ This directory contains my personal scripts that I have use(d) in my setup.
     * Contains scripts that are specific to arch linux. These include scripts
       for the AUR, as well as the packages that I have used for easy
       reinstallation of Arch.
-* common
-    * Contains scripts that are used in both my Arch and Gentoo installations
-* gentoo_install
+* cron
+    * Scripts that are run by cron
+* gentoo
     * Scripts that I use to automate a Gentoo installation
-* local.d
-    * This gets symlinked into the /etc directory. If using OpenRC as your init
-      system, the scripts in this folder will be run on startup and shutdown.
-* openrc
-    * Scripts that are used by OpenRC.
+* init
+    * contains init scripts for:
+        * OpenRc
+        * Runit
+        * X
+* minecraft
+    * Runs minecraft from TLauncher
+* notmuch
+    * Hooks for notmuch
+* status_bar
+    * Scripts used to set dwm status bar
 ### config
 This directory contains the configuration files that I use(d) for the following
 packages:
@@ -54,8 +61,8 @@ packages:
 * vim
 * X
 * zathura
-### suckless
-This directory contains my own forks of the following suckless tools:
+
+See 
 * dwm
 * st
 * surf

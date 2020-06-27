@@ -1,0 +1,2 @@
+#!/bin/sh
+wal -i /home/cyrusng/pictures/wallpapers && recomp dwm && xsetroot -name "fsignal:1"

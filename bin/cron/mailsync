@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export GNUPG_HOME="$XDG_DATA_HOME/gnupg"
+
+#offlineimap -q &
+mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc -a &
+
+wait 
+
+notmuch --config $XDG_CONFIG_HOME/notmuch/protonmail-notmuch new
+notmuch --config $XDG_CONFIG_HOME/notmuch/queens-notmuch new
+notmuch --config $XDG_CONFIG_HOME/notmuch/outlook-notmuch new

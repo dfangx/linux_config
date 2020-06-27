@@ -81,4 +81,5 @@ else
         #FA label=""
     fi
 fi
-echo -e " +@fn=1;$label+@fn=0; $battery%" #[$battery_time]\x01"
+#echo -e " +@fn=1;$label+@fn=0; $battery%" #[$battery_time]\x01"
+echo -e "$label $battery%" #[$battery_time]\x01"

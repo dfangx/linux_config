@@ -9,4 +9,4 @@ fi
 
 #light -O
 # Clear the screen for security's sake.
-clear
+#clear

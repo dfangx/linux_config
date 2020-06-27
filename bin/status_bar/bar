@@ -1,6 +1,6 @@
 #!/bin/bash
 
-status_dir="/home/$USER/bin/status_bar/scripts"
+status_dir="/home/$USER/.local/bin/status_bar/scripts"
 default_refresh=1;
 update_refresh=1200
 update_counter=0;
@@ -27,7 +27,7 @@ do
     bat="$($status_dir/battery)"
     network="$($status_dir/network wlan0)"
 
-    #xsetroot -name "    $vol | $backlight | $network | $bat"
-    echo -e "$vol | $backlight | $network | $bat | $clock"
+    xsetroot -name " $vol | $backlight | $network | $bat | $clock "
+    #echo -e "$vol | $backlight | $network | $bat | $clock"
     sleep $default_refresh
 done

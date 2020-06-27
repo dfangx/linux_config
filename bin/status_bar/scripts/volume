@@ -25,7 +25,8 @@
 if amixer get Master | grep -q off; then
     #FA echo " "
     #FA echo " "
-    echo "+@fn=1;󰝟+@fn=0;"
+    #echo "+@fn=1;󰝟+@fn=0;"
+    echo "󰝟+"
     exit 0
 fi
 
@@ -44,4 +45,5 @@ else
     label="󰝟"
 fi
 
-echo "+@fn=1;$label+@fn=0; $vol%"
+#echo "+@fn=1;$label+@fn=0; $vol%"
+echo "$label $vol%"

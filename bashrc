@@ -5,7 +5,7 @@
 # that can't tolerate any output.  So make sure this doesn't display
 # anything or bad things will happen !
 
-
+export GPG_TTY=$(tty)
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
@@ -16,13 +16,14 @@ fi
 [ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
 [ -f ~/.cache/wal/colors-tty.sh ] && . ~/.cache/wal/colors-tty.sh
 [ -f ~/.cache/wal/colors.sh ] && . ~/.cache/wal/colors.sh
-[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+#[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 
 # Gentoo bash completion
 #. /etc/bash/bashrc.d/bash_completion.sh
 # Arch bash completion
 . /usr/share/bash-completion/bash_completion
+. wrap_alias
 
 #eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 
@@ -51,3 +52,7 @@ unset end
 
 stty -ixon
 set -o vi
+#set sho-mode-in-prompt on
+#set vi-ins-mode-string "+"
+#set vi-cmd-mode-string ":"
+shopt -s autocd

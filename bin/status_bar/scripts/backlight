@@ -21,4 +21,5 @@ else
     label="󰃚"
 fi
 
-echo -e " +@fn=1;$label+@fn=0; $brightness%" 
+#echo -e " +@fn=1;$label+@fn=0; $brightness%" 
+echo -e "$label $brightness%" 

@@ -13,7 +13,7 @@ export VIMINIT=":source $XDG_CONFIG_HOME"/vim/vimrc
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
 export XSERVERRC="$XDG_CONFIG_HOME/X11/xserverrc"
-export XINITRC="$HOME/bin/init/xinit/xinitrc"
+export XINITRC="$HOME/.local/bin/init/xinit/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export DISPLAY=":0"
 
@@ -30,11 +30,11 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export LESSHISTFILE=-
 
-[ -d "$HOME/bin/common" ] && PATH="$HOME/bin/common:$PATH"
+export TERMINFO="$HOME/.local/share/terminfo"
+export MANPATH="/usr/share/man:/usr/local/share/man:$HOME/.local/share/man"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH" && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-[ -d "$HOME/bin/common/minecraft" ] && PATH="$HOME/bin/common/minecraft:$PATH"
-
-#light -I
+[ -d "$HOME/.local/bin/minecraft" ] && PATH="$HOME/.local/bin/minecraft:$PATH"
 
 if [ -z "$SSH_AUTH_SOCK" ]
 then

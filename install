@@ -1,33 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-blacklist=("install" "README.md" "git-suckless" "suckless")
-
-## Create symlinks for all directories
-for f in ./*
-do
-    echo "Creating symlink to $f in $HOME"
-
-    if [ "$(basename $f)" == "bin" ]
-    then
-        if [ -L "$HOME/$(basename $f)" ]
-        then
-            echo "Link exists. Skipping $f"
-        else
-            ln -sfv "$(pwd)/$f" "$HOME/$(basename $f)"
-        fi
-    else
-        if [ -L "$HOME/.$(basename $f)" ]
-        then
-            echo "Link exists. Skipping $f"
-        else
-            ln -sfv "$(pwd)/$f" "$HOME/.$(basename $f)"
-        fi
-    fi
-done
-
-## Remove symlinks from blacklist
-for f in "${blacklist[@]}"
-do
-    echo "Removing symlink to $f in $HOME because it is on the blacklist"
-    rm -v $HOME/.$f
-done
+ln -sv ./bash_aliases $HOME/.bash_aliases
+ln -sv ./bash_logout $HOME/.bash_logout
+ln -sv ./bash_profile $HOME/.bash_profile
+ln -sv ./bash_env $HOME/.bash_env
+ln -sv ./bashrc $HOME/.bashrc
+ln -sv ./bin $HOME/.local/bin
+ln -sv ./config $HOME/.config

@@ -38,4 +38,5 @@ fi
 #        exit 0
 #fi
 
-echo -e " +@fn=1;$label+@fn=0; $ssid"
+#echo -e " +@fn=1;$label+@fn=0; $ssid"
+echo -e "$label $ssid"

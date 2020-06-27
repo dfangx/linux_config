@@ -1,0 +1,8 @@
+#!/bin/sh
+export NOTMUCH_CONFIG=/home/cyrusng/.config/notmuch/outlook-notmuch
+
+notmuch tag -inbox +sent folder:Sent
+notmuch tag -inbox +archive folder:Archive
+notmuch tag -inbox +draft folder:Drafts
+notmuch tag -inbox +spam folder:Junk
+notmuch tag -inbox +deleted folder:Deleted
