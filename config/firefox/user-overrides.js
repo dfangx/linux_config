@@ -1,6 +1,5 @@
 /*** MY OVERRIDES ***/
 //user_pref("browser.startup.page", 1); // 0102
-//user_pref("browser.startup.homepage", "https://duckduckgo.com"); // 0103
 //user_pref("browser.sessionstore.max_tabs_undo", 0); // 1020
 //user_pref("security.mixed_content.block_display_content", false); // 1241
 //user_pref("media.gmp-widevinecdm.visible", true); // 1825
@@ -23,7 +22,8 @@ user_pref("_user.js.parrot", "overrides section syntax error");
 user_pref("general.autoScroll", true);
 
 user_pref("keyword.enabled", true); // 0801
-user_pref("browser.startup.page", 3);
+user_pref("browser.startup.page", 1);
+user_pref("browser.startup.homepage", "https://messenger.com"); // 0103
 user_pref("browser.search.suggest.enabled", true); // 0807
 user_pref("browser.urlbar.suggest.searches", true); // 0807
 user_pref("browser.urlbar.clickSelectsAll", true);
@@ -37,7 +37,7 @@ user_pref("dom.targetBlankNoOpener.enabled", false);
 user_pref("dom.webgpu.enabled", true);
 
 user_pref("privacy.clearOnShutdown.cookies", false);
-user_pref("privacy.clearOnShutdown.history", false); // Browsing & Download History
+//user_pref("privacy.clearOnShutdown.history", false); // Browsing & Download History
 user_pref("privacy.resistFingerprinting.letterboxing", false); // 4504
 
 user_pref("webgl.disabled", false); // 2010

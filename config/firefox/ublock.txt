@@ -9,7 +9,14 @@ behind-the-scene * 3p-script noop
 behind-the-scene * image noop
 behind-the-scene * inline-script noop
 github.com githubassets.com * noop
+gitlab.com gitlab-static.net * noop
+neomutt.org cloudflare.net * noop
+neomutt.org jsdelivr.net * noop
 onq.queensu.ca brightspace.com * noop
 onq.queensu.ca d2660orkic02xl.cloudfront.net * noop
 onq.queensu.ca desire2learn.com * noop
+www.epcministry.org google.com * noop
+www.epcministry.org squarespace.com * noop
+www.epcministry.org squarespace.map.fastly.net * noop
+www.epcministry.org youtube.com * noop
 www.messenger.com fbcdn.net * noop

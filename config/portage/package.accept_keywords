@@ -1,2 +1,5 @@
-app-misc/geoclue -~amd64
-www-client/firefox
+#net-misc/youtube-dl **
+dev-util/universal-ctags **
+app-editors/neovim **
+#dev-util/rust-analyzer **
+#x11-misc/picom **

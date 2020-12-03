@@ -2,6 +2,7 @@ auto-reload yes
 browser firefox
 feed-sort-order none
 reload-time 20
+max-items 500
 
 bind-key k prev
 bind-key j next
@@ -15,3 +16,7 @@ bind-key O open-in-browser
 unbind-key ;
 
 macro o set browser "mpv --x11-netwm=yes -fs %u" ; open-in-browser-and-mark-read ; set browser firefox
+
+color listfocus white color2
+color listfocus_unread white color2 bold
+color info color7 color2

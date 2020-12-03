@@ -1,0 +1,14 @@
+snippet meta "Metadata"
+---
+title: ${1:${VISUAL:title}}
+author: ${2:${VISUAL:author}}
+date created: `date '+%A %B %d %Y %H:%M:%S %Z'`
+last updated: `date '+%A %B %d %Y %H:%M:%S %Z'`
+---
+
+$0
+endsnippet
+
+snippet ln "markdown link"
+[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
+endsnippet

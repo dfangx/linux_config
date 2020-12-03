@@ -10,15 +10,15 @@ exec tail -n +3 $0
 #	linux /vmlinuz-5.0.5-gentoo root=/dev/sda5 rw quiet
 	#initrd /initramfs-genkernel-x86_64-4.14.83-gentoo
 #}
-if [ "${grub_platform}" == "efi" ]; then
-	menuentry "Windows 10" --class=windows {
-		insmod part_gpt
-		insmod fat
-		insmod chain
-		search --no-floppy --fs-uuid --set=root --hint-ieee1275='ieee1275//disk@0,gpt2' --hint-bios=hd0,gpt2 --hint-efi=hd0,gpt2 --hint-baremetal=ahci0,gpt2i A848-5CCC
-		chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-	}
-fi
+# if [ "${grub_platform}" == "efi" ]; then
+# 	menuentry "Windows 10" --class=windows {
+# 		insmod part_gpt
+# 		insmod fat
+# 		insmod chain
+# 		search --no-floppy --fs-uuid --set=root --hint-ieee1275='ieee1275//disk@0,gpt2' --hint-bios=hd0,gpt2 --hint-efi=hd0,gpt2 --hint-baremetal=ahci0,gpt2i A848-5CCC
+# 		chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+# 	}
+# fi
 
 menuentry "Shut Down" {
 	echo "Shutting down..."

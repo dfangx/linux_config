@@ -1,2 +1,11 @@
-games-rpg/runescape-launcher RuneScape-EULA
-sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
+# required by sys-kernel/linux-firmware (argument)
+>=sys-kernel/linux-firmware-20200721 linux-fw-redistributable no-source-code
+>=sys-firmware/intel-microcode-20200616_p20200617 intel-ucode
+>=dev-dotnet/msbuild-roslyn-csc-15.9-r1 Apache2.0
+>=dev-dotnet/dotnetzip-semverd-1.13.7 MS-PL
+>=app-arch/unrar-5.9.4 unRAR
+>=games-util/steam-launcher-1.0.0.64 ValveSteamLicense
+>=dev-util/rust-analyzer-20200824 0BSD WITH LLVM-exception BSD-2-Clause BSD-3-Clause BSL-1.0 Zlib BSD-3
+>=net-news/newsboat-2.20.1 BSL-1.1
+>=dev-tex/texlab-9999 BSD-2-Clause BSD-3-Clause BSL-1.0 GPL-3.0 GPL-3.0+ LLVM-exception WITH Zlib
+>=app-misc/wyrd-9999 GPL2
