@@ -6,6 +6,7 @@ config/*
 !config/tmux
 !config/user-dirs.dirs
 !config/vim
+!config/nvim
 !config/X11
 !config/zathura
 !config/i3
@@ -19,6 +20,8 @@ config/*
 !config/grub
 config/linux/fstab
 config/vim/.netrwhist
+config/nvim/.netrwhist
+config/vim/skeletons/skeleton.tex
 config/vim/plugged
 bin/matlab
 bin/init/runit/backlight/supervise
