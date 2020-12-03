@@ -18,21 +18,25 @@ alias grep="grep --color=auto"
 ###########################################
 ################ SHELL ####################
 ###########################################
-alias aliases="vim ~/.bash_aliases && . ~/.bashrc"
-alias rc="vim ~/.bashrc && . ~/.bashrc"
-alias pr="vim ~/.bash_profile"
+alias vim="nvim"
+alias nv="nvim"
+alias ba="$EDITOR ~/.bash_aliases && . ~/.bashrc"
+alias vrc="$EDITOR ~/.config/vim/vimrc"
+alias nvrc="$EDITOR ~/.config/nvim/init.vim"
+alias brc="$EDITOR ~/.bashrc && . ~/.bashrc"
+alias bpr="$EDITOR ~/.bash_profile"
 alias \:q="exit"
 
-alias gstat="git status"
-alias gcommit="git commit"
-alias gpush="git push"
-alias gpull="git pull"
+alias gst="git status"
+alias gcmt="git commit"
+alias gpsh="git push"
+alias gpll="git pull"
 alias gmerge="git merge"
 alias gco="git checkout"
-alias gadd="git add"
+alias ga="git add"
 alias gdiff="git diff"
 alias gbr="git branch"
-alias gapply="git apply"
+alias gapp="git apply"
 alias glog="git log"
 alias gclone="git clone"
 
@@ -46,17 +50,17 @@ alias lsdisk="sudo fdisk -l"
 ###########################################
 
 ## Power ##
-alias shutdown="sudo poweroff"
-alias restart="sudo reboot"
+alias po="sudo poweroff"
+alias rb="sudo reboot"
 alias powreport="sudo powertop --html && firefox ./powertop.html"
 
 ## Packages ##
 # Arch
 #alias clean="sudo pacman -Rns $(pacman -Qtdq)"
-alias pkgin="package_manager install"
-alias pkgcl="package_manager clean"
-alias pkgrm="package_manager remove"
-alias pkgup="package_manager update" 
+alias pi="package_manager install"
+alias c="package_manager clean"
+alias pr="package_manager remove"
+alias u="package_manager update" 
 # Gentoo
 #alias update="sudo emerge -quaDU --keep-going --with-bdeps=y @world"
 #alias remove="sudo emerge -Cav"
@@ -75,14 +79,19 @@ function cd () {
 
 function cu() {
     i=0
-    while [ $i -lt $1 ]
-    do
-        cd ../
-        i=$(($i+1))
-    done
+    [ -z $1 ] && cd ../
+
+    if [ ! -z $1 ]; then
+        while [ $i -lt $1 ]
+        do
+            cd ../
+            i=$(($i+1))
+        done
+    fi
 }
 
-alias v="vim"
+alias vs="fd -t f . ~/bin/ | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
+alias vc="fd -Lt f . ~/.config/  | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
 alias scrcpy="scrcpy -m 1024 --window-borderless --window-x 1604 --window-y 23 --window-width 308 --window-height 659"
 alias df="df -h"
 alias mnt="mount"
@@ -91,4 +100,21 @@ alias mnt-ntfs="sudo ntfs-3g -o uid=1000,guid=1000"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias irssi="irssi --config ~/.config/irssi/config"
 alias weechat="weechat --dir ~/.local/share/weechat"
-alias scrot="scrot '%Y-%m-%d_\$wx\$h.png' -e 'mv \$f ~/pictures/%Y/screenshots/'"
+
+alias runescape="runelite"
+alias rs="runelite"
+
+#. "$HOME/bin/taskwarrior"
+alias t="task"
+alias ta="task add"
+alias tin="task add +in"
+alias tick="tickle"
+alias in="task in"
+function tickle() {
+    wait_time="$1"
+    shift
+    tin +tickle wait:"$wait_time" "$@"
+}
+function pro() {
+    task pro:"$*"
+}
