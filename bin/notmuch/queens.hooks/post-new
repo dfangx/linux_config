@@ -1,8 +1,0 @@
-#!/bin/sh
-export NOTMUCH_CONFIG=/home/cyrusng/.config/notmuch/queens-notmuch
-
-notmuch tag -inbox +sent folder:Sent
-notmuch tag -inbox +archive path:Archives/**
-notmuch tag -inbox +draft folder:Drafts
-notmuch tag -inbox +spam folder:Spam
-notmuch tag -inbox +deleted folder:Trash

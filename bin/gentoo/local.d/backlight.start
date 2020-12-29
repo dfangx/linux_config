@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -f "/usr/local/bin/brightness" ]
-then
-    cat "/usr/local/bin/brightness" > "/sys/class/backlight/intel_backlight/brightness"
-    rm "/usr/local/bin/brightness"
-fi

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-#FA echo "$(date '+ %F  %H:%M:%S')"
-#echo -e " +@fn=1;\U000f00f0+@fn=0; $(date '+%x %T %Z')"
-echo -e "󰃰 $(date '+%x %T %Z')"

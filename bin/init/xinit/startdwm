@@ -1,8 +1,0 @@
-#!/bin/bash
-colors="/home/cyrusng/.cache/wal/colors.sh"
-
-while type dwm >/dev/null 
-do 
-    [ -f "$colors" ] && . "$colors"
-    dwm -nb $background -nf $foreground -sb $color2 -sf $foreground && continue || break; 
-done
