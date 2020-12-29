@@ -1,0 +1,12 @@
+#!/bin/sh
+
+function tick() {
+    wait_time="$1"
+    shift
+    tin +tickle wait:"$wait_time" "$@"
+}
+
+function tin() {
+    task add +in $@
+}
+

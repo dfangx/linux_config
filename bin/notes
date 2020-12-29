@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case $1 in
+    -n | --new)
+        [ -z $2 ] && echo "Please provide a note description/label" || cd ~/./documents/notes && "$EDITOR" "$HOME/documents/notes/`date '+%Y%m%d%H%M%S'`-$2.md"
+        ;;
+    *)
+        cd ~/documents/notes && fzf --preview="cat {}" | xargs -r -o -I % "$EDITOR" %
+        ;;
+esac
