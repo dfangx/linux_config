@@ -17,6 +17,10 @@ unbind-key ;
 
 macro o set browser "mpv --x11-netwm=yes -fs %u" ; open-in-browser-and-mark-read ; set browser firefox
 
-color listfocus white color2
-color listfocus_unread white color2 bold
-color info color7 color2
+color background          default   default
+color listnormal          white   default
+color listfocus           blue  black   bold
+color listnormal_unread   white default
+color listfocus_unread    blue black   bold
+color info                magenta  black   bold
+color article             default   default
