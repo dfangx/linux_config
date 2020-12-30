@@ -78,7 +78,6 @@ dev-ruby/rubygems ruby_targets_ruby27
 dev-ruby/test-unit ruby_targets_ruby27
 dev-ruby/xmlrpc ruby_targets_ruby27
 games-util/game-device-udev-rules elogind
-games-util/legendary python_single_target_python3_9
 gui-libs/wlroots X x11-backend elogind
 gui-wm/sway X elogind -swaylock -swayidle
 mail-client/neomutt notmuch
@@ -166,3 +165,8 @@ x11-misc/dunst dunstify
 x11-misc/picom opengl
 x11-misc/redshift geoclue
 x11-wm/dwm xinerama
+app-editors/neovim lua_single_target_luajit -lua_single_target_lua5-1
+dev-lua/luv lua_single_target_luajit -lua_single_target_lua5-1
+dev-lua/lpeg lua_targets_luajit
+dev-lua/mpack lua_targets_luajit
+dev-util/wayland-scanner abi_x86_32

@@ -1,1 +1,1 @@
-#sys-kernel/gentoo-sources
+dev-lang/rust
