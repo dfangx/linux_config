@@ -2,7 +2,7 @@
 
 let s:loaded = get(s:, 'loaded', v:false)
 if !s:loaded
-    " lua require'treesitter/c'
+    lua require'treesitter/c'
     lua require'lsp/c'
     let s:loaded = v:true
     doautocmd FileType c

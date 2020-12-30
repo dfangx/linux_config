@@ -23,6 +23,15 @@ config/vim/.netrwhist
 config/nvim/.netrwhist
 config/vim/skeletons/skeleton.tex
 config/vim/plugged
-bin/matlab
-bin/init/runit/backlight/supervise
+bin/*
+!bin/keys
+!bin/snip
+!bin/package_manager
+!bin/notes
+!bin/startvm
+!bin/status_bar
+!bin/wrap_alias
+!bin/taskwarrior
+!bin/helpme
+!bin/define
 tags

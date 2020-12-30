@@ -36,13 +36,13 @@ set rtp+=~/src/fzf
 set guicursor=
 set shortmess+=c
 
-let g:tex_flavor="latex"
-
+let g:tex_flavor='latex'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " KEYBINDS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Space> <NOP>
 let mapleader=" "   " Set leader key
+let maplocalleader=" "   " Set leader key
 
 " File finding
 nnoremap <leader>ff :Files<cr>
@@ -215,9 +215,9 @@ let g:netrw_browsex_viewer="xdg-open"
 
 let g:completion_enable_snippet = 'UltiSnips'
 " let g:completion_enable_auto_paren = 1
+
 inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -229,7 +229,6 @@ let g:nord_italic_comments = 1
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
 let g:nord_cursor_line_number_background = 1
-
 colorscheme nord
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,4 +270,3 @@ set statusline+=\
 set statusline+=%*
 set statusline+=\ %p%%
 set statusline+=\ \ %l:%c\ 
-

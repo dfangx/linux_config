@@ -17,7 +17,7 @@ vim.api.nvim_buf_set_keymap(0, 'n', 'silent> <K>', "<cmd>lua vim.lsp.buf.buffer(
     noremap = true,
     silent = true
 })
-vim.api.nvim_buf_set_keymap(0, 'n', '<c-k>', "<cmd>lua vim.lsp.buf.signature_help()<cr>", {
+vim.api.nvim_buf_set_keymap(0, 'n', '<c-s>', "<cmd>lua vim.lsp.buf.signature_help()<cr>", {
     noremap = true,
     silent = true
 })
