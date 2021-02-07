@@ -118,3 +118,5 @@ function tickle() {
 function pro() {
     task pro:"$*"
 }
+
+alias rem="rem -g"
