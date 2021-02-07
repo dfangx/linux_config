@@ -18,6 +18,8 @@ config/*
 !config/xmonad
 !config/spectrwm
 !config/grub
+!config/sxhkd
+!config/task
 config/linux/fstab
 config/vim/.netrwhist
 config/nvim/.netrwhist
