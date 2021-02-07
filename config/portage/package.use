@@ -3,7 +3,7 @@ app-admin/pass dmenu
 app-admin/sudo -sendmail
 app-arch/bzip2 abi_x86_32
 app-arch/zstd abi_x86_32
-app-crypt/pinentry gtk
+app-crypt/pinentry qt5 
 app-editors/vim X python
 app-emulation/qemu opengl gtk
 app-emulation/wine-gecko abi_x86_32
@@ -170,3 +170,6 @@ dev-lua/luv lua_single_target_luajit -lua_single_target_lua5-1
 dev-lua/lpeg lua_targets_luajit
 dev-lua/mpack lua_targets_luajit
 dev-util/wayland-scanner abi_x86_32
+media-gfx/feh curl
+dev-qt/qtmultimedia gstreamer qml
+sci-physics/bullet threads
