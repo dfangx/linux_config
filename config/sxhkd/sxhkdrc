@@ -1,0 +1,17 @@
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+    volume {-,+,x} | notify audio 
+
+XF86MonBrightness{Up,Down}
+    xbacklight {+,-}2 && xbacklight -get | notify backlight
+
+super + semicolon
+    $TERM
+
+super + b
+    $BROWSER
+
+super + p
+    passmenu
+
+super + l
+    betterlockscreen -l
