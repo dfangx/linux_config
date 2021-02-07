@@ -40,4 +40,4 @@ fi
 #fi
 
 #echo -e " +@fn=1;$label+@fn=0; $ssid"
-echo -e "$label $ssid"
+echo -e "$label" #$ssid"

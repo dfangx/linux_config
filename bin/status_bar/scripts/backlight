@@ -22,4 +22,4 @@ else
 fi
 
 #echo -e " +@fn=1;$label+@fn=0; $brightness%" 
-echo -e "$label $brightness%" 
+echo -e "$label" #$brightness%" 

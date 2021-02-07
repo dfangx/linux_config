@@ -6,8 +6,8 @@ update_refresh=1200
 update_counter=0;
 
 #updates="$($status_dir/updates &)"
-vol="$($status_dir/volume)"
-backlight="$($status_dir/backlight)"
+#vol="$($status_dir/volume)"
+#backlight="$($status_dir/backlight)"
 
 trap 'vol="$($status_dir/volume)"' 35
 trap 'backlight="$($status_dir/backlight)"' 36
@@ -26,8 +26,11 @@ do
     clock="$($status_dir/time)"
     bat="$($status_dir/battery)"
     network="$($status_dir/network wlan0)"
+    mem="$($status_dir/mem)"
 
-    xsetroot -name " $vol | $backlight | $network | $bat | $clock "
+    xsetroot -name " $mem | $network $bat $clock "
+    # xsetroot -name " $vol  $network  $bat  $clock "
+    #xsetroot -name " $vol  $backlight  $network  $bat  $clock "
     #echo -e "$vol | $backlight | $network | $bat | $clock"
     sleep $default_refresh
 done
