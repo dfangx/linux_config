@@ -1,0 +1,45 @@
+# [Created by task 2.5.1 9/10/2020 17:28:58]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+verbose = blank,footnote,label,new-id,new-uuid,affected,edit,special,project,sync,unwait,recur
+# Files
+data.location=$HOME/.local/share/task
+
+report.in.columns           = id,description
+report.in.description       = Inbox
+report.in.filter            = status:pending limit:page (+in)
+report.in.labels            = ID,Description
+
+#report.planned.columns      = id,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+#report.planned.description  = Planned Actions
+#report.planned.filter       = status:pending limit:page (+planned)
+#report.planned.labels       = ID,D,P,Project,Tags,R,S,Due,Until,Description,Urg
+
+report.next.filter          = status:pending limit:page (-in -BLOCKED)
+report.next.columns         = id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+# Color theme (uncomment one to use)
+include ~/.config/task/nord.theme
+#include /usr/share/task/rc/light-16.theme
+#include /usr/share/task/rc/light-256.theme
+#include /usr/share/task/rc/dark-16.theme
+#include /usr/share/task/rc/dark-256.theme
+#include /usr/share/task/rc/dark-red-256.theme
+#include /usr/share/task/rc/dark-green-256.theme
+#include /usr/share/task/rc/dark-blue-256.theme
+#include /usr/share/task/rc/dark-violets-256.theme
+#include /usr/share/task/rc/dark-yellow-green.theme
+#include /usr/share/task/rc/dark-gray-256.theme
+#include /usr/share/task/rc/dark-gray-blue-256.theme
+#include /usr/share/task/rc/solarized-dark-256.theme
+#include /usr/share/task/rc/solarized-light-256.theme
+#include /usr/share/task/rc/no-color.theme
+
