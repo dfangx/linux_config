@@ -52,3 +52,9 @@
 [submodule "config/vim/pack/colors/opt/nord-vim"]
 	path = config/vim/pack/colors/opt/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim
+[submodule "config/firefox/chrome/firefox-csshacks"]
+	path = config/firefox/chrome/firefox-csshacks
+	url = https://github.com/MrOtherGuy/firefox-csshacks
+[submodule "config/firefox/chrome/nord-firefox"]
+	path = config/firefox/chrome/nord-firefox
+	url = https://github.com/daaniiieel/nord-firefox

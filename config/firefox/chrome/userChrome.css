@@ -1,41 +1,24 @@
-:root:not([customizing]) #TabsToolbar {
-  display: none;
-}
-:root:not([customizing]) #navigator-toolbox {
-  background-color: #111111 !important;
+@import url(firefox-csshacks/chrome/compact_urlbar_megabar.css);
+@import url(firefox-csshacks/chrome/page_action_buttons_on_hover.css);
+@import url(firefox-csshacks/chrome/urlbar_popup_full_width.css);
+@import url(firefox-csshacks/chrome/navbar_tabs_oneliner_menu_buttons_on_right.css);
+@import url(firefox-csshacks/chrome/window_control_placeholder_support.css);
+@import url(firefox-csshacks/chrome/linux_gtk_window_control_patch.css);
+@import url(firefox-csshacks/chrome/autohide_toolbox.css);
+@import url(firefox-csshacks/chrome/dark_context_menus.css);
+@import url(nord-firefox/userChrome.css);
+
+:root{
+  --uc-menu-bkgnd: rgba(46, 52, 64, 1);
+  --uc-menu-color: rgba(129, 161, 193, 1);
+  --uc-menu-dimmed: rgba(129, 161, 193, 0.1);
+  --uc-menu-disabled: rgba(129, 161, 193, 0.5);
 }
 
-:root:not([customizing]) #navigator-toolbox #nav-bar {
-  min-height: 0 !important;
-  max-height: 0;
-  height: 0;
-  overflow: hidden;
+body > box {
+    height: 0;
+    display: flex;
 }
-
-:root:not([customizing]) .tabbrowser-tab:not([pinned="true"]) {
-  --tab-min-width: fit-content;
-  -moz-box-flex: 0 !important;
-  max0width: 70px;
-  display: none;
-}
-
-:root:not([customizing]) .tabbrowser-tab:not([pinned="true"]) {
-  flex-basis: 1;
-  display: none;
-}
-
-:root:not([customizing]) .tab-content {
-  padding: 0 6px;
-  display: none;
-}
-
-:root:not([customizing]) .tab-line,
-:root:not([customizing]) .tab-text,
-:root:not([customizing]) .tab-close-button {
-  display: none;
-}
-
-:root:not([customizing]) .tab-icon-image {
-  margin: 0 !important;
-  display: none;
+#navigator-toolbox{
+    display: -moz-box;
 }

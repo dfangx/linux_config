@@ -16,7 +16,6 @@
 //user_pref("dom.w3c_pointer_events.enabled", true); // 4614
 //user_pref("ui.use_standins_for_native_colors", false); // 4615
 //use_pref("beacon.enabled", true);
-*/
 
 user_pref("_user.js.parrot", "overrides section syntax error");
 user_pref("general.autoScroll", true);
@@ -37,6 +36,7 @@ user_pref("dom.targetBlankNoOpener.enabled", false);
 user_pref("dom.webgpu.enabled", true);
 
 user_pref("privacy.clearOnShutdown.cookies", false);
+user_pref("privacy.clearOnShutdown.offlineApps", false); // Offline Website Data
 //user_pref("privacy.clearOnShutdown.history", false); // Browsing & Download History
 user_pref("privacy.resistFingerprinting.letterboxing", false); // 4504
 
