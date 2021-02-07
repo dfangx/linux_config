@@ -47,6 +47,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export TASKDATA="$XDG_DATA_HOME/task"
 export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
+export DOTREMINDERS="$HOME/remind/remind.rem"
 
 export TERMINFO="$HOME/.local/share/terminfo"
 export MANPATH="/usr/share/man:/usr/local/share/man:$HOME/.local/share/man"
