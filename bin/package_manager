@@ -76,7 +76,7 @@ case "$action" in
     "update")
         case "$os" in
             "gentoo")
-                sudo emerge -uaDU --keep-going --with-bdeps=y @world
+                sudo emerge -uaDUN --keep-going --with-bdeps=y @world
                 ;;
             "arch" | "artix")
                 sudo pacman -Syu && aurupdate
