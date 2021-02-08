@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-function! Eatchar(pat)
+function! fn#Eatchar(pat)
     let c = nr2char(getchar(0))
     return (c =~ a:pat) ? '' : c
 endfunction
@@ -16,7 +16,7 @@ endfunction
 "    return l:numStaged
 "endfunction
 
-function! BracketToCurly(bracket)
+function! fn#BracketToCurly(bracket)
     if a:bracket == '('
         return 'm1f)m2%r{`2r}`1'
     elseif a:bracket == ')'
@@ -26,7 +26,7 @@ function! BracketToCurly(bracket)
     endif
 endfunction
 
-function! CurlyToBracket(bracket)
+function! fn#CurlyToBracket(bracket)
     if a:bracket == '{'
         return 'm1f}m2%r(`2r)`1'
     elseif a:bracket == '}'
@@ -36,6 +36,6 @@ function! CurlyToBracket(bracket)
     endif
 endfunction
 
-function! CreateZetNote(name) abort
+function! fn#CreateZetNote(name) abort
     return strftime("%Y%m%d%H%M%S") . "-" . name ".md"
 endfunction
