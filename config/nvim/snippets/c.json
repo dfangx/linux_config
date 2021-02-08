@@ -1,0 +1,151 @@
+{
+    "for": {
+        "prefix": ["for"],
+        "body": [
+            "for(${1:int} ${2:i} = ${3:0}; ${i} ${4:<} ${5:length}; ++${i}){",
+                "\t$6",
+                "}"
+        ],
+        "description": "Basic 'for' loop"
+    },
+    "while": {
+        "prefix": ["while"],
+        "body": [
+            "while(${1:true}) {",
+                "\t$2",
+                "}"
+        ],
+        "description": "Basic 'while' loop"
+    },
+    "pr": {
+        "prefix": ["pr"],
+        "body": [
+            "printf(\"${1:%s}\"${2:,});"
+        ],
+        "description": "Print to stdout without newline"
+    },
+    "pln": {
+        "prefix": ["pln"],
+        "body": [
+            "printf(\"${1:%s}\\n\"${2:,});"
+        ],
+        "description": "Print to stdout with newline"
+
+    },
+    "if": {
+        "prefix": ["if"],
+        "body": [
+            "if (${1:condition}) {",
+                "\t$2",
+                "}"
+        ],
+        "description": "If statement"
+
+    },
+    "else if": {
+        "prefix": ["elif", "else if"],
+        "body": [
+            "else if (${1:condition}) {",
+                "\t$2",
+                "}"
+        ],
+        "description": "Else if statement"
+
+    },
+    "else": {
+        "prefix": ["else"],
+        "body": [
+            "else {",
+                "\t$1",
+                "}"
+        ],
+        "description": "Else statement"
+
+    },
+    "#include": {
+        "prefix": ["inc"],
+        "body": [
+            "#include<${1:stdio.h}>"
+        ],
+        "description": "#include preprocessor directive"
+    },
+    "#define": {
+        "prefix": ["def"],
+        "body": [
+            "#define ${1:CONSTANT}"
+        ],
+        "description": "#define preprocessor directive"
+    },
+    "guard": {
+        "prefix": ["guard", "incg"],
+        "body": [
+            "#ifndef ${1:HEADER}_H",
+            "#define ${1:HEADER}_H",
+            "\t$3",
+            "#endif"
+        ],
+        "description": "Include guard"
+    },
+    "ifdef": {
+        "prefix": ["ifdef"],
+        "body": [
+            "#ifdef ${1:CONSTANT}",
+            "\t$2",
+            "#endif"
+        ],
+        "description": "#ifdef preprocessor directive"
+    },
+    "ifndef": {
+        "prefix": ["ifndef"],
+        "body": [
+            "#ifndef ${1:CONSTANT}",
+            "\t$2",
+            "#endif"
+        ],
+        "description": "#ifndef preprocessor directive"
+    },
+    "struct": {
+        "prefix": ["struct"],
+        "body": [
+            "struct ${1:Name} {",
+                "\t$2",
+                "}"
+        ],
+        "description": "struct definition"
+    },
+    "func": {
+        "prefix": ["func"],
+        "body": [
+            "${1:void} ${2:Name}($3) {",
+                "\t$4",
+                "}"
+        ],
+        "description": "function definition"
+    },
+    "fund": {
+        "prefix": ["fund"],
+        "body": [
+            "${1:void} ${2:Name}($3);"
+        ],
+        "description": "function declaration"
+    },
+    "funa": {
+        "prefix": ["funa"],
+        "body": [
+            "${1:void} ${2:Name}($3);",
+            "${1:void} ${2:Name}($3) {",
+                "\t$4",
+                "}"
+        ],
+        "description": "function declaration and definition (all)"
+    },
+    "main": {
+        "prefix": ["main"],
+        "body": [
+            "int main(int argc, char *argv[]) {",
+                "\t$1",
+                "\treturn 0;",
+                "}"
+        ]
+    }
+}
