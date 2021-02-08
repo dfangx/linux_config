@@ -4,4 +4,6 @@ source $HOME/.config/nvim/config/plugins.vim"
 source $HOME/.config/nvim/config/colors.vim
 source $HOME/.config/nvim/config/status.vim
 
-lua require'lsp/setup'
+if has('nvim')
+    lua require'lsp/setup'
+endif

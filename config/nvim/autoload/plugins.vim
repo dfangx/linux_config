@@ -10,7 +10,7 @@ function! plugins#SetupVSnip() abort
 
     let g:vsnip_filetypes = {}
     let g:vsnip_filetypes.cpp = ['c']
-    let g:vsnip_snippet_dir = expand("~/.config/nvim/snippets")
+    let g:vsnip_snippet_dir = expand("~/.config/nvim/snippets/vsnip")
 endfunction
 
 function! plugins#SetupUltisnips() abort
@@ -21,6 +21,7 @@ function! plugins#SetupUltisnips() abort
     let g:UltiSnipsJumpForwardTrigger="<c-j>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
     let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsSnippetDirectories = ["snippets/ultisnips"]
 endfunction
 
 function! plugins#SetupFzf() abort
@@ -29,6 +30,10 @@ function! plugins#SetupFzf() abort
 endfunction
 
 function! plugins#SetupCompletion() abort
+    if !has('nvim')
+        return
+    endif
+
     packadd! completion-nvim
     let g:completion_enable_snippet = 'vim-vsnip'
 
@@ -38,6 +43,10 @@ function! plugins#SetupCompletion() abort
 endfunction
 
 function! plugins#SetupCompe() abort
+    if !has('nvim')
+        return
+    endif
+
     packadd! nvim-compe
 
     let g:compe = {}
