@@ -2,13 +2,13 @@
 "let g:racer_experimental_completer=1
 "let g:racer_insert_paren=1
 
-let s:loaded = get(s:, 'loaded', v:false)
-if !s:loaded
-    " lua require'treesitter/rust'
-    lua require'lsp/rust'
-    let s:loaded = v:true
-    doautocmd FileType rust
-endif
+"let s:loaded = get(s:, 'loaded', v:false)
+"if !s:loaded
+"    " lua require'treesitter/rust'
+"    lua require'lsp/rust'
+"    let s:loaded = v:true
+"    doautocmd FileType rust
+"endif
 
 compiler rust
 "autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }

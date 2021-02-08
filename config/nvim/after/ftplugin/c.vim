@@ -1,20 +1,20 @@
 "call matchadd('Search', placeholder)
 
-let s:loaded = get(s:, 'loaded', v:false)
-if !s:loaded
-    lua require'treesitter/c'
-    lua require'lsp/c'
-    let s:loaded = v:true
-    doautocmd FileType c
-endif
+"let s:loaded = get(s:, 'loaded', v:false)
+"if !s:loaded
+"    "lua require'treesitter/c'
+"    lua require'lsp/c'
+"    let s:loaded = v:true
+"    doautocmd FileType c
+"endif
 
 if !filereadable("Makefile")
     setlocal makeprg=gcc\ -o\ %<\ %\ -Wall
 endif
-"augroup cFmt
-"    au!
-"    autocmd BufWritePre *.c *.cpp lua vim.lsp.buf.formatting_sync(nil, 1000)
-"augroup end
+" augroup cFmt
+"     au!
+"     autocmd BufWritePre *.c,*.cpp,*.h,*.hpp lua vim.lsp.buf.formatting_sync(nil, 1000)
+" augroup end
 
 "iabclear
 "inoreabbrev #i #include <><esc>i<c-r>=Eatchar('\s')<cr>
