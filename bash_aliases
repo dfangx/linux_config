@@ -28,7 +28,7 @@ alias bpr="$EDITOR ~/.bash_profile"
 alias \:q="exit"
 
 alias gst="git status"
-alias gcmt="git commit"
+alias gcm="git commit"
 alias gpsh="git push"
 alias gpl="git pull"
 alias gmerge="git merge"
@@ -43,6 +43,7 @@ alias gclone="git clone"
 alias fgl="fzf-git log"
 alias fgco="fzf-git co"
 alias fga="fzf-git add"
+alias fgd="fzf-git diff"
 
 ###########################################
 ################# DISK ####################
@@ -124,3 +125,6 @@ function pro() {
 }
 
 alias rem="rem -g"
+alias bo="fzf-bookmarks open"
+alias bm="xclip -sel clipboard -o | buku -w -a"
+alias be="fzf-bookmarks edit"
