@@ -30,7 +30,7 @@ alias \:q="exit"
 alias gst="git status"
 alias gcmt="git commit"
 alias gpsh="git push"
-alias gpll="git pull"
+alias gpl="git pull"
 alias gmerge="git merge"
 alias gco="git checkout"
 alias ga="git add"
@@ -39,6 +39,10 @@ alias gbr="git branch"
 alias gapp="git apply"
 alias glog="git log"
 alias gclone="git clone"
+
+alias fgl="fzf-git log"
+alias fgco="fzf-git co"
+alias fga="fzf-git add"
 
 ###########################################
 ################# DISK ####################

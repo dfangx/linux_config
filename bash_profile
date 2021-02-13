@@ -11,6 +11,7 @@ os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
 [ ! $os == "gentoo" ] && export EDITOR="/usr/bin/nvim"
 #export BROWSER="/usr/local/bin/firefox"
 export BROWSER="/opt/firefox/firefox"
+export TERM="st"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
