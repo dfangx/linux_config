@@ -7,12 +7,6 @@
 [submodule "config/vim/plugged/vim-glsl"]
 	path = config/vim/plugged/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl
-[submodule "config/suckless/st"]
-	path = suckless/st
-	url = git@github.com:dfangx/st.git
-[submodule "config/suckless/dwm"]
-	path = suckless/dwm
-	url = git@github.com:dfangx/dwm.git
 [submodule "config/vim/pack/plugins/opt/config/vim/pack/colors/opt/nord-vim"]
 	path = config/vim/pack/plugins/opt/config/vim/pack/colors/opt/nord-vim
 	url = https://github.com/arcticicestudio/nord-vim
