@@ -91,3 +91,9 @@
 [submodule "config/nvim/pack/syntax/start/vimtex"]
 	path = config/nvim/pack/syntax/start/vimtex
 	url = https://github.com/lervag/vimtex
+[submodule "config/nvim/pack/completion/opt/asyncomplete.vim"]
+	path = config/nvim/pack/completion/opt/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule "config/nvim/pack/completion/opt/asyncomplete-lsp.vim"]
+	path = config/nvim/pack/completion/opt/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
