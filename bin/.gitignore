@@ -4,3 +4,5 @@ elogind
 gentoo
 init
 gentoo
+notmuch
+cron/mailsync
