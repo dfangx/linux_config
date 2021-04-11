@@ -1,0 +1,29 @@
+#!/bin/sh
+
+usage() {
+    echo "Usage: $0"
+    echo "      -a Autotype username and password"
+    echo "      -u Copy username"
+    echo "      -p Copy password"
+}
+
+# Do not spawn another another window of the same classname is already open
+win_class=$(xprop -root _NET_CLIENT_LIST | pcregrep -o1 '# (.*)' | sed 's/, /\n/g' | xargs -I{} -n1 xprop -id {} WM_CLASS)
+[ $(echo "$win_class" | grep -iEc "fzf-pass") -gt 1 ] && exit 0
+
+while getopts "aup" arg; do
+    case $arg in
+        u) 
+            sel=$(ls $PASSWORD_STORE_DIR/**/*.gpg  | sed s/.gpg//g | sed s@"$PASSWORD_STORE_DIR/"@@g | fzf)
+            user=$(pass $sel | grep -iE  "user:|username" | cut -d' ' -f2)
+            echo "$user" | xclip -r -sel clipboard
+            ;;
+        p) 
+            sel=$(ls $PASSWORD_STORE_DIR/**/*.gpg  | sed s/.gpg//g | sed s@"$PASSWORD_STORE_DIR/"@@g | fzf)
+            pass -c1 "$sel"
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
