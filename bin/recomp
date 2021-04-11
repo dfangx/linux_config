@@ -1,0 +1,15 @@
+#!/bin/bash
+pkg=$1
+bin=$1
+case "$pkg" in
+    modwm)
+        bin="dwm"
+        dir="$HOME/dev/src/$pkg"
+        ;;
+    *)
+        dir="$HOME/dev/src/suckless/$pkg"
+        ;;
+esac
+cd "$dir"
+make clean && sudo make install #&& ln -svf "$dir/$bin" "$HOME/bin/$bin"
+

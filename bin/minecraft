@@ -1,0 +1,2 @@
+#!/bin/sh
+java -jar /opt/$(id -un 1000)/minecraft/TLauncher-2.68.jar

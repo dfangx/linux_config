@@ -1,0 +1,40 @@
+#!/bin/bash
+
+b() {
+    dir="$HOME/docs $HOME/pics $HOME/vids"
+    #excludes="--exclude=$HOME/documents/kvm"
+    excludes=""
+
+    os="$(grep '^ID' /etc/os-release | cut -d '=' -f2 | tr -d '"')"
+    [ -f "/usr/lib/os-release" ] && os="$(grep '^ID' /usr/lib/os-release | cut -f2 -d '=' | tr -d '"')"
+
+    date=$(date +%F)
+    out="$HOME/backup/$os-backup-$date.tgz"
+
+    tool="tar"
+    opts="-cvpzf"
+
+    id=4
+
+    sudo -u "#1000" DISPLAY=":1" DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" dunstify -a "System Backup" "System Backup" "System is being backed up into ~/backup/$os-backup-$date.tgz" -u normal -r "$id"
+    $tool $excludes $opts $out $dir
+}
+
+r() {
+    bkup="$1"
+    if [ -n "$bkup" -a -f "$bkup" ]; then
+        r_dir="$HOME/.recovery"
+        mkdir "$r_dir"
+        tar xvpzf "$1" -C "$r_dir" --numeric-owner
+    else
+        echo "No such directory"
+    fi
+}
+
+if [ "$1" = "r" -o "$1" = "b" ]; then
+    cmd="$1"
+    shift
+    $cmd $@
+else
+    echo "Invalid command"
+fi
