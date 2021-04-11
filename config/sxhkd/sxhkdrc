@@ -11,7 +11,59 @@ super + b
     $BROWSER
 
 super + p
-    passmenu
+    $TERM --class fzf-pass -e sh -i fzf-pass -p
+
+super + shift + p
+    $TERM --class fzf-pass -e sh -i fzf-pass -u
 
 super + l
     betterlockscreen -l
+
+super + d
+    $TERM --class fzf-run -e fzf-run
+
+# dwm
+super + {k,j}
+    dwmc focusstack {-,+}1
+
+super + shift + {k,j}
+    dwmc movestack {-,+}1
+
+super + shift + {h,l}
+    dwmc setmfact {-,+}0.05
+
+super + shift + b
+    dwmc togglebar
+
+super + shift + space
+    dwmc togglefloating
+
+super + shift + q
+    dwmc killclient
+
+super + shift + {e,r}
+    dwmc quit {0,1}
+
+super + Tab
+    dwmc view
+
+super + {t,f,m}
+    dwmc setlayoutex {0,1,2}
+
+super + shift + {1-9}
+    dwmc tagex {0-8}
+
+super + ctrl + {1-9}
+    dwmc viewex {0-8}
+
+super + {1-9}
+    dwmc toggleviewex {0-8}
+
+super + ctrl + shift + {1-9}
+    dwmc toggletagex {0-8}
+
+super + 0
+    dwmc viewall
+
+super + s
+    dwmc togglescratch 0

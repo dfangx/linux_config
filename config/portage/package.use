@@ -5,7 +5,7 @@ app-arch/bzip2 abi_x86_32
 app-arch/zstd abi_x86_32
 app-crypt/pinentry qt5 
 app-editors/vim X python
-app-emulation/qemu opengl gtk
+app-emulation/qemu opengl gtk usbredir spice
 app-emulation/wine-gecko abi_x86_32
 app-emulation/wine-staging pulseaudio vulkan ldap
 app-emulation/wine-vanilla pulseaudio vulkan ldap
@@ -105,7 +105,7 @@ media-libs/sdl2-image jpeg png
 media-libs/vulkan-loader X abi_x86_32
 media-plugins/alsa-plugins pulseaudio abi_x86_32
 media-sound/pulseaudio dbus -X abi_x86_32 abi_x86_32
-media-video/ffmpeg openssl mp3
+media-video/ffmpeg openssl mp3 x264
 media-video/mpv pulseaudio
 net-dns/libidn2 abi_x86_32
 net-libs/glib-networking -gnome
@@ -173,3 +173,33 @@ dev-util/wayland-scanner abi_x86_32
 media-gfx/feh curl
 dev-qt/qtmultimedia gstreamer qml
 sci-physics/bullet threads
+dev-ruby/minitest ruby_targets_ruby30
+dev-ruby/power_assert ruby_targets_ruby30
+dev-ruby/rake ruby_targets_ruby30
+dev-ruby/rbs ruby_targets_ruby30
+dev-ruby/rexml ruby_targets_ruby30
+dev-ruby/rss ruby_targets_ruby30
+dev-ruby/test-unit ruby_targets_ruby30
+dev-ruby/typeprof ruby_targets_ruby30
+dev-ruby/bundler ruby_targets_ruby30
+dev-ruby/did_you_mean ruby_targets_ruby30
+dev-ruby/json ruby_targets_ruby30
+dev-ruby/rdoc ruby_targets_ruby30
+dev-ruby/kpeg ruby_targets_ruby30
+dev-ruby/racc ruby_targets_ruby30
+virtual/rubygems ruby_targets_ruby30
+dev-ruby/rubygems ruby_targets_ruby30
+virtual/ruby-ssl ruby_targets_ruby30
+media-sound/audacity ffmpeg
+net-dns/dnsmasq script
+app-emulation/virt-manager gtk
+net-misc/spice-gtk usbredir
+net-misc/remmina rdp ssh 
+net-misc/freerdp X
+dev-python/PyQt5 widgets svg gui webkit
+media-video/obs-studio v4l
+gui-wm/sway -swaynag swaylock
+media-gfx/imagemagick -openmp
+dev-lang/php intl pdo curl xmlreader sqlite truetype zip gd xmlwriter fpm apache2
+app-eselect/eselect-php fpm apache2
+media-fonts/powerline-fonts sourcecodepro

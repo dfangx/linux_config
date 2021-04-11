@@ -9,3 +9,5 @@
 >=net-news/newsboat-2.20.1 BSL-1.1
 >=dev-tex/texlab-9999 BSD-2-Clause BSD-3-Clause BSL-1.0 GPL-3.0 GPL-3.0+ LLVM-exception WITH Zlib
 >=app-misc/wyrd-9999 GPL2
+>=net-im/zoom-5.5.7011.0206-r1 all-rights-reserved
+>=app-misc/interception-tools-9999 GPL
