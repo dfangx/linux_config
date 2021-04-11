@@ -1,0 +1,74 @@
+{
+    "createdBy": "Redirector v3.5.3",
+    "createdAt": "2021-01-12T02:19:55.400Z",
+    "redirects": [
+        {
+            "description": "Redirect from Reddit to Old Reddit",
+            "exampleUrl": "https://www.reddit.com/u/test",
+            "exampleResult": "https://old.reddit.com/u/test",
+            "error": null,
+            "includePattern": "https://www.reddit.com/*",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://old.reddit.com/$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Redirect from Twitter to Nitter",
+            "exampleUrl": "https://twitter.com/Animenzzz",
+            "exampleResult": "https://nitter.snopyta.org/Animenzzz",
+            "error": null,
+            "includePattern": "https://twitter.com/*",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://nitter.snopyta.org/$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Redirect from Youtube to Invidious",
+            "exampleUrl": "https://www.youtube.com/results?search_query=test",
+            "exampleResult": "https://invidious.snopyta.org/results?search_query=test",
+            "error": null,
+            "includePattern": "https://www.youtube.com/*",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://invidious.snopyta.org/$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        },
+        {
+            "description": "Redirect from Instagram to Bibliogram",
+            "exampleUrl": "https://www.instagram.com/tv/B8JuQXgHE5a/?igshid=15yonbicnz7so",
+            "exampleResult": "https://bibliogram.art/u/tv/B8JuQXgHE5a/?igshid=15yonbicnz7so",
+            "error": null,
+            "includePattern": "https://www.instagram.com/*",
+            "excludePattern": "",
+            "patternDesc": "",
+            "redirectUrl": "https://bibliogram.art/u/$1",
+            "patternType": "W",
+            "processMatches": "noProcessing",
+            "disabled": false,
+            "grouped": false,
+            "appliesTo": [
+                "main_frame"
+            ]
+        }
+    ]
+}
