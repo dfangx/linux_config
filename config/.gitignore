@@ -1,0 +1,45 @@
+vim/.netrwhist
+NuGet
+QtProject.conf
+apache2
+cef_user_data
+configstore
+dconf
+glib-2.0
+godot
+htop
+hydroxide
+iwd
+keepassxc
+legendary
+libreoffice
+menus
+dwm
+st
+pulse
+protonfixes
+obs-studio
+surf
+zoomus.conf
+tridactyl/themes
+
+# Nothing to add
+java
+mimeapps.list
+nyxt
+
+# Personal
+mbsync
+msmtp
+neomutt
+notmuch
+git
+
+# Need to be added as submodules
+nvim/pack/completion/opt/completion-nvim
+nvim/pack/completion/opt/vim-mucomplete
+nvim/pack/snippets/opt/ultisnips
+nvim/pack/snippets/opt/vim-snippets
+nvim/pack/syntax/opt/
+nvim/pack/syntax/start/vim-racer
+
