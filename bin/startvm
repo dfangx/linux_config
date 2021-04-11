@@ -98,6 +98,16 @@ case "$vm" in
                 -name "Ubuntu VM" \
                 $@
         ;;
+    "mint")
+        exec qemu-system-x86_64 -net nic -net user,hostfwd=tcp::2222-:22 -enable-kvm \
+                -cpu host \
+                -smp 2 \
+                -drive file="$toplevel"/mint/mint-vm.img,if=virtio \
+                -m 4096 \
+                -monitor stdio \
+                -name "Linux Mint VM" \
+                $@
+        ;;
     *)
         ;;
 esac
