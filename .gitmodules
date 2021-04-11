@@ -1,9 +1,6 @@
 [submodule "config/vim/plugged/vim-tmux-navigator"]
 	path = config/vim/plugged/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule "config/suckless/dmenu"]
-	path = config/suckless/dmenu
-	url = git@github.com:dfangx/dmenu.git
 [submodule "config/vim/plugged/vim-glsl"]
 	path = config/vim/plugged/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl
