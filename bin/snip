@@ -1,1 +1,1 @@
-maim -suf png > ~/pictures/`date +%Y`/screenshots/`date +%F_%H%M%S`.png
+maim -suf png > ~/pics/`date +%Y`/screenshots/`date +%F_%H%M%S`.png
