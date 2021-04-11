@@ -25,15 +25,4 @@ config/vim/.netrwhist
 config/nvim/.netrwhist
 config/vim/skeletons/skeleton.tex
 config/vim/plugged
-bin/*
-!bin/keys
-!bin/snip
-!bin/package_manager
-!bin/notes
-!bin/startvm
-!bin/status_bar
-!bin/wrap_alias
-!bin/taskwarrior
-!bin/helpme
-!bin/define
 tags
