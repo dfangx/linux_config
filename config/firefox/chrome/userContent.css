@@ -18,20 +18,20 @@
 }  /***Might need to change the colour hear...***/
 
 #advancedSettings {
-	color: var(--default-ink) }
-	
+color: var(--default-ink) }
+
 .CodeMirror {
-	background: var(--default-surface);
-	color: var(--default-ink)
+    background: var(--default-surface);
+    color: var(--default-ink)
 } 
 .CodeMirror-gutters {
-	background-color: var(--default-surface);
-	border-right: 1px solid var(--dark-gray-50);
+    background-color: var(--default-surface);
+    border-right: 1px solid var(--dark-gray-50);
 }
 .CodeMirror-merge-gap {
-	background: var(--default-surface);
-	border-left: 1px solid var(--dark-gray-50);
-	border-right: 1px solid var(--dark-gray-50);
+    background: var(--default-surface);
+    border-left: 1px solid var(--dark-gray-50);
+    border-right: 1px solid var(--dark-gray-50);
 }
 
 
@@ -43,7 +43,7 @@
     fill: #bb86fc;
 }
 .permatoolbar .button:hover /*line 36*/ {
-	background-color: var(--button-surface-hover);
+    background-color: var(--button-surface-hover);
 }
 #pageSelector /*line 39 Adding*/ {
     background: var(--dark-gray-50);
@@ -52,26 +52,26 @@
 #popupContainer/*line 447*/, 
 .permatoolbar /*line 14*/, 
 #filterExprPicker /*line 139*/{
-	background:  var(--default-surface);
+    background:  var(--default-surface);
 }
 #netInspector #filterExprPicker {background-color: var(--dark-gray-50);} /*line 137*/
 
 #netInspector #filterInput > input /*line 124  Add in this*/ {
     background: var(--dark-gray-50); 
-    color: var(--default-ink)}
+color: var(--default-ink)}
 
 #netInspector #filterExprButton:hover, /*line 131*/
 #netInspector #filterExprPicker span[data-filtex]:hover /*line 185*/ {
-    background-color: var(--button-surface-hover)}
+background-color: var(--button-surface-hover)}
 
 #modalOverlayContainer {
-	background-color: var(--dark-gray-50);
-	color: var(--default-ink);}
+    background-color: var(--dark-gray-50);
+color: var(--default-ink);}
 /*#netFilteringDialog > div.panes > .dynamic .entry {background-color: #15141a !important; color: #f9f9fa !important border-bottom: 1px solid #45278d !important*/  /*line 737 
 #netFilteringDialog > .panes > .details > div /*line 632/ {background-color: #15141a !important; border-bottom: 1px solid #45278d !important} */ 
 /*{	background-color: #15141a !important;
-	color: #f9f9fb !important;
-	/*border-bottom: 1px solid #45278d !important;
+color: #f9f9fb !important;
+/*border-bottom: 1px solid #45278d !important;
 }*/
 
 /* Line 581*/
@@ -79,9 +79,9 @@
 #netFilteringDialog[data-pane="dynamic"] > .headers > [data-pane="dynamic"], 
 #netFilteringDialog[data-pane="static"] > .headers > [data-pane="static"]
 {
-	background-color: var(--dashboard-tab-active-ink);
-	color: var(--default-ink);
-	border-bottom: 2px solid  var(--dashboard-tab-active-ink)
+    background-color: var(--dashboard-tab-active-ink);
+    color: var(--default-ink);
+    border-bottom: 2px solid  var(--dashboard-tab-active-ink)
 }
 #netFilteringDialog > div.panes > .dynamic .entry {
     background-color: var(--dark-gray-50);
@@ -97,32 +97,32 @@
 #loggerExportDialog .options span.on[data-i18n], 
 #loggerExportDialog .options span.pushbutton:active /*line 917*/
 {
-	background-color: var(--dashboard-tab-active-ink);
+    background-color: var(--dashboard-tab-active-ink);
 }
 #netFilteringDialog,
 #netFilteringDialog > .panes > .details > div,
 #netFilteringDialog > div.panes > .dynamic .row {
     background-color: var(--dark-gray-50);
-    color: var(--default-ink)}
+color: var(--default-ink)}
 
 /*line 506*/ #modalOverlay > div > div:nth-of-type(2):hover,
 #netFilteringDialog > .headers > .tools > span:hover /*line 606*/,
 #filterFinderDialog .filterFinderListEntry a.fa-icon:hover /*line*/,
 #netFilteringDialog > .panes > .details .exceptored .exceptor {
     background-color: var(--violet-80);
-    }
+}
 
 #loggerSettingsDialog input /*line 954 Add*/ {
     background: var(--dark-gray-50); 
-    color: var(--default-ink)}
+color: var(--default-ink)}
 
 .cm-search-widget-input > input {
     background: var(--dark-gray-30);
-    color: var(--default-ink)}
+color: var(--default-ink)}
 /******dashboard-common.css******
 input[type="number"] /**line 41 ADD** {
-	background-color: #42414d !important;
-	color: #f9f9fa !important;
+background-color: #42414d !important;
+color: #f9f9fa !important;
 }
 /******cloud-ui.css*****/
 #cloudWidget {background:hsl(250, 13%, 9%) !important} /*line 1*/
@@ -130,81 +130,81 @@ input[type="number"] /**line 41 ADD** {
 /****epicker.html****/
 #ublock0-epicker section > div:first-child > textarea { 
     background-color: var(--dark-gray-50);
-    color: var(--default-ink)}
+color: var(--default-ink)}
 #ublock0-epicker button /*line 34*/{
-	background-color: var(--button-surface);
-	color: var(--button-ink);
- }
+    background-color: var(--button-surface);
+    color: var(--button-ink);
+}
 #ublock0-epicker #resultsetCount /*line 92*/ {
     background-color: var(--button-important-surface); 
-    color: var(--button-ink)}
+color: var(--button-ink)}
 #ublock0-epicker button:disabled /*line 45*/ {
     color: var(--button-disabled-ink); 
-    background-color: var(--button-disabled-surface)}
+background-color: var(--button-disabled-surface)}
 #ublock0-epicker #create:not(:disabled) /*line 52*/ {
-    background-color: var(--button-important-surface)}
+background-color: var(--button-important-surface)}
 #ublock0-epicker body.preview #preview /*line 59*/ {
-    background-color: #bb86fc;}
+background-color: #bb86fc;}
 #ublock0-epicker aside /*line 174*/ {
     background-color: var(--default-surface); 
-    border: var(--fg-0-60)}
+border: var(--fg-0-60)}
 #ublock0-epicker ul > li > span:nth-of-type(2) /*line 124*/ {
-    color: var(--default-ink)}
+color: var(--default-ink)}
 #ublock0-epicker button:not(:disabled):hover /*line 49*/,
 #ublock0-epicker ul > li > ul > li:hover /*line 140*/ {
-    background-color: var(--default-surface-hover)}
+background-color: var(--default-surface-hover)}
 #ublock0-epicker body /*line 6*/ {color: var(--default-ink) }
 
 :root{
-  scrollbar-width: none !important 
+    scrollbar-width: none !important 
 }
 
 
-  @-moz-document url("about:home"),url(about:preferences),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
-  body{background-color:#2E3440!important;--newtab-search-icon: transparent !important;}
-  a,a:visited,a:hover{color:#2E3440!important}
-	#newtab-search-text {
-	background-color: #2E3440 !important;
-	font-size: 18px !important;
-	color: #88C0D0 !important;
-	box-shadow: none !important;
-	text-align: center !important;
-	border:none !important;
-	font-weight: bold !important;
-		}
+@-moz-document url("about:home"),url(about:preferences),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
+    body{/*background-color:#2E3440!important;*/--newtab-search-icon: transparent !important;}
+    a,a:visited,a:hover{color:#2E3440!important}
+    #newtab-search-text {
+        background-color: #2E3440 !important;
+        font-size: 18px !important;
+        color: #88C0D0 !important;
+        box-shadow: none !important;
+        text-align: center !important;
+        border:none !important;
+        font-weight: bold !important;
+    }
 
-.search-wrapper input {
-    --newtab-textbox-focus-boxshadow: none !important;
-    padding-left: 20px !important;
-   	padding-inline-end: 13px !important;
-  }
-  
-
-.search-wrapper .logo-and-wordmark .wordmark {
-  display: none!important;
-}
-
-.search-wrapper .logo-and-wordmark {
-  margin-bottom: 40px!important;
-  padding-top: 60px!important;
-  opacity:0.5!important;
-}
+    .search-wrapper input {
+        --newtab-textbox-focus-boxshadow: none !important;
+        padding-left: 20px !important;
+        padding-inline-end: 13px !important;
+    }
 
 
+    .search-wrapper .logo-and-wordmark .wordmark {
+        display: none!important;
+    }
 
-.search-button{background:none !important;}
+    .search-wrapper .logo-and-wordmark {
+        margin-bottom: 40px!important;
+        padding-top: 60px!important;
+        opacity:0.5!important;
+    }
 
-.prefs-button button {fill: #88C0D0 !important;}
-  
-.prefs-button button:hover, .prefs-button button:focus {
+
+
+    .search-button{background:none !important;}
+
+    .prefs-button button {fill: #88C0D0 !important;}
+
+    .prefs-button button:hover, .prefs-button button:focus {
     background-color:  transparent !important; }	
- 
- .contentSearchSuggestionTable {display: none !important;}
- 
+
+    .contentSearchSuggestionTable {display: none !important;}
+
 
 }
 :root {
-	
+
     --in-content-border-active: #88C0D0 !important;
     --in-content-border-active-shadow: none !important;
     --in-content-page-background: #2E3440 !important;
