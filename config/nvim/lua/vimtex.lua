@@ -12,7 +12,7 @@ M.complete_item = {
     item = M.getCompletionItems
 }
 
-cplt = require'completion'
-cplt.addCompletionSource('vimtex', {item = M.getCompletionItems})
-cplt.on_attach()
--- return M
+-- cplt = require'completion'
+-- cplt.addCompletionSource('vimtex', {item = M.getCompletionItems})
+-- cplt.on_attach()
+return M

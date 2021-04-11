@@ -1,5 +1,7 @@
-compiler rust
+call plugins#SetupRacer()
+setlocal makeprg=cargo\ build
+" lua require'treesitter/rust'
 augroup rustFmt
     au!
-    autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+    autocmd BufWritePre *.rs silent! !rustfmt
 augroup end

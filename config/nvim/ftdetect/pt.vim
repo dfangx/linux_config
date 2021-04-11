@@ -1,1 +1,4 @@
-autocmd! BufNewFile,BufRead *.pt setlocal filetype=pascal
+augroup detectPascalFiletype
+    autocmd!
+    autocmd! BufNewFile,BufRead,BufWritePost *.pt setlocal filetype=pascal
+augroup END

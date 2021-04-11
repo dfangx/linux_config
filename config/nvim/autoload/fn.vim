@@ -6,15 +6,6 @@ function! fn#Eatchar(pat)
     return (c =~ a:pat) ? '' : c
 endfunction
 
-"function! GitNumModified()
-"    let l:numStage = system('git ls-files -om --exclude-standard $(git rev-parse --show-toplevel) | wc -l | tr -d "\n"') 
-"    return l:numStage
-"endfunction
-"
-"function! GitNumStaged()
-"    let l:numStaged = system('git diff --cached --numstat | wc -l | tr -d "\n"')
-"    return l:numStaged
-"endfunction
 
 function! fn#BracketToCurly(bracket)
     if a:bracket == '('

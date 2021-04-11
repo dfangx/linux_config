@@ -7,7 +7,7 @@ let mapleader=" "
 let maplocalleader=" "
 
 " File finding
-nnoremap <leader>ff :Files<cr>
+nnoremap <leader>ff :find
 nnoremap <leader>fs :sfind 
 nnoremap <leader>fv :vert :sfind 
 nnoremap <leader>ft :tabfind 
@@ -18,9 +18,9 @@ nnoremap <leader>O O<esc>
 nnoremap <leader>o o<esc>
 
 " Buffer management
-nnoremap <leader>] :bn<cr>
-nnoremap <leader>[ :bp<cr>
-nnoremap <leader>b :Buffers<cr>
+nnoremap ]b :bn<cr>
+nnoremap [b :bp<cr>
+nnoremap <leader>b :ls<cr>:b
 nnoremap <leader>d :bd<cr>
 
 " Surround
@@ -38,12 +38,12 @@ inoremap " ""<left>
 inoremap ' ''<left>
 
 " Surround highlighted with token
-vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
-vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
-vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
-vnoremap <leader>< <esc>`>a><esc>`<i<<esc>
+vnoremap <leader>" <esc>`<i"<esc>`>la"<esc>
+vnoremap <leader>' <esc>`<i'<esc>`>la'<esc>
+vnoremap <leader>( <esc>`<i(<esc>`>la)<esc>
+vnoremap <leader>[ <esc>`<i[<esc>`>la]<esc>
+vnoremap <leader>{ <esc>`<i{<esc>`>la}<esc>
+vnoremap <leader>< <esc>`<i<<esc>`>la><esc>
 
 " Move pane
 nnoremap <silent> <leader>h <c-w>H
@@ -67,14 +67,12 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
+command W w
+command Gco :!fzf-git co
+
 " Notes mappings
 command! -bang NotesSel call fzf#vim#files("~/documents/notes", {"options": ["--query=index.md", "--preview", "cat {}"]}, <bang>0) 
 command! -nargs=1 NewNote :execute ":e" "~/documents/notes/" . strftime("%Y%m%d%H%M%S") . "-<args>.md"
 nnoremap <leader>ws :NotesSel<cr>
 nnoremap <leader>ww :e ~/documents/notes/index.md<cr>
-nnoremap <leader>/ :Rg<cr>
 nnoremap <leader>wn :NewNote 
-nnoremap <silent> <c-]> :call fzf_tags#GetTags()<cr>
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path("fd", {"options":["--select-1", "--preview", "tree {}"]})
-imap <c-x><c-l> <plug>(fzf-complete-line)
-imap <c-x><c-k> <plug>(fzf-complete-word)

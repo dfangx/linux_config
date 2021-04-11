@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menu,menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 set cursorline                              " Highlights line cursor is on
 set lazyredraw                              " Redraw screen only when necessary
 set showcmd                                 " Show command in bottom bar
@@ -32,9 +32,10 @@ set autoread                                " Reread file when it is updated som
 set scrolloff=1
 set sidescrolloff=5
 set tags+=.git/tags;/
-set rtp+=~/src/fzf
 set guicursor=
-set shortmess+=c
+set spellfile=$XDG_CONFIG_HOME/nvim/spell/en.utf8.add
 
 let g:tex_flavor='latex'
 let g:netrw_browsex_viewer="xdg-open"
+
+autocmd VimResized * wincmd =

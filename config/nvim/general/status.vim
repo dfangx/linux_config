@@ -1,15 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-function! IsReadOnly()
-    if &readonly
-        return ''
-    else
-        return ''
-    endif
-endfunction
-
-function! GetMode()
+function! StatusGetMode() abort
     let l:m = mode()
     if l:m == 'i'
         return 'INSERT'
@@ -22,41 +14,39 @@ function! GetMode()
     endif
 endfunction
 
-function! GitBranch()
-    let l:branch = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    if strlen(l:branch) > 0
-        return ' ' . l:branch
+function! StatusIsReadOnly()
+    if &readonly
+        return ''
     else
         return ''
     endif
 endfunction
 
-function! IsGitRepo()
-    let l:isRepo = system("git rev-parse --is-inside-work-tree | tr -d '\n'")
-    if l:isRepo == 'true'
-        return 1
-    else
-        return 0
-    endif
-endfunction
+augroup GitInfo
+    autocmd!
+    autocmd BufEnter * call git#GetGitBranch()
+    autocmd BufEnter,BufWritePost * call git#GetGitFileNumbers()
+augroup end
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline=
 set statusline+=%*
-set statusline+=\ %{GetMode()}
+set statusline+=\ %{StatusGetMode()}
 set statusline+=\ 
 set statusline+=%2*
 "set statusline+=
 
-if IsGitRepo()
-    set statusline+=\ %{GitBranch()}
-    "    set statusline+=\[
-    "    set statusline+=M%{GitNumModified()}
-    "    set statusline+=:
-    "    set statusline+=S%{GitNumStaged()}
-    "    set statusline+=\]
+
+if git#IsGitRepo()
+    set statusline+=\ %{git#StatusGitBranch()}
+    set statusline+=\ \[
+    set statusline+=S%{git#StatusGitNumStaged()}
+    "set statusline+=\ :
+    set statusline+=\ M%{git#StatusGitNumModified()}
+    set statusline+=\ U%{git#StatusGitNumUntracked()}
+    set statusline+=\]
     set statusline+=\  
     set statusline+=%1*
     "    set statusline+=
@@ -66,7 +56,7 @@ endif
 set statusline+=\ %n:
 set statusline+=\ %f
 set statusline+=\ %M
-set statusline+=\ %{IsReadOnly()}
+set statusline+=\ %{StatusIsReadOnly()}
 set statusline+=%=
 set statusline+=\ %Y
 set statusline+=\ 
