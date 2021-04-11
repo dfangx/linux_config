@@ -11,6 +11,7 @@ alias rm="rm -I"
 alias mv="mv -v"
 alias rmdir="rmdir -v"
 alias mkdir="mkdir -pv"
+alias df="df -h"
 
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
@@ -31,52 +32,37 @@ alias gst="git status"
 alias gcm="git commit"
 alias gpsh="git push"
 alias gpl="git pull"
-alias gmerge="git merge"
+alias gmg="git merge"
 alias gco="git checkout"
 alias ga="git add"
 alias gdf="git diff"
 alias gbr="git branch"
 alias gapp="git apply"
 alias glog="git log"
-alias gclone="git clone"
+alias gcl="git clone"
 
 alias fgl="fzf-git log"
 alias fgco="fzf-git co"
 alias fga="fzf-git add"
 alias fgd="fzf-git diff"
 
-###########################################
-################# DISK ####################
-###########################################
 alias lsdisk="sudo fdisk -l"
 
-###########################################
-################ SYSTEM ###################
-###########################################
-
-## Power ##
+# power
 alias po="sudo poweroff"
 alias rb="sudo reboot"
 alias powreport="sudo powertop --html && firefox ./powertop.html"
 
-## Packages ##
-# Arch
-#alias clean="sudo pacman -Rns $(pacman -Qtdq)"
+# packages
 alias pi="package_manager install"
 alias c="package_manager clean"
 alias pr="package_manager remove"
 alias u="package_manager update" 
-# Gentoo
-#alias update="sudo emerge -quaDU --keep-going --with-bdeps=y @world"
-#alias remove="sudo emerge -Cav"
-#alias clean="sudo emerge -ca"
-#alias install="sudo emerge -a"
 
 ## Backup ##
-#alias backup="sudo tar --exclude=/home/cyrusng/documents/{kvm,backup} -cvpzf $(grep "^ID" /usr/lib/os-release | cut -f2 -d "=")-backup-$(date +%F).tgz ~/documents ~/pictures"
-alias restore="mkdir ~/.recovery && sudo tar -xvpzf $os-backup-$1 -C ~/.recovery --numeric-owner"
+alias restore="backup r"
+alias backup="backup b"
 
-alias def="define"
 
 function cd () {
     builtin cd "$@" && ls
@@ -95,21 +81,16 @@ function cu() {
     fi
 }
 
-alias vs="fd -t f . ~/bin/ | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
-alias vc="fd -Lt f . ~/.config/  | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
-alias scrcpy="scrcpy -m 1024 --window-borderless --window-x 1604 --window-y 23 --window-width 308 --window-height 659"
-alias df="df -h"
-alias mnt="mount"
+# alias scrcpy="scrcpy -m 1024 --window-borderless --window-x 1604 --window-y 23 --window-width 308 --window-height 659"
+# alias mnt="mount"
 alias mnt-ntfs="sudo ntfs-3g -o uid=1000,guid=1000"
 
-alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
-alias irssi="irssi --config ~/.config/irssi/config"
-alias weechat="weechat --dir ~/.local/share/weechat"
 
 alias runescape="runelite"
 alias rs="runelite"
+alias def="define"
 
-#. "$HOME/bin/taskwarrior"
+# taskwarrior
 alias t="task"
 alias ta="task add"
 alias tin="task add +in"
@@ -125,6 +106,24 @@ function pro() {
 }
 
 alias rem="rem -g"
-alias bo="fzf-bookmarks open"
+
+# fzf aliases
+. ~/bin/bookmark
+alias bo="browser_bm_open"
 alias bm="xclip -sel clipboard -o | buku -w -a"
-alias be="fzf-bookmarks edit"
+alias be="browser_bm_edit"
+alias m="shell_bm_add"
+alias cdb="shell_bm_enter"
+alias be="shell_bm_edit"
+alias rmb="shell_bm_remove"
+alias ytfzf="ytfzf -t"
+alias yt="ytfzf -t"
+
+alias vs="fd -t f . ~/bin/ | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
+alias vc="fd -Lt f . ~/.config/  | fzf  -m --preview='cat {}' | xargs -roI % $EDITOR %"
+
+# xdg-dirs aliases
+alias x2goclient="x2goclient --home=$HOME/.config"
+alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
+alias irssi="irssi --config ~/.config/irssi/config"
+alias weechat="weechat --dir ~/.local/share/weechat"

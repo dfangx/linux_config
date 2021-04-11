@@ -13,21 +13,14 @@ if [[ $- != *i* ]]; then
     return # Shell is non-interactive.  Be done now!
 fi
 
-#[ -f ~/.cache/wal/sequences ] && (cat ~/.cache/wal/sequences &)
-#[ -f ~/.cache/wal/colors-tty.sh ] && . ~/.cache/wal/colors-tty.sh
-#[ -f ~/.cache/wal/colors.sh ] && . ~/.cache/wal/colors.sh
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/bin/fzf-git ] && . ~/bin/fzf-git
 [ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
-#[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 
-# Gentoo bash completion
-#. /etc/bash/bashrc.d/bash_completion.sh
-# Arch bash completion
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /usr/share/bash-completion/completions/fzf ] && . /usr/share/bash-completion/completions/fzf
-. wrap_alias
-
-#eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
+# . wrap_alias
+#[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 
 os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
 [ -f "/usr/lib/os-release" ] && os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
@@ -45,8 +38,7 @@ unset os
 curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "
-#PS1="\[\e[38;2;133;79;219;1m\]$curDate \[\e[38;2;189;147;249;1m\]$machInfo\[\e[38;2;148;125;179;1m\]$end\[\e[0m\]"
-PS1="\[\e[1;34m\]$curDate \[\e[1;34m\]$machInfo\[\e[1;32m\] [\$(task +in +PENDING count)]$end"
+PS1="\[\e[1;34m\]$curDate \[\e[1;34m\]$machInfo\[\e[1;32m\] [\$(task +in +PENDING count)]$end\[\e[0m\]"
 
 unset curDate
 unset machInfo
@@ -54,17 +46,29 @@ unset end
 
 stty -ixon
 set -o vi
-set show-mode-in-prompt on
-#set vi-ins-mode-string "+"
-#set vi-cmd-mode-string ":"
 shopt -s autocd
 
-#bind -m vi-command '"\C-f": "\C-z\ec\C-z"'
-#bind -m vi-insert '"\C-f": "\C-z\ec\C-z"'
+bind -m vi-command '"\er": redraw-current-line'
+bind -m vi-command '"\C-g\C-f": "$(_gf)\er\n"'
+bind -m vi-command '"\C-g\C-b": "$(_gb)\er\n"'
+bind -m vi-command '"\C-g\C-t": "$(_gt)\er\n"'
+bind -m vi-command '"\C-g\C-h": "$(_gh)\er\n"'
+bind -m vi-command '"\C-g\C-r": "$(_gr)\er\n"'
+bind -m vi-command '"\C-g\C-s": "$(_gs)\er\n"'
+bind -m vi-insert '"\er": redraw-current-line'
+bind -m vi-insert '"\C-g\C-f": "$(_gf)\er\n"'
+bind -m vi-insert '"\C-g\C-b": "$(_gb)\er\n"'
+bind -m vi-insert '"\C-g\C-t": "$(_gt)\er\n"'
+bind -m vi-insert '"\C-g\C-h": "$(_gh)\er\n"'
+bind -m vi-insert '"\C-g\C-r": "$(_gr)\er\n"'
+bind -m vi-insert '"\C-g\C-s": "$(_gs)\er\n"'
 
-bind -m vi-command '"\C-f": "cd `fd -t d | fzf --preview=\"ls {}\"`\n"'
-bind -m vi-insert '"\C-f": "cd `fd -t d | fzf --preview=\"ls {}\"`\n"'
-bind -m vi-command '"\C-e": "fd -t f | fzf --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
-bind -m vi-insert '"\C-e": "fd -t f | fzf --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
-bind -m vi-command '"\C-o": "fd -Ht f | fzf | xargs -rod \"\n\" xdg-open\n"'
-bind -m vi-insert '"\C-o": "fd -Ht f | fzf | xargs -rod \"\n\" xdg-open\n"'
+bind -m vi-insert '"\C-x": "$(pwd)/$(fzf-sh)\er\n"'
+# bind -m vi-command '"\C-f": "cd $(fd -t d | fzf --height=50% --preview=\"ls {}\")\n"'
+# bind -m vi-command '"\C-e": "fd -t f | fzf --height=50% --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
+# bind -m vi-command '"\C-o": "fd -t f | fzf -m --height=50% | xargs -rod \"\n\" xdg-open\n"'
+# bind -m vi-insert '"\C-f": "cd $(fd -t d | fzf --height=50% --preview=\"ls {}\")\n"'
+# bind -m vi-insert '"\C-e": "fd -t f | fzf --height=50% --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
+# bind -m vi-insert '"\C-o": "fd -t f | fzf -m --height=50% | xargs -rod \"\n\" xdg-open\n"'
+
+ls

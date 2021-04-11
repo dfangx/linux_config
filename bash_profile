@@ -10,8 +10,8 @@ os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
 [ -f "/usr/lib/os-release" ] && os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
 [ ! $os == "gentoo" ] && export EDITOR="/usr/bin/nvim"
 #export BROWSER="/usr/local/bin/firefox"
-export BROWSER="/opt/firefox/firefox"
-export TERM="st"
+export BROWSER="/opt/$(id -un 1000)/firefox/firefox"
+export TERM="alacritty"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -44,7 +44,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export LESSHISTFILE=-
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+export PASSWORD_STORE_DIR="$HOME/pass"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 export TASKDATA="$XDG_DATA_HOME/task"
 export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
@@ -53,8 +53,12 @@ export DOTREMINDERS="$HOME/remind/remind.rem"
 export TERMINFO="$HOME/.local/share/terminfo"
 export MANPATH="/usr/share/man:/usr/local/share/man:$HOME/.local/share/man"
 
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android 
+export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator 
+
 [ -d "$home_bin" ] && PATH="$PATH:$home_bin"
-[ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH" && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+[ -d "$CARGO_HOME/bin" ] && PATH="$CARGO_HOME/bin:$PATH" && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/library"
 [ -d "$home_bin/minecraft" ] && PATH="$PATH:$home_bin/minecraft"
 [ -d "$home_bin/runelite" ] && PATH="$PATH:$home_bin/runelite"
 [ -d "$home_bin/dart-sass" ] && PATH="$PATH:$home_bin/dart-sass"
@@ -68,6 +72,7 @@ unset home_dir
 if [[ "$(tty)" == '/dev/tty1' ]]
 then
     startx "$XINITRC"
+    # dbus-run-session sway
     logout
 else
    # This file is sourced by bash for login shells.  The following line
