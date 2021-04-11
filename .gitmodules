@@ -58,3 +58,36 @@
 [submodule "config/firefox/chrome/nord-firefox"]
 	path = config/firefox/chrome/nord-firefox
 	url = https://github.com/daaniiieel/nord-firefox
+[submodule "config/nvim/pack/colors/opt/nvcode-color-schemes.vim"]
+	path = config/nvim/pack/colors/opt/nvcode-color-schemes.vim
+	url = https://github.com/ChristianChiarulli/nvcode-color-schemes.vim
+[submodule "config/nvim/pack/colors/opt/nord-vim"]
+	path = config/nvim/pack/colors/opt/nord-vim
+	url = https://github.com/arcticicestudio/nord-vim
+[submodule "config/nvim/pack/completion/opt/nvim-compe"]
+	path = config/nvim/pack/completion/opt/nvim-compe
+	url = https://github.com/hrsh7th/nvim-compe
+[submodule "config/nvim/pack/plugins/start/fzf.vim"]
+	path = config/nvim/pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "config/nvim/pack/plugins/opt/nvim-lspconfig"]
+	path = config/nvim/pack/plugins/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "config/nvim/pack/plugins/opt/nvim-treesitter"]
+	path = config/nvim/pack/plugins/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "config/nvim/pack/plugins/opt/vim-tmux-navigator"]
+	path = config/nvim/pack/plugins/opt/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "config/nvim/pack/plugins/opt/vim-lsp"]
+	path = config/nvim/pack/plugins/opt/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "config/nvim/pack/snippets/opt/vim-vsnip"]
+	path = config/nvim/pack/snippets/opt/vim-vsnip
+	url = https://github.com/hrsh7th/vim-vsnip
+[submodule "config/nvim/pack/snippets/opt/vim-vsnip-integ"]
+	path = config/nvim/pack/snippets/opt/vim-vsnip-integ
+	url = https://github.com/hrsh7th/vim-vsnip-integ
+[submodule "config/nvim/pack/syntax/start/vimtex"]
+	path = config/nvim/pack/syntax/start/vimtex
+	url = https://github.com/lervag/vimtex
