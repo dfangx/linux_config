@@ -8,11 +8,11 @@ alias la="ls -a"
 alias lal="ls -alh"
 alias ll="ls -lh"
 alias rm="rm -I"
+alias rr="rm -Ir"
 alias mv="mv -v"
 alias rmdir="rmdir -v"
 alias mkdir="mkdir -pv"
 alias df="df -h"
-
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
 
@@ -30,23 +30,20 @@ alias \:q="exit"
 
 alias gst="git status"
 alias gcm="git commit"
-alias gpsh="git push"
+alias gps="git push"
 alias gpl="git pull"
 alias gmg="git merge"
 alias gco="git checkout"
 alias ga="git add"
 alias gdf="git diff"
 alias gbr="git branch"
-alias gapp="git apply"
-alias glog="git log"
+alias gap="git apply"
+alias gl="git log"
 alias gcl="git clone"
 
-alias fgl="fzf-git log"
-alias fgco="fzf-git co"
-alias fga="fzf-git add"
-alias fgd="fzf-git diff"
-
-alias lsdisk="sudo fdisk -l"
+alias fgrv="git revert \$(_gh)"
+alias fgco="git checkout \$(_gb)"
+alias fga="git add \$(_gf)"
 
 # power
 alias po="sudo poweroff"
@@ -81,11 +78,7 @@ function cu() {
     fi
 }
 
-# alias scrcpy="scrcpy -m 1024 --window-borderless --window-x 1604 --window-y 23 --window-width 308 --window-height 659"
-# alias mnt="mount"
 alias mnt-ntfs="sudo ntfs-3g -o uid=1000,guid=1000"
-
-
 alias runescape="runelite"
 alias rs="runelite"
 alias def="define"

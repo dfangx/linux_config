@@ -15,31 +15,19 @@ fi
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/bin/fzf-git ] && . ~/bin/fzf-git
-[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+# [ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /usr/share/bash-completion/completions/fzf ] && . /usr/share/bash-completion/completions/fzf
+[ -f $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh ] && . $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh
 # . wrap_alias
 #[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
-
-os="$(cat /etc/os-release | grep "^ID" | cut -d "=" -f2)"
-[ -f "/usr/lib/os-release" ] && os="$(cat /usr/lib/os-release | grep "^ID" | cut -d "=" -f2)"
-
-case "$os" in
-    "arch" | "artix")
-        PATH="$PATH:$HOME/bin/arch"
-        ;;
-    *)
-        ;;
-esac
-unset os
 
 # Shell Prompt
 curDate="[\d]"
 machInfo="\u@\h"
 end=" \w\$ "
 PS1="\[\e[1;34m\]$curDate \[\e[1;34m\]$machInfo\[\e[1;32m\] [\$(task +in +PENDING count)]$end\[\e[0m\]"
-
 unset curDate
 unset machInfo
 unset end
@@ -64,6 +52,7 @@ bind -m vi-insert '"\C-g\C-r": "$(_gr)\er\n"'
 bind -m vi-insert '"\C-g\C-s": "$(_gs)\er\n"'
 
 bind -m vi-insert '"\C-x": "$(pwd)/$(fzf-sh)\er\n"'
+bind -x '"\t" : fzf_bash_completion'
 # bind -m vi-command '"\C-f": "cd $(fd -t d | fzf --height=50% --preview=\"ls {}\")\n"'
 # bind -m vi-command '"\C-e": "fd -t f | fzf --height=50% --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
 # bind -m vi-command '"\C-o": "fd -t f | fzf -m --height=50% | xargs -rod \"\n\" xdg-open\n"'
