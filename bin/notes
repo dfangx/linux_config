@@ -1,10 +1,104 @@
 #!/bin/sh
 
+dir=$HOME/notes
 case $1 in
     -n | --new)
-        [ -z $2 ] && echo "Please provide a note description/label" || cd ~/./documents/notes && "$EDITOR" "$HOME/documents/notes/`date '+%Y%m%d%H%M%S'`-$2.md"
+        optdir="$2"
+        "$EDITOR" "$dir/$optdir/$(date '+%Y%m%d%H%M%S').md"
+        ;;
+    -t | --tags)
+        RG="rg \
+            --no-heading \
+            --smart-case \
+            --line-number \
+            --column \
+            --color=always"
+        TAGS_RG="rg \
+            --no-heading \
+            -r '\$1' \
+            -INo \"tags:(.*\w+)\" "$dir" \
+            | sed 's/ /\n/g' \
+            | sort -u \
+            | sed '/^\$/d'"
+
+        q=$2
+        f=false
+        while ! $f ; do
+            f=false
+            FZF_DEFAULT_COMMAND="$TAGS_RG"
+            result="$(fzf \
+                --multi \
+                --ansi \
+                --query "$q" \
+                --delimiter : \
+                --prompt "Tags Search> " \
+                )"
+            [ -z "$result" ] && break
+            tags="${tags/$'\n'/'|'}"
+            files="$($RG --color never -lw "$tags" $dir)"
+            [ $(echo "$files" | wc -l) -eq 1 ] && result="$files" && break
+            # files="${files//$'\n'/' '}"
+            # FZF_DEFAULT_COMMAND="$RG -H $(printf %q $q) $files"
+            result="$(echo "$files" | fzf \
+                --multi \
+                --ansi \
+                --delimiter : \
+                --preview "bat -pp --color=always {}" \
+                --preview-window 'wrap,up,60%,+{2}+3/3,~1' \
+                )"
+            [ -n "$result" ] && f=true
+        done
+        [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
         ;;
     *)
-        cd ~/documents/notes && fzf --preview="cat {}" | xargs -r -o -I % "$EDITOR" %
+        RG="rg \
+            --no-heading \
+            --smart-case \
+            --line-number \
+            --column \
+            --color=always"
+        FZF_DEFAULT_COMMAND="$RG -H $(printf %q $q) $dir"
+        result="$(fzf \
+            --multi \
+            --ansi \
+            --query "$q" \
+            --delimiter : \
+            --prompt "Tags Search> " \
+            --preview "bat -pp --color=always {1} --highlight-line {2}" \
+            --preview-window 'wrap,up,60%,+{2}+3/3,~3'\
+            )"
+        [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
         ;;
 esac
+
+# Old opts and vars
+# FILES_RG="$RG $(printf %q $q) $dir"
+# --bind "change:reload:sleep 0.1; $RG {q} $dir || true" \
+#
+# Old tag and search
+# -t | --tag)
+#     tags=$(rg --no-heading -INo "#\w+" "$dir" | sort -u | fzf -m)
+#     tags="${tags/$'\n'/'|'}"
+#     RG="rg --no-heading --smart-case --line-number --column --color=always"
+#     files="$($RG --color never -lw "$tags" $dir)"
+#     files="${files//$'\n'/' '}"
+#     q=$2
+#     FZF_DEFAULT_COMMAND="$RG $(printf %q $q) $files"
+#     result="$(fzf -m --ansi \
+#         --delimiter : \
+#         --preview "bat --color=always {1} --highlight-line {2}" \
+#         --preview-window 'up,60%,+{2}+3/3,~3')"
+#     [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
+#     ;;
+#     if false; then
+#         q=$1
+#         RG="rg --no-heading --smart-case --line-number --column --color=always"
+#         FZF_DEFAULT_COMMAND="$RG $(printf %q $q) $dir"
+#         result="$(fzf -m --ansi --disabled --query "$q" \
+#             --bind "change:reload:sleep 0.1; $RG {q} $dir || true" \
+#             --delimiter : \
+#             --preview "bat --color=always {1} --highlight-line {2}" \
+#             --preview-window 'up,60%,+{2}+3/3,~3')"
+#         [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
+#     else
+#     fi
