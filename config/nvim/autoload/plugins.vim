@@ -39,7 +39,8 @@ function! plugins#SetupFzf() abort
                 \ 'marker':  ['fg', 'Keyword'],
                 \ 'spinner': ['fg', 'Label'],
                 \ 'header':  ['fg', 'Comment'] }
-    let g:fzf_layout = { 'down': '~40%' }
+    let g:fzf_layout = { 'down': '~70%' }
+    let g:fzf_preview_window = ['up:wrap:70%']
 
     nnoremap <leader>ff :Files<cr>
     nnoremap <leader>fs :call fzf#run(fzf#wrap({'sink': 'split'}))<cr>
@@ -100,10 +101,13 @@ function! plugins#SetupCompe() abort
     " let g:compe.source.omni.priority = 9
     let g:compe.source.tags = {}
     let g:compe.source.tags.priority = 8
+    let g:compe.source.note_tags = {}
+    let g:compe.source.note_tags.priority = 7
     let g:compe.source.buffer = {}
     let g:compe.source.buffer.priority = 1
     let g:compe.source.calc = v:true
     let g:compe.source.nvim_lua = v:true
+    let g:compe.source.month = v:true
 
     inoremap <silent><expr> <CR>    compe#confirm('<CR>')
     inoremap <silent><expr> <tab>   pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -220,4 +224,12 @@ endfunction
 
 function! plugins#SetupVSnipInteg() abort
     packadd! vim-vsnip-integ
+endfunction
+
+function! plugins#SetupVimMarkdown() abort
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_folding_disabled = 1
+    " let g:vim_markdown_conceal = 0
+    " let g:vim_markdown_new_list_item_indent = 0
+    " let g:vim_markdown_auto_insert_bullets = 0
 endfunction

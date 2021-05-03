@@ -1,16 +1,13 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " KEYBINDS
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Leader keys
-nnoremap <Space> <NOP>
-let mapleader=" "
-let maplocalleader=" "
-
 " File finding
-nnoremap <leader>ff :find
-nnoremap <leader>fs :sfind 
-nnoremap <leader>fv :vert :sfind 
-nnoremap <leader>ft :tabfind 
+if empty(globpath(&rtp, '/pack/**/fzf.vim'))
+    nnoremap <leader>ff :find
+    nnoremap <leader>fs :sfind 
+    nnoremap <leader>fv :vert :sfind 
+    nnoremap <leader>ft :tabfind 
+endif
 
 " Split lines
 nnoremap S a<cr><esc>
@@ -20,7 +17,9 @@ nnoremap <leader>o o<esc>
 " Buffer management
 nnoremap ]b :bn<cr>
 nnoremap [b :bp<cr>
-nnoremap <leader>b :ls<cr>:b
+if empty(globpath(&rtp, '/pack/**/fzf.vim'))
+    nnoremap <leader>b :ls<cr>:b
+endif
 nnoremap <leader>d :bd<cr>
 
 " Surround
@@ -67,12 +66,22 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 
+" Quickfix mappings
+nnoremap ]l :lnext<cr>
+nnoremap [l :lprevious<cr>
+nnoremap <leader>lo :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
+nnoremap ]c :cnext<cr>
+nnoremap [c :cprevious<cr>
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
+
 command W w
+command Q q
 command Gco :!fzf-git co
 
 " Notes mappings
-command! -bang NotesSel call fzf#vim#files("~/documents/notes", {"options": ["--query=index.md", "--preview", "cat {}"]}, <bang>0) 
-command! -nargs=1 NewNote :execute ":e" "~/documents/notes/" . strftime("%Y%m%d%H%M%S") . "-<args>.md"
-nnoremap <leader>ws :NotesSel<cr>
-nnoremap <leader>ww :e ~/documents/notes/index.md<cr>
-nnoremap <leader>wn :NewNote 
+nnoremap <leader>nn :NewNote 
+nnoremap <leader>ns :SearchNotes <cr>
+nnoremap <leader>nt :SearchNotesByTag <cr>
+nnoremap <leader>nl :LinkNote <cr>

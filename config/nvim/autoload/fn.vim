@@ -26,7 +26,3 @@ function! fn#CurlyToBracket(bracket)
         return ''
     endif
 endfunction
-
-function! fn#CreateZetNote(name) abort
-    return strftime("%Y%m%d%H%M%S") . "-" . name ".md"
-endfunction
