@@ -120,3 +120,8 @@ alias x2goclient="x2goclient --home=$HOME/.config"
 alias mbsync="mbsync -c ~/.config/mbsync/mbsyncrc"
 alias irssi="irssi --config ~/.config/irssi/config"
 alias weechat="weechat --dir ~/.local/share/weechat"
+
+# notes
+alias nn="notes -n"
+alias nt="notes -t"
+alias n="notes"

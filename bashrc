@@ -15,12 +15,12 @@ fi
 
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 [ -f ~/bin/fzf-git ] && . ~/bin/fzf-git
-# [ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /usr/share/bash-completion/completions/fzf ] && . /usr/share/bash-completion/completions/fzf
-[ -f $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh ] && . $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh
-# . wrap_alias
+# [ -f $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh ] && . $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh
+# [ -f $HOME/bin/wrap_alias ] && . $HOME/bin/wrap_alias
 #[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
 
 # Shell Prompt
@@ -52,12 +52,10 @@ bind -m vi-insert '"\C-g\C-r": "$(_gr)\er\n"'
 bind -m vi-insert '"\C-g\C-s": "$(_gs)\er\n"'
 
 bind -m vi-insert '"\C-x": "$(pwd)/$(fzf-sh)\er\n"'
-bind -x '"\t" : fzf_bash_completion'
+# bind -x '"\t" : fzf_bash_completion'
 # bind -m vi-command '"\C-f": "cd $(fd -t d | fzf --height=50% --preview=\"ls {}\")\n"'
 # bind -m vi-command '"\C-e": "fd -t f | fzf --height=50% --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
 # bind -m vi-command '"\C-o": "fd -t f | fzf -m --height=50% | xargs -rod \"\n\" xdg-open\n"'
 # bind -m vi-insert '"\C-f": "cd $(fd -t d | fzf --height=50% --preview=\"ls {}\")\n"'
 # bind -m vi-insert '"\C-e": "fd -t f | fzf --height=50% --preview=\"cat {}\" | xargs -ro $EDITOR\n"'
 # bind -m vi-insert '"\C-o": "fd -t f | fzf -m --height=50% | xargs -rod \"\n\" xdg-open\n"'
-
-ls
