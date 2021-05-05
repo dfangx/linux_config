@@ -19,6 +19,6 @@
 [submodule "config/firefox/chrome/nord-firefox"]
 	path = config/firefox/chrome/nord-firefox
 	url = https://github.com/daaniiieel/nord-firefox
-[submodule "config/config/nvim"]
-	path = config/config/nvim
-	url = https://github.com/dfangx/nvim-config
+[submodule "config/nvim"]
+	path = config/nvim
+	url = git@github.com:dfangx/nvim-config.git 
