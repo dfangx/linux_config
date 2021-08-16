@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rg -t md --no-heading -I tags ~/notes | sed 's/tags: \[\|\]\|,//g' | tr ' ' '\n' | sort -u > ~/notes/tags 
+sed -i '/^$/d' ~/notes/tags
+

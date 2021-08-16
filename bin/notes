@@ -13,11 +13,10 @@ case $1 in
             --line-number \
             --column \
             --color=always"
-        TAGS_RG="rg \
-            --no-heading \
-            -r '\$1' \
-            -INo \"tags:(.*\w+)\" "$dir" \
-            | sed 's/ /\n/g' \
+        TAGS_RG="rg  \
+            --no-heading -r '\$1' \
+            -INo \"tags: \[((\w+)((?:,) (\w+))*)\]\" "$dir"\
+            | sed 's/, /\n/g' \
             | sort -u \
             | sed '/^\$/d'"
 
@@ -25,7 +24,7 @@ case $1 in
         f=false
         while ! $f ; do
             f=false
-            FZF_DEFAULT_COMMAND="$TAGS_RG"
+            FZF_DEFAULT_COMMAND="cat $dir/tags"
             result="$(fzf \
                 --multi \
                 --ansi \
@@ -34,8 +33,9 @@ case $1 in
                 --prompt "Tags Search> " \
                 )"
             [ -z "$result" ] && break
-            tags="${tags/$'\n'/'|'}"
-            files="$($RG --color never -lw "$tags" $dir)"
+            tags="${result/$'\n'/'|'}"
+            echo "$tags"
+            files="$($RG -t md --color never -lw "$tags" $dir)"
             [ $(echo "$files" | wc -l) -eq 1 ] && result="$files" && break
             # files="${files//$'\n'/' '}"
             # FZF_DEFAULT_COMMAND="$RG -H $(printf %q $q) $files"
@@ -70,35 +70,3 @@ case $1 in
         [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
         ;;
 esac
-
-# Old opts and vars
-# FILES_RG="$RG $(printf %q $q) $dir"
-# --bind "change:reload:sleep 0.1; $RG {q} $dir || true" \
-#
-# Old tag and search
-# -t | --tag)
-#     tags=$(rg --no-heading -INo "#\w+" "$dir" | sort -u | fzf -m)
-#     tags="${tags/$'\n'/'|'}"
-#     RG="rg --no-heading --smart-case --line-number --column --color=always"
-#     files="$($RG --color never -lw "$tags" $dir)"
-#     files="${files//$'\n'/' '}"
-#     q=$2
-#     FZF_DEFAULT_COMMAND="$RG $(printf %q $q) $files"
-#     result="$(fzf -m --ansi \
-#         --delimiter : \
-#         --preview "bat --color=always {1} --highlight-line {2}" \
-#         --preview-window 'up,60%,+{2}+3/3,~3')"
-#     [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
-#     ;;
-#     if false; then
-#         q=$1
-#         RG="rg --no-heading --smart-case --line-number --column --color=always"
-#         FZF_DEFAULT_COMMAND="$RG $(printf %q $q) $dir"
-#         result="$(fzf -m --ansi --disabled --query "$q" \
-#             --bind "change:reload:sleep 0.1; $RG {q} $dir || true" \
-#             --delimiter : \
-#             --preview "bat --color=always {1} --highlight-line {2}" \
-#             --preview-window 'up,60%,+{2}+3/3,~3')"
-#         [ -n "$result" ] && $EDITOR $(echo "$result" | cut -f1 -d':')
-#     else
-#     fi
