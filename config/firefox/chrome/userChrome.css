@@ -1,24 +1,7 @@
-@import url(firefox-csshacks/chrome/compact_urlbar_megabar.css);
-@import url(firefox-csshacks/chrome/page_action_buttons_on_hover.css);
-@import url(firefox-csshacks/chrome/urlbar_popup_full_width.css);
-@import url(firefox-csshacks/chrome/navbar_tabs_oneliner_menu_buttons_on_right.css);
-@import url(firefox-csshacks/chrome/window_control_placeholder_support.css);
-@import url(firefox-csshacks/chrome/linux_gtk_window_control_patch.css);
 @import url(firefox-csshacks/chrome/autohide_toolbox.css);
+@import url(firefox-csshacks/chrome/navigation_buttons_inside_urlbar.css);
+@import url(firefox-csshacks/chrome/compact_urlbar_megabar.css);
+@import url(firefox-csshacks/chrome/hide_tabs_toolbar.css);
+@import url(firefox-csshacks/chrome/window_control_placeholder_support.css);
 @import url(firefox-csshacks/chrome/dark_context_menus.css);
 @import url(nord-firefox/userChrome.css);
-
-:root{
-  --uc-menu-bkgnd: rgba(46, 52, 64, 1);
-  --uc-menu-color: rgba(129, 161, 193, 1);
-  --uc-menu-dimmed: rgba(129, 161, 193, 0.1);
-  --uc-menu-disabled: rgba(129, 161, 193, 0.5);
-}
-
-body > box {
-    height: 0;
-    display: flex;
-}
-#navigator-toolbox{
-    display: -moz-box;
-}
