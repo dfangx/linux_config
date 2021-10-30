@@ -1,2 +1,0 @@
-#!/bin/sh
-exec java -Dhttps.protocols=TLSv1.2 -jar /opt/$(id -un 1000)/runelite/RuneLite.jar "$@"

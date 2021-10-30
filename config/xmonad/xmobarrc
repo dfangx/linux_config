@@ -1,41 +1,15 @@
-Config {
-    font = "xft:Inconsolata:size=13,Material Design Icons:size=13",
-    alignSep = "}{",
-    commands = [
-        Run Alsa "default" "Master" [
-            "-t", "<status> <volume>%",
-            "--",
-            "-h", "\xf057e",
-            "-m", "\xf0580",
-            "-l", "\xf057f",
-            "-o", "\xf075f",
-            "-O", "",
-            "-H", "66",
-            "-L", "33",
-            "-c", "#ffffff",
-            "-C", "#ffffff"
-        ],
-        --Run BatteryP ["BAT0"] [
-        --    "-t", "<acstatus> <left>",
-        --    "--",
-        --    "-P",
-        --    "-O", "",
-        --    "-o", "",
-        --    "-i", "\xf12a3",
-        --    "--lows", "\xf12a1",
-        --    "--mediums", "\xf12a2",
-        --    "--highs", "\xf12a3"
-        --] 50,
-        Run Brightness [
-            "-t", "\xf00e0 <percent>%",
-            "--",
-            "-D", "intel_backlight"
-        ] 10,
-        Run Date "%T %Z" "date" 10,
-        Run Com "/home/cyrusng/bin/dwm/status_scripts/battery" [] "battery" 10,
-        Run Com "/home/cyrusng/bin/dwm/status_scripts/network" ["wlan0"] "wifi" 10,
-        --Run Com "/home/cyrusng/bin/dwm/status_scripts/backlight" [] "bright" 10,
-        Run StdinReader
-    ],
-    template = "%StdinReader%}{ %bright% | %alsa:default:Master% |  %wifi% | %battery% | %date%"
-}
+Config { overrideRedirect = False
+       , font = "xft:Inconsolata:size=13,Material Design Icons:size=13"
+       , bgColor = "#2e3440"
+       , fgColor = "#81a1c1"
+       , position = TopW L 100
+       , commands = [ Run Memory ["--template", "RAM: <usedratio>%"] 10
+                    , Run Date "%x %T %Z" "date" 10
+                    , Run Com "/home/defaultuser/dots/bin/status_bar/scripts/battery" [] "battery" 10
+                    , Run Com "/home/defaultuser/dots/bin/status_bar/scripts/network" ["wlan0"] "wifi" 10
+                    , Run XMonadLog
+                    ]
+       , sepChar ="%"
+       , alignSep = "}{"
+       , template = "%XMonadLog% }{ %memory% | %wifi% %battery% %date% "
+       }

@@ -1,0 +1,7 @@
+#!/bin/sh
+fd | fzf --prompt 'All> ' \
+--header 'CTRL-D: Directories / CTRL-F: Files / CTRL-X: Executables' \
+--bind 'ctrl-d:change-prompt(Directories> )+reload(fd -t d)+preview(tree {})' \
+--bind 'ctrl-f:change-prompt(Files> )+reload(fd -t f)+preview(bat --color=always {})' \
+--bind 'ctrl-x:change-prompt(Executables> )+reload(fd -t x)+preview(bat --color=always {})' \
+--preview '[ -d {} ] && tree {} || [ -f {} ] && bat --color=always {}'

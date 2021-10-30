@@ -1,0 +1,41 @@
+#!/bin/bash
+
+b() {
+    dir="$HOME/docs $HOME/pics $HOME/vids"
+    #excludes="--exclude=$HOME/documents/kvm"
+    excludes=""
+
+    os="$(grep '^ID' /etc/os-release | cut -d '=' -f2 | tr -d '"')"
+    [ -f "/usr/lib/os-release" ] && os="$(grep '^ID' /usr/lib/os-release | cut -f2 -d '=' | tr -d '"')"
+
+    date=$(date +%F)
+    out="$HOME/backup/$os-backup-$date.tar.gz"
+
+    tool="tar"
+    opts="-cvpzf"
+
+    id=4
+
+    sudo -u "#1000" DISPLAY=":0" dunstify -a "System Backup" "System Backup" "System is being backed up into ~/backup/$os-backup-$date.tgz" -u normal -r "$id"
+    $tool $excludes $opts $out $dir
+}
+
+r() {
+    bkup="$1"
+    if [ -n "$bkup" ] && [ -f "$bkup" ]; then
+        r_dir="$HOME/.recovery"
+        mkdir "$r_dir"
+        tar xvpzf "$1" -C "$r_dir" --numeric-owner
+    else
+        echo "No such directory"
+    fi
+}
+
+[ -z  "$1" ] && echo "Give an action b (backup) or r (restore)" && exit
+cmd="$1"
+shift
+if [ "$cmd" == "r" ] || [ "$cmd" == "b" ]; then
+    $cmd $@
+else
+    echo "Invalid command"
+fi

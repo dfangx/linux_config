@@ -5,17 +5,17 @@ max="$(cat /sys/class/backlight/intel_backlight/max_brightness)"
 brightness=$(echo "$current"/"$max"*100 | bc -l)
 brightness=${brightness%.*}
 
-if [ $brightness -ge 85 ]; then
+if [ "$brightness" -ge 85 ]; then
     label="󰃠"
-elif [ $brightness -ge 70 ]; then
+elif [ "$brightness" -ge 70 ]; then
     label="󰃟"
-elif [ $brightness -ge 55 ]; then
+elif [ "$brightness" -ge 55 ]; then
     label="󰃞"
-elif [ $brightness -ge 40 ]; then
+elif [ "$brightness" -ge 40 ]; then
     label="󰃝"
-elif [ $brightness -ge 35 ]; then
+elif [ "$brightness" -ge 35 ]; then
     label="󰃜"
-elif [ $brightness -ge 20 ]; then
+elif [ "$brightness" -ge 20 ]; then
     label="󰃛"
 else
     label="󰃚"

@@ -3,3 +3,8 @@ app-editors/neovim **
 x11-misc/dunst **
 dev-util/ctags **
 x11-misc/picom **
+app-shells/fzf **
+mail-client/neomutt **
+x11-wm/xmonad **
+x11-wm/xmonad-contrib **
+x11-wm/xmobar **

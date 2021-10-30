@@ -1,7 +1,0 @@
-#!/bin/sh
-fd | fzf --prompt 'All> ' \
---header 'CTRL-D: Directories / CTRL-F: Files' \
---bind 'ctrl-d:change-prompt(Directories> )+reload(fd -t d)+preview(ls {})' \
---bind 'ctrl-f:change-prompt(Files> )+reload(fd -t f)+preview(cat {})' \
---preview '[ -d {} ] && ls {} || [ -f {} ] && cat {}' \
---height=50%

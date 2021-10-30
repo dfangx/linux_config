@@ -5,7 +5,6 @@
 # that can't tolerate any output.  So make sure this doesn't display
 # anything or bad things will happen !
 
-export GPG_TTY=$(tty)
 # Test for an interactive shell.  There is no need to set anything
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
@@ -13,8 +12,8 @@ if [[ $- != *i* ]]; then
     return # Shell is non-interactive.  Be done now!
 fi
 
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
-[ -f ~/bin/fzf-git ] && . ~/bin/fzf-git
+[ -f "$HOME/.bash_aliases" ] && . "$HOME/.bash_aliases"
+[ -f "$XDG_BIN_HOME/fzf-git" ] && . "$XDG_BIN_HOME/fzf-git"
 [ -f /usr/share/fzf/key-bindings.bash ] && . /usr/share/fzf/key-bindings.bash
 
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
@@ -22,6 +21,7 @@ fi
 # [ -f $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh ] && . $HOME/dev/src/fzf-tab-completion/bash/fzf-bash-completion.sh
 # [ -f $HOME/bin/wrap_alias ] && . $HOME/bin/wrap_alias
 #[ -z "$TMUX" ] && exec tmux -2 -f "$XDG_CONFIG_HOME"/tmux/tmux.conf
+[ -d "$XDG_CONFIG_HOME" ] && eval $(dircolors "$XDG_CONFIG_HOME"/coreutils/dircolors)
 
 # Shell Prompt
 curDate="[\d]"

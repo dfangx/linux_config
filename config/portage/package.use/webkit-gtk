@@ -1,0 +1,18 @@
+media-libs/harfbuzz icu
+x11-libs/cairo X
+media-libs/freetype -adobe-cff harfbuzz 
+virtual/rubygems ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/webrick ruby_targets_ruby27
+dev-ruby/xmlrpc ruby_targets_ruby27
+dev-ruby/net-telnet ruby_targets_ruby27
+dev-ruby/racc ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/kpeg ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/rdoc ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/json ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/did_you_mean ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/bundler ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/test-unit ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/rake ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/power_assert ruby_targets_ruby27 ruby_targets_ruby30
+dev-ruby/minitest ruby_targets_ruby27 ruby_targets_ruby30
+

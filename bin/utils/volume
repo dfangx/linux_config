@@ -1,0 +1,7 @@
+#!/bin/sh
+
+dir="$1"
+([ "$dir" = "x" ] && pactl set-sink-mute @DEFAULT_SINK@ toggle) || 
+    (pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ "$dir"2%)
+pactl list sinks | grep "Volume: front-left" | grep -o "[0-9]*%" | head -n1 | sed 's/[^0-9]*//g'
+pactl list sinks | grep "Mute" | awk '{print $2}'

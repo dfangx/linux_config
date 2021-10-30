@@ -1,0 +1,5 @@
+#!/bin/bash
+
+alias restore="backup r"
+alias backup="backup b"
+alias def="define"

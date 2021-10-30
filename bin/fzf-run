@@ -1,5 +1,0 @@
-#!/bin/sh
-
-exe=$(fd -Lt x . $(echo $PATH | sed 's/:/ /g') | fzf) 
-nohup "$exe" > /dev/null 2>&1 &
-sleep 0.01

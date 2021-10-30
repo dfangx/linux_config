@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$(id -u)" -ne 0 ] && echo Needs to run with root privileges && exit
+[ -z "$1" ] && echo Give a eselect kernel selection && exit
+
+oldconfig="defaultpath"
+config=/usr/src/linux/.config
+
+cp -v "$config" "$oldconfig" &&
+eselect kernel set "$1" &&
+cp -v "$oldconfig" "$config" &&
+cd /usr/src/linux &&
+make oldconfig && make -j3 && make modules_install && make install && grub-mkconfig -o /boot/grub/grub.cfg

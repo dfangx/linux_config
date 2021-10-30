@@ -1,0 +1,2 @@
+app-editors/neovim lua_single_target_luajit -lua_single_target_lua5-1
+dev-lua/mpack lua_targets_luajit

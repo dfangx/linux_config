@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias e="\$EDITOR"
+alias ba="\$EDITOR ~/.bash_aliases && . ~/.bashrc"
+alias vrc="\$EDITOR ~/.config/vim/vimrc"
+alias nvrc="\$EDITOR ~/.config/nvim/init.vim"
+alias brc="\$EDITOR ~/.bashrc && . ~/.bashrc"
+alias bpr="\$EDITOR ~/.bash_profile"
+alias vs="fd -t f . \$XDG_BIN_HOME | fzf  -m --preview='cat {}' | xargs -roI % \$EDITOR %"
+alias vc="fd -Lt f . \$XDG_CONFIG_HOME  | fzf  -m --preview='cat {}' | xargs -roI % \$EDITOR %"
+

@@ -1,0 +1,89 @@
+#!/bin/bash
+
+install() {
+    pkgnames=$@
+
+    if [ -z "$pkgnames" ]
+    then
+        echo "Package name must be provided to install package"
+        exit 1
+    fi
+
+    case "$os" in
+        "gentoo")
+            xargs -a <(echo $pkgnames) emerge -qa
+            ;;
+        "arch" | "artix")
+            xargs -a <(echo $pkgnames) pacman -S
+            ;;
+        "void")
+            xargs -a <(echo $pkgnames) xbps-install 
+            ;;
+        *)
+    esac
+}
+
+clean() {
+    case "$os" in
+        "gentoo")
+            emerge -ca
+            ;;
+        "arch" | "artix")
+            pacman -Rns $(pacman -Qtdq)
+            ;;
+        "void")
+            xbps-remove -Ro
+            ;;
+        *)
+    esac
+}
+
+remove() {
+    pkgnames=$@
+
+    if [ -z "$pkgnames" ]
+    then
+        echo "Package name must be provided to remove package"
+        exit 1
+    fi
+
+    case "$os" in
+        "gentoo")
+            xargs -a <(echo $pkgnames) emerge --deselect
+            ;;
+        "arch" | "artix")
+            xargs -a <(echo $pkgnames) pacman -Rns
+            ;;
+        "void")
+            xargs -a <(echo $pkgnames) xbps-remove -R
+            ;;
+        *)
+    esac
+}
+
+update() {
+    case "$os" in
+        "gentoo")
+            emerge -uaqDUN --keep-going --with-bdeps=y @world
+            ;;
+        "arch" | "artix")
+            pacman -Syu && aurupdate
+            ;;
+        "void")
+            xbps-install -Su
+            ;;
+        *)
+    esac
+}
+
+if [ -f "/usr/lib/os-release" ]
+then
+    os="$(grep '^ID' /usr/lib/os-release | cut -d '=' -f2 | tr -d '"')"
+else
+    os="$(grep '^ID' /etc/os-release | cut -d '=' -f2 | tr -d '"')"
+fi
+action=$1
+
+[ -z "$action" ] && echo "No commmand given. Aborting" && exit 1
+shift
+$action $@

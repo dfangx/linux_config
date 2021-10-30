@@ -1,3 +1,0 @@
-#!/bin/sh
-
-mono /opt/$(id -un 1000)/nbfc/nbfc.exe "$@"

@@ -1,0 +1,3 @@
+sys-devel/llvm LLVM_TARGETS: -AMDGPU -NVPTX 
+sys-devel/clang LLVM_TARGETS: -AMDGPU -NVPTX
+media-libs/mesa video_cards_i965

@@ -1,0 +1,9 @@
+dev-util/vint python_targets_python3_8
+dev-python/pyyaml python_targets_python3_8
+dev-python/cython python_targets_python3_8
+dev-python/setuptools python_targets_python3_8
+dev-python/certifi python_targets_python3_8
+dev-python/setuptools_scm python_targets_python3_8
+dev-python/packaging python_targets_python3_8
+dev-python/tomli python_targets_python3_8
+dev-python/pyparsing python_targets_python3_9

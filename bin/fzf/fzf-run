@@ -1,0 +1,5 @@
+#!/bin/sh
+[ "$(xdotool search --classname fzf-run | wc -l)" -ne 1 ] && exit
+exe=$(fd -Lt x . --maxdepth 1 $(echo "$PATH" | sed 's/:/ /g') | fzf --height 100% --border none) 
+nohup "$exe" > /dev/null 2>&1 &
+sleep 0.01

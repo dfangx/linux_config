@@ -1,0 +1,18 @@
+#!/bin/bash
+
+alias rem="rem -g"
+
+alias t="task"
+alias ta="task add"
+alias tin="task add +in"
+alias tick="tickle"
+alias in="task in"
+
+tickle() {
+    wait_time="$1"
+    shift
+    tin +tickle wait:"$wait_time" "$@"
+}
+pro() {
+    task pro:"$*"
+}

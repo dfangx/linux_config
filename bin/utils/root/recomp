@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pkg="$1"
+dir="defaultpath"
+cd "$dir/$pkg" || exit
+make install || make clean && make install
+

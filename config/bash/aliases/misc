@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. $XDG_BIN_HOME/bookmark
+alias bo="browser_bm_open"
+alias bm="xclip -sel clipboard -o | buku -w -a"
+alias be="browser_bm_edit"
+alias m="shell_bm_add"
+alias cdb="shell_bm_enter"
+alias be="shell_bm_edit"
+alias rmb="shell_bm_remove"
+alias ytfzf="ytfzf -t"
+#alias yt="ytfzf -t"
+
+alias yt="youtube"
+alias gh="github"

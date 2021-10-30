@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 battery_path="/sys/class/power_supply/BAT0"
 battery="$(cat $battery_path/capacity)"
@@ -13,31 +13,31 @@ if [ "$battery_state" == "Charging" ]; then
     if [ "$battery" -eq 100 ]; then
         #label="\U000f0085"
         label="󰂅"
-    elif [ $battery -ge 90 ]; then
+    elif [ "$battery" -ge 90 ]; then
         #label="\U000f008b"
         label="󰂋"
-    elif [ $battery -ge 80 ]; then
+    elif [ "$battery" -ge 80 ]; then
         #label="\U000f008a"
         label="󰂊"
-    elif [ $battery -ge 70 ]; then
+    elif [ "$battery" -ge 70 ]; then
         #label="\U000f089e"
         label="󰢞"
-    elif [ $battery -ge 60 ]; then
+    elif [ "$battery" -ge 60 ]; then
         #label="\U000f0089"
         label="󰂉"
-    elif [ $battery -ge 50 ]; then
+    elif [ "$battery" -ge 50 ]; then
         #label="\U000f089d"
         label="󰢝"
-    elif [ $battery -ge 40 ]; then
+    elif [ "$battery" -ge 40 ]; then
         #label="\U000f0088"
         label="󰂈"
-    elif [ $battery -ge 30 ]; then
+    elif [ "$battery" -ge 30 ]; then
         #label="\U000f0087"
         label="󰂇"
-    elif [ $battery -ge 20 ]; then
+    elif [ "$battery" -ge 20 ]; then
         #label="\U000f0086"
         label="󰂆"
-    elif [ $battery -ge 10 ]; then
+    elif [ "$battery" -ge 10 ]; then
         #label="\U000f089c"
         label="󰢜"
     else
@@ -82,4 +82,4 @@ else
     fi
 fi
 #echo -e " +@fn=1;$label+@fn=0; $battery%" #[$battery_time]\x01"
-echo -e "$label" #$battery%" #[$battery_time]\x01"
+echo "$label" #$battery%" #[$battery_time]\x01"

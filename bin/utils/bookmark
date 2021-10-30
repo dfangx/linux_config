@@ -1,0 +1,34 @@
+#!/bin/sh
+
+BOOKMARKS_FILE="$HOME/.local/share/bookmarks/bookmarks"
+
+shell_bm_add() {
+    pwd >> "$BOOKMARKS_FILE"
+}
+
+shell_bm_enter() {
+    sel="$(cat "$BOOKMARKS_FILE" | fzf --preview "tree -C {}")"
+    [ -n "$sel" ] && (cd "$sel" || exit)
+}
+
+shell_bm_remove() {
+    sel="$(cat "$BOOKMARKS_FILE" | fzf --preview "tree -C {}" -m)"
+    [ -n "$sel" ] && grep -v "$sel" "$BOOKMARKS_FILE" > "$BOOKMARKS_FILE"
+}
+
+shell_bm_edit() {
+    $EDITOR $BOOKMARKS_FILE
+}
+
+# Browser bookmarks
+browser_bm_open() {
+    urls=$(buku -p -f10)
+    i=$(buku -p -f5 | fzf --preview "buku -p {1} | tail -n +2" --preview-window=wrap | awk '{print $1}')
+    
+    [ -n "$i" ] && url="$(echo "$urls" | sed -n "${i}p")" && $BROWSER "$url" &
+}
+
+browser_bm_edit() {
+    i=$(buku -p -f5 | fzf --preview "buku -p {1} | tail -n +2" --preview-window=wrap | awk '{print $1}')
+    [ -n "$i" ] && buku -w "$i"
+}

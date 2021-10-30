@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# [ -x "$(command -v setxkbmap)" ] && setxkbmap -model evdev -layout us -option caps:swapescape
+# [ -x "$(command -v setxkbmap)" ] && setxkbmap -option 'caps:ctrl_modifier'
+# [ -x "$(command -v xcape)" ] && xcape -e 'Caps_Lock=Escape' -t 400
+[ -x "$(command -v udevmon)" ] && udevmon -c ~/.config/udevmon/udevmon.yaml &
+# [ -x "$(command -v dbus-daemon)" ] && (dbus-daemon --syslog --session --address="unix:path=/run/user/1000/bus" &)
+[ -x "$(command -v redshift)" ] && (redshift &)
+[ -x "$(command -v picom)" ] && picom -b --experimental-backends
+# [ -x "$(command -v wal)" ] &&  wal -R
+[ -x "$(command -v hydroxide)" ] && (hydroxide serve &)
+[ -x "$(command -v feh)" ] && feh --bg-fill --no-fehbg --randomize --recursive ~/pics/wallpapers &
+[ -x "$(command -v sxhkd)" ] && sxhkd &
+[ -x "$(command -v remind)" ] && remind -z -k'dunstify -h string:x-dunst-tag:reminders Reminders %s' $HOME/remind/remind.rem &
+"$XDG_BIN_HOME"/bar &
+#start-pulseaudio-x11
+#exec /usr/libexec/geoclue-2.0/demos/agent & 
+#exec ~/bin/dwm/status_bar &
+#exec feh --no-fehbg --bg-fill --randomize --recursive ~/pictures/wallpapers &
+#xsetroot -cursor_name left_ptr
+

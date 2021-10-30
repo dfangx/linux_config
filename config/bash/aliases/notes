@@ -1,0 +1,5 @@
+#!/bin/bash
+
+alias nn="notes -n"
+alias nt="notes -t"
+alias n="notes"

@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "RAM: `free | awk 'FNR==2 {printf "%.2f\n", ($3+$5)/$2*100}'`%"
+echo "RAM: $(free | awk 'FNR==2 {printf "%.2f\n", ($3+$5)/$2*100}')%"

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-SRC=$HOME/documents/projects/linux_config
-ln -svf $SRC/bash_aliases $HOME/.bash_aliases
-ln -svf $SRC/bash_logout $HOME/.bash_logout
-ln -svf $SRC/bash_profile $HOME/.bash_profile
-ln -svf $SRC/bashrc $HOME/.bashrc
-ln -svf $SRC/bin $HOME/bin
-ln -svf $SRC/config $HOME/.config

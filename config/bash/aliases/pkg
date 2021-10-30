@@ -1,0 +1,7 @@
+#!/bin/bash
+
+alias pi="sudo pkgmgr install"
+alias c="sudo pkgmgr clean"
+alias pr="sudo pkgmgr remove"
+alias u="sudo pkgmgr update" 
+

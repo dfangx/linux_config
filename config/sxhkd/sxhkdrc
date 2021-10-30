@@ -10,12 +10,6 @@ super + semicolon
 super + b
     $BROWSER
 
-super + p
-    $TERM --class fzf-pass -e sh -i fzf-pass -p
-
-super + shift + p
-    $TERM --class fzf-pass -e sh -i fzf-pass -u
-
 super + l
     betterlockscreen -l
 
@@ -27,7 +21,7 @@ super + {k,j}
     dwmc focusstack {-,+}1
 
 super + shift + {k,j}
-    dwmc movestack {-,+}1
+    dwmc {pushup,pushdown}
 
 super + shift + {h,l}
     dwmc setmfact {-,+}0.05
@@ -44,17 +38,17 @@ super + shift + q
 super + shift + {e,r}
     dwmc quit {0,1}
 
-super + Tab
-    dwmc view
-
-super + {t,f,m}
-    dwmc setlayoutex {0,1,2}
+super + {t,f,m,u}
+    dwmc setlayoutex {0,1,2,3}
 
 super + shift + {1-9}
     dwmc tagex {0-8}
 
 super + ctrl + {1-9}
     dwmc viewex {0-8}
+
+super + Tab
+    dwmc viewlast
 
 super + {1-9}
     dwmc toggleviewex {0-8}
@@ -65,5 +59,23 @@ super + ctrl + shift + {1-9}
 super + 0
     dwmc viewall
 
-super + s
-    dwmc togglescratch 0
+super + shift + 0
+    dwmc tagall
+
+super + {s,p}
+    dwmc togglescratch {0,1}
+
+super + {comma,period}
+    dwmc focusmon {-1,1}
+
+super + shift + {comma,period}
+    dwmc tagmon {-1,1}
+
+super + shift + Return
+    dwmc zoom
+
+super + shift + o
+    xrandr --output HDMI-2 --auto --off
+
+super + o
+    xrandr --output HDMI-2 --auto --right-of eDP-1
